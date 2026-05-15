@@ -1,0 +1,250 @@
+═══════════════════════════════════════════════════════════════════════════════
+                    LEGACYHOLD PLATFORM - QUICK REFERENCE CARD
+═══════════════════════════════════════════════════════════════════════════════
+
+START HERE
+──────────
+1. Open VS Code
+2. Right-click "frontend" folder
+3. Select "Open with Live Server"
+4. Go to http://127.0.0.1:5500/setup.html
+
+═══════════════════════════════════════════════════════════════════════════════
+IMPORTANT URLS
+═══════════════════════════════════════════════════════════════════════════════
+
+Setup (Database Check):
+  http://127.0.0.1:5500/setup.html
+
+Landing Page:
+  http://127.0.0.1:5500/
+
+Sign Up:
+  http://127.0.0.1:5500/signup-simple.html
+
+Sign In:
+  http://127.0.0.1:5500/signin-custom.html
+
+Buyer Dashboard:
+  http://127.0.0.1:5500/buyer-dashboard.html
+
+Seller Dashboard:
+  http://127.0.0.1:5500/seller-dashboard.html
+
+═══════════════════════════════════════════════════════════════════════════════
+TEST ACCOUNTS (Create These)
+═══════════════════════════════════════════════════════════════════════════════
+
+Buyer Account:
+  Email: john@example.com
+  Password: TestPassword123
+  Role: Buyer
+
+Seller Account:
+  Email: jane@example.com
+  Password: TestPassword123
+  Role: Seller
+
+═══════════════════════════════════════════════════════════════════════════════
+DATABASE SETUP
+═══════════════════════════════════════════════════════════════════════════════
+
+If database table doesn't exist:
+  1. Copy SQL from setup.html page
+  2. Go to https://supabase.com
+  3. Click your project
+  4. Click "SQL Editor" → "New Query"
+  5. Paste SQL code
+  6. Click "Run" button
+  7. Return to setup.html, refresh
+  8. Should show "✓ Database setup complete!"
+
+═══════════════════════════════════════════════════════════════════════════════
+TROUBLESHOOTING
+═══════════════════════════════════════════════════════════════════════════════
+
+Open Console: F12 (press Ctrl+Shift+I)
+  ✓ Look for red errors
+  ✓ Check blue/green info logs
+  ✓ "User created" indicates success
+  ✓ "✓" = good, "✗" = error
+
+Error: "Database connection failed"
+  → Check if Supabase is accessible (supabase.com)
+  → Check internet connection
+  → Check console for details
+
+Error: "Email already registered"
+  → Use different email
+  → Or delete user from Supabase
+
+Page won't load:
+  → Check URL starts with http://127.0.0.1:5500
+  → Check Live Server is running
+  → Refresh browser (Ctrl+R)
+
+Can't select role:
+  → Open console (F12)
+  → Look for JavaScript errors
+  → Try refreshing page
+
+═══════════════════════════════════════════════════════════════════════════════
+DOCUMENTATION FILES
+═══════════════════════════════════════════════════════════════════════════════
+
+Start With:
+  README_MAIN.md ..................... Overview & next steps
+  ↓
+  QUICK_SETUP_GUIDE.md ............... Step-by-step setup
+
+Then Use:
+  TESTING_CHECKLIST.md ............... Verify everything works
+  IMPLEMENTATION_STATUS.md ........... What's done, what's next
+
+Reference:
+  SESSION_SUMMARY.md ................. What was completed today
+  This File .......................... This quick reference
+
+═══════════════════════════════════════════════════════════════════════════════
+BROWSER TIPS
+═══════════════════════════════════════════════════════════════════════════════
+
+Open Developer Tools:      F12 or Ctrl+Shift+I
+Console Tab:              F12 → Console
+Application/Storage:      F12 → Application → LocalStorage
+  (Check: userId, userEmail, userName, userRole)
+Refresh Page:             Ctrl+R
+Hard Refresh (clear cache): Ctrl+Shift+R
+Incognito Window:         Ctrl+Shift+N (test sign in)
+
+═══════════════════════════════════════════════════════════════════════════════
+WORKFLOW
+═══════════════════════════════════════════════════════════════════════════════
+
+Step 1: CHECK DATABASE
+  → Go to setup.html
+  → If table doesn't exist, create it using SQL
+
+Step 2: CREATE BUYER ACCOUNT
+  → Go to signup-simple.html
+  → Fill: John Doe, john@example.com, TestPassword123
+  → Select "Buyer" role
+  → Verify dashboard shows
+
+Step 3: CREATE SELLER ACCOUNT
+  → Go to signup-simple.html
+  → Fill: Jane Smith, jane@example.com, TestPassword123
+  → Select "Seller" role
+  → Verify dashboard shows
+
+Step 4: TEST SIGN IN
+  → Go to signin-custom.html
+  → Sign in as john
+  → Verify buyer dashboard loads
+  → Sign in as jane
+  → Verify seller dashboard loads
+
+Step 5: VERIFY EVERYTHING
+  → No red errors in console (F12)
+  → Both dashboards show user name
+  → Both dashboards show $0.00 balance
+  → All links and buttons work
+
+═══════════════════════════════════════════════════════════════════════════════
+FEATURES READY TO USE
+═══════════════════════════════════════════════════════════════════════════════
+
+✅ Signup          Create new accounts
+✅ Sign In         Sign back into accounts
+✅ Role Selection  Choose buyer or seller
+✅ Dashboard       View personalized interface
+✅ Balance Display See available and pending amounts
+✅ Navigation      Use sidebar menu
+✅ Session         Persists across page refreshes
+✅ Design          Beautiful dark theme with gold
+
+═══════════════════════════════════════════════════════════════════════════════
+CREDENTIALS (for reference)
+═══════════════════════════════════════════════════════════════════════════════
+
+Supabase Project:
+  URL: https://wdhvrghpmypjthpkfffb.supabase.co
+  (Credentials embedded in HTML files)
+
+═══════════════════════════════════════════════════════════════════════════════
+WHAT TO VERIFY IN CONSOLE (F12 → Console Tab)
+═══════════════════════════════════════════════════════════════════════════════
+
+Setup Page:
+  ✓ "Supabase connected" or "Users table exists"
+
+Signup Page:
+  ✓ "🚀 Starting signup..."
+  ✓ "✓ User created:"
+
+Role Selection Page:
+  ✓ "Role saved successfully"
+  ✓ "Redirecting to buyer-dashboard.html" or seller-dashboard.html
+
+Dashboard:
+  ✓ "User authenticated as buyer" or "User authenticated as seller"
+  ✓ (No red error messages)
+
+═══════════════════════════════════════════════════════════════════════════════
+EXPECTED RESULTS
+═══════════════════════════════════════════════════════════════════════════════
+
+✓ Database setup shows "✓ Database setup complete!"
+✓ Signup succeeds with "Account created! Redirecting..."
+✓ Role selection shows role being saved
+✓ Dashboard loads with correct role and user name
+✓ Balance shows as $0.00 (new account)
+✓ Sign in works and directs to correct dashboard
+✓ Session persists when refreshing page (F5)
+✓ Console shows green ✓ and blue ℹ️ messages (no red ✗)
+
+═══════════════════════════════════════════════════════════════════════════════
+IF SOMETHING DOESN'T WORK
+═══════════════════════════════════════════════════════════════════════════════
+
+1. Read the error message carefully
+2. Open console (F12) and read any red messages
+3. Check QUICK_SETUP_GUIDE.md Troubleshooting section
+4. Refresh page (Ctrl+R)
+5. Clear cache (Ctrl+Shift+R)
+6. Try in incognito mode (Ctrl+Shift+N)
+7. Check browser is using correct URL (starts with http://127.0.0.1:5500)
+
+═══════════════════════════════════════════════════════════════════════════════
+TIME ESTIMATES
+═══════════════════════════════════════════════════════════════════════════════
+
+Database Setup:       5 minutes
+Signup Testing:       5 minutes
+Role Selection:       2 minutes
+Dashboard Viewing:    3 minutes
+Sign In Testing:      5 minutes
+Full Testing:         25 minutes total
+
+═══════════════════════════════════════════════════════════════════════════════
+SUCCESS CRITERIA
+═══════════════════════════════════════════════════════════════════════════════
+
+Project is successful when:
+  ☑ Database connects successfully
+  ☑ Can create buyer account
+  ☑ Can create seller account
+  ☑ Can sign in to both accounts
+  ☑ Each dashboard shows correct role
+  ☑ No JavaScript errors in console
+  ☑ Session persists across refreshes
+  ☑ All navigation works
+
+═══════════════════════════════════════════════════════════════════════════════
+READY? START WITH setup.html!
+═══════════════════════════════════════════════════════════════════════════════
+
+Bookmark this card or print it out while testing.
+Good luck! 🎉
+
+═══════════════════════════════════════════════════════════════════════════════
