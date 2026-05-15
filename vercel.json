@@ -1,21 +1,5 @@
 {
   "version": 2,
   "buildCommand": "echo 'Static deployment - no build needed'",
-  "outputDirectory": "frontend",
-  "public": true,
-  "cleanUrls": true,
-  "github": {
-    "enabled": false,
-    "autoAlias": false
-  },
-  "routes": [
-    {
-      "src": "/(.*\\..*)",
-      "dest": "/frontend/$1"
-    },
-    {
-      "src": "/(.*)",
-      "dest": "/frontend/index.html"
-    }
-  ]
+  "outputDirectory": "frontend"
 }
