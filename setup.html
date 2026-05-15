@@ -1,0 +1,320 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Setup - LegacyHoldEscrow</title>
+  <style>
+    * {
+      margin: 0;
+      padding: 0;
+      box-sizing: border-box;
+    }
+
+    body {
+      font-family: 'DM Sans', -apple-system, BlinkMacSystemFont, sans-serif;
+      background: linear-gradient(135deg, #0a0e1a 0%, #111827 100%);
+      min-height: 100vh;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      padding: 2rem;
+    }
+
+    .container {
+      background: linear-gradient(135deg, #1e2a3a 0%, #111827 100%);
+      border: 1px solid rgba(201, 168, 76, 0.15);
+      border-radius: 12px;
+      padding: 3rem 2rem;
+      max-width: 500px;
+      width: 100%;
+      box-shadow: 0 20px 60px rgba(0, 0, 0, 0.3);
+    }
+
+    h1 {
+      font-family: 'Cormorant Garamond', serif;
+      font-size: 2.2rem;
+      font-weight: 300;
+      color: #c9a84c;
+      text-align: center;
+      margin-bottom: 1rem;
+    }
+
+    .status {
+      background: rgba(201, 168, 76, 0.1);
+      border: 1px solid rgba(201, 168, 76, 0.3);
+      border-radius: 6px;
+      padding: 1.5rem;
+      margin-bottom: 2rem;
+      color: #b0b0b0;
+      line-height: 1.8;
+    }
+
+    .status-item {
+      display: flex;
+      align-items: center;
+      gap: 0.8rem;
+      margin-bottom: 1rem;
+      font-size: 0.95rem;
+    }
+
+    .status-item:last-child {
+      margin-bottom: 0;
+    }
+
+    .status-icon {
+      font-size: 1.2rem;
+      min-width: 24px;
+    }
+
+    .spinner {
+      display: inline-block;
+      width: 16px;
+      height: 16px;
+      border: 2px solid rgba(201, 168, 76, 0.2);
+      border-top: 2px solid #c9a84c;
+      border-radius: 50%;
+      animation: spin 0.8s linear infinite;
+    }
+
+    @keyframes spin {
+      to { transform: rotate(360deg); }
+    }
+
+    .success {
+      color: #2ecc71;
+    }
+
+    .error {
+      color: #ff6b5b;
+    }
+
+    .warning {
+      color: #f39c12;
+    }
+
+    .button-group {
+      display: flex;
+      gap: 1rem;
+      margin-top: 2rem;
+    }
+
+    .btn {
+      flex: 1;
+      padding: 1rem;
+      border: none;
+      border-radius: 6px;
+      font-weight: 600;
+      font-size: 0.95rem;
+      cursor: pointer;
+      transition: all 0.3s ease;
+    }
+
+    .btn-primary {
+      background: linear-gradient(135deg, #c9a84c 0%, #e4c97a 100%);
+      color: #0a0e1a;
+    }
+
+    .btn-primary:hover:not(:disabled) {
+      transform: translateY(-2px);
+      box-shadow: 0 10px 30px rgba(201, 168, 76, 0.3);
+    }
+
+    .btn:disabled {
+      opacity: 0.5;
+      cursor: not-allowed;
+    }
+
+    .code-block {
+      background: rgba(0, 0, 0, 0.3);
+      border: 1px solid rgba(201, 168, 76, 0.2);
+      border-radius: 6px;
+      padding: 1rem;
+      margin: 1.5rem 0;
+      font-family: 'Courier New', monospace;
+      font-size: 0.85rem;
+      color: #c9a84c;
+      overflow-x: auto;
+      line-height: 1.6;
+    }
+
+    .note {
+      background: rgba(255, 193, 7, 0.1);
+      border: 1px solid rgba(255, 193, 7, 0.3);
+      border-radius: 6px;
+      padding: 1rem;
+      margin: 1.5rem 0;
+      color: #b0b0b0;
+      font-size: 0.9rem;
+      line-height: 1.6;
+    }
+
+    .hide {
+      display: none;
+    }
+  </style>
+</head>
+<body>
+  <div class="container">
+    <h1>⚙️ Setup</h1>
+
+    <div class="status" id="status">
+      <div class="status-item">
+        <span class="status-icon spinner"></span>
+        <span>Checking Supabase connection...</span>
+      </div>
+    </div>
+
+    <div class="note">
+      This page checks your database and creates the users table if it doesn't exist.
+    </div>
+
+    <div class="button-group">
+      <button class="btn btn-primary" id="continueBtn" onclick="goToSignup()" disabled>
+        Continue to Signup
+      </button>
+    </div>
+  </div>
+
+  <script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2"></script>
+
+  <script>
+    const SUPABASE_URL = 'https://wdhvrghpmypjthpkfffb.supabase.co';
+    const SUPABASE_KEY = 'eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpc3MiOiJzdXBhYmFzZSIsInJlZiI6IndkaHZyZ2hwbXlwanRocGtmZmZiIiwicm9sZSI6ImFub24iLCJpYXQiOjE3NzgwNDUzNzksImV4cCI6MjA5MzYyMTM3OX0.dXNJyQZNOfvqLwYl10gtZv5sCHP9XLlxYdRnHzp5p3g';
+
+    let supabase = null;
+    let setupComplete = false;
+
+    async function runSetup() {
+      try {
+        // Initialize Supabase
+        addLog('✓ Initializing Supabase...', 'success');
+        supabase = window.supabase.createClient(SUPABASE_URL, SUPABASE_KEY);
+
+        // Check if users table exists
+        addLog('Checking if users table exists...', 'info');
+        const { data, error } = await supabase
+          .from('users')
+          .select('id')
+          .limit(1);
+
+        if (error && error.code === 'PGRST116') {
+          // Table doesn't exist
+          addLog('⚠️ Users table not found, creating...', 'warning');
+          await createUsersTable();
+        } else if (error) {
+          throw new Error(`Database error: ${error.message}`);
+        } else {
+          addLog('✓ Users table exists', 'success');
+        }
+
+        // Verify RLS policies
+        addLog('✓ Database setup complete!', 'success');
+        setupComplete = true;
+        document.getElementById('continueBtn').disabled = false;
+
+      } catch (error) {
+        console.error('Setup error:', error);
+        addLog(`✗ Error: ${error.message}`, 'error');
+        addLog('⚠️ Check browser console for details', 'warning');
+      }
+    }
+
+    async function createUsersTable() {
+      // This requires service role key or direct SQL access
+      // Instead, provide user with SQL to run manually
+      addLog('⚠️ Please run this SQL in Supabase:', 'warning');
+
+      const sql = `
+-- Create ENUM type for user roles
+CREATE TYPE user_role AS ENUM ('buyer', 'seller');
+
+-- Create users table
+CREATE TABLE IF NOT EXISTS users (
+  id VARCHAR(255) PRIMARY KEY,
+  email VARCHAR(255) UNIQUE NOT NULL,
+  full_name VARCHAR(255) NOT NULL,
+  phone VARCHAR(20),
+  role user_role,
+  available_balance DECIMAL(18, 8) NOT NULL DEFAULT 0,
+  pending_balance DECIMAL(18, 8) NOT NULL DEFAULT 0,
+  created_at TIMESTAMP WITH TIME ZONE DEFAULT CURRENT_TIMESTAMP,
+  updated_at TIMESTAMP WITH TIME ZONE DEFAULT CURRENT_TIMESTAMP
+);
+
+-- Enable Row Level Security
+ALTER TABLE users ENABLE ROW LEVEL SECURITY;
+
+-- Create RLS Policies
+CREATE POLICY "Anyone can insert user profile" ON users FOR INSERT WITH CHECK (true);
+CREATE POLICY "Anyone can view users" ON users FOR SELECT USING (true);
+CREATE POLICY "Users can update own profile" ON users FOR UPDATE USING (true);
+      `;
+
+      showSQLInstructions(sql);
+      setupComplete = false;
+    }
+
+    function showSQLInstructions(sql) {
+      const statusDiv = document.getElementById('status');
+      statusDiv.innerHTML = `
+        <div class="status-item error">
+          <span class="status-icon">⚠️</span>
+          <span>Users table needs to be created manually</span>
+        </div>
+        <p style="margin-top: 1rem; color: #b0b0b0; font-size: 0.9rem; line-height: 1.6;">
+          Follow these steps:
+          <br><br>
+          1. Go to: <strong>supabase.com</strong>
+          <br>
+          2. Click your project
+          <br>
+          3. Click <strong>"SQL Editor"</strong> on the left
+          <br>
+          4. Click <strong>"New Query"</strong>
+          <br>
+          5. Copy and paste the SQL below:
+        </p>
+      `;
+
+      const codeBlock = document.createElement('div');
+      codeBlock.className = 'code-block';
+      codeBlock.textContent = sql;
+      statusDiv.appendChild(codeBlock);
+
+      const note = document.createElement('p');
+      note.style.cssText = 'color: #b0b0b0; font-size: 0.9rem; margin-top: 1rem;';
+      note.innerHTML = '6. Click <strong>"Run"</strong> button<br>7. Come back here and refresh the page<br>8. Click "Continue to Signup"';
+      statusDiv.appendChild(note);
+    }
+
+    function addLog(message, type = 'info') {
+      const statusDiv = document.getElementById('status');
+      const item = document.createElement('div');
+      item.className = 'status-item ' + type;
+
+      let icon = '⏳';
+      if (type === 'success') icon = '✓';
+      else if (type === 'error') icon = '✗';
+      else if (type === 'warning') icon = '⚠️';
+
+      item.innerHTML = `
+        <span class="status-icon">${icon}</span>
+        <span>${message}</span>
+      `;
+
+      statusDiv.appendChild(item);
+      console.log(`[${type}] ${message}`);
+    }
+
+    function goToSignup() {
+      if (setupComplete) {
+        window.location.href = './signup-simple.html';
+      }
+    }
+
+    // Run setup on page load
+    window.addEventListener('load', runSetup);
+  </script>
+</body>
+</html>

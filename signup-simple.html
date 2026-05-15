@@ -1,0 +1,332 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Sign Up - LegacyHoldEscrow</title>
+  <style>
+    * {
+      margin: 0;
+      padding: 0;
+      box-sizing: border-box;
+    }
+
+    body {
+      font-family: 'DM Sans', -apple-system, BlinkMacSystemFont, sans-serif;
+      background: linear-gradient(135deg, #0a0e1a 0%, #111827 100%);
+      min-height: 100vh;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      padding: 2rem;
+    }
+
+    .container {
+      background: linear-gradient(135deg, #1e2a3a 0%, #111827 100%);
+      border: 1px solid rgba(201, 168, 76, 0.15);
+      border-radius: 12px;
+      padding: 3rem 2rem;
+      max-width: 420px;
+      width: 100%;
+      box-shadow: 0 20px 60px rgba(0, 0, 0, 0.3);
+    }
+
+    h1 {
+      font-family: 'Cormorant Garamond', serif;
+      font-size: 2.2rem;
+      font-weight: 300;
+      color: #c9a84c;
+      text-align: center;
+      margin-bottom: 0.5rem;
+      letter-spacing: 2px;
+    }
+
+    .subtitle {
+      text-align: center;
+      color: #b0b0b0;
+      font-size: 0.95rem;
+      margin-bottom: 2.5rem;
+      letter-spacing: 0.5px;
+    }
+
+    .form-group {
+      margin-bottom: 1.5rem;
+    }
+
+    label {
+      display: block;
+      color: #e4c97a;
+      font-size: 0.9rem;
+      font-weight: 600;
+      margin-bottom: 0.6rem;
+      letter-spacing: 0.5px;
+    }
+
+    input {
+      width: 100%;
+      padding: 0.9rem 1rem;
+      background: rgba(255, 255, 255, 0.05);
+      border: 1px solid rgba(201, 168, 76, 0.2);
+      border-radius: 6px;
+      color: #ffffff;
+      font-size: 0.95rem;
+      font-family: inherit;
+      transition: all 0.3s ease;
+    }
+
+    input::placeholder {
+      color: rgba(255, 255, 255, 0.4);
+    }
+
+    input:focus {
+      outline: none;
+      background: rgba(255, 255, 255, 0.08);
+      border-color: #c9a84c;
+      box-shadow: 0 0 0 3px rgba(201, 168, 76, 0.1);
+    }
+
+    .form-row {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 1rem;
+    }
+
+    .form-row .form-group {
+      margin-bottom: 0;
+    }
+
+    .btn {
+      width: 100%;
+      padding: 1rem;
+      background: linear-gradient(135deg, #c9a84c 0%, #e4c97a 100%);
+      border: none;
+      border-radius: 6px;
+      color: #0a0e1a;
+      font-weight: 700;
+      font-size: 0.95rem;
+      letter-spacing: 0.5px;
+      cursor: pointer;
+      transition: all 0.3s ease;
+      margin-top: 1rem;
+    }
+
+    .btn:hover {
+      transform: translateY(-2px);
+      box-shadow: 0 10px 30px rgba(201, 168, 76, 0.3);
+    }
+
+    .btn:disabled {
+      opacity: 0.6;
+      cursor: not-allowed;
+    }
+
+    .message {
+      padding: 0.8rem 1rem;
+      border-radius: 6px;
+      margin-bottom: 1.5rem;
+      font-size: 0.9rem;
+      display: none;
+    }
+
+    .error {
+      background: rgba(231, 76, 60, 0.1);
+      border: 1px solid rgba(231, 76, 60, 0.3);
+      color: #ff6b5b;
+      display: block;
+    }
+
+    .success {
+      background: rgba(46, 204, 113, 0.1);
+      border: 1px solid rgba(46, 204, 113, 0.3);
+      color: #2ecc71;
+      display: block;
+    }
+
+    .footer {
+      text-align: center;
+      margin-top: 1.5rem;
+      padding-top: 1.5rem;
+      border-top: 1px solid rgba(201, 168, 76, 0.1);
+    }
+
+    .footer p {
+      color: #b0b0b0;
+      font-size: 0.9rem;
+    }
+
+    .footer a {
+      color: #c9a84c;
+      text-decoration: none;
+      font-weight: 600;
+    }
+
+    .footer a:hover {
+      color: #e4c97a;
+    }
+
+    @media (max-width: 480px) {
+      .container {
+        padding: 2rem 1.5rem;
+      }
+      .form-row {
+        grid-template-columns: 1fr;
+      }
+    }
+  </style>
+</head>
+<body>
+  <div class="container">
+    <h1>LegacyHold</h1>
+    <p class="subtitle">Create your account</p>
+
+    <div id="message" class="message"></div>
+
+    <form id="signupForm">
+      <div class="form-row">
+        <div class="form-group">
+          <label for="firstName">First Name</label>
+          <input type="text" id="firstName" placeholder="John" required>
+        </div>
+        <div class="form-group">
+          <label for="lastName">Last Name</label>
+          <input type="text" id="lastName" placeholder="Doe" required>
+        </div>
+      </div>
+
+      <div class="form-group">
+        <label for="email">Email</label>
+        <input type="email" id="email" placeholder="you@example.com" required>
+      </div>
+
+      <div class="form-group">
+        <label for="password">Password</label>
+        <input type="password" id="password" placeholder="••••••••" required>
+      </div>
+
+      <div class="form-group">
+        <label for="confirmPassword">Confirm Password</label>
+        <input type="password" id="confirmPassword" placeholder="••••••••" required>
+      </div>
+
+      <button type="submit" class="btn">Create Account</button>
+    </form>
+
+    <div class="footer">
+      <p>Already have an account? <a href="signin-custom.html">Sign In</a></p>
+    </div>
+  </div>
+
+  <script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2"></script>
+
+  <script>
+    // Supabase config
+    const SUPABASE_URL = 'https://wdhvrghpmypjthpkfffb.supabase.co';
+    const SUPABASE_KEY = 'eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpc3MiOiJzdXBhYmFzZSIsInJlZiI6IndkaHZyZ2hwbXlwanRocGtmZmZiIiwicm9sZSI6ImFub24iLCJpYXQiOjE3NzgwNDUzNzksImV4cCI6MjA5MzYyMTM3OX0.dXNJyQZNOfvqLwYl10gtZv5sCHP9XLlxYdRnHzp5p3g';
+
+    let supabase = null;
+
+    // Initialize Supabase
+    window.addEventListener('load', () => {
+      try {
+        supabase = window.supabase.createClient(SUPABASE_URL, SUPABASE_KEY);
+        console.log('✓ Supabase connected');
+      } catch (error) {
+        console.error('✗ Supabase error:', error);
+        showMessage('Database connection failed', 'error');
+      }
+    });
+
+    // Handle form submission
+    document.getElementById('signupForm').addEventListener('submit', async (e) => {
+      e.preventDefault();
+
+      console.log('🚀 Form submitted');
+
+      const firstName = document.getElementById('firstName').value.trim();
+      const lastName = document.getElementById('lastName').value.trim();
+      const email = document.getElementById('email').value.trim();
+      const password = document.getElementById('password').value;
+      const confirmPassword = document.getElementById('confirmPassword').value;
+
+      // Validation
+      if (!firstName || !lastName || !email || !password) {
+        showMessage('Please fill all fields', 'error');
+        return;
+      }
+
+      if (password !== confirmPassword) {
+        showMessage('Passwords do not match', 'error');
+        return;
+      }
+
+      if (password.length < 6) {
+        showMessage('Password must be at least 6 characters', 'error');
+        return;
+      }
+
+      // Disable button
+      const btn = document.querySelector('.btn');
+      btn.disabled = true;
+      btn.textContent = 'Creating account...';
+
+      try {
+        console.log('📝 Creating user in Supabase...');
+
+        if (!supabase) {
+          throw new Error('Database not connected');
+        }
+
+        // Create user
+        const { data, error } = await supabase
+          .from('users')
+          .insert([
+            {
+              id: `user_${Date.now()}`,
+              email: email,
+              full_name: `${firstName} ${lastName}`,
+              role: null,
+              available_balance: 0,
+              pending_balance: 0
+            }
+          ])
+          .select();
+
+        if (error) {
+          console.error('Database error:', error);
+          throw new Error(error.message);
+        }
+
+        console.log('✓ User created:', data);
+
+        // Store in localStorage
+        const user = data[0];
+        localStorage.setItem('userId', user.id);
+        localStorage.setItem('userEmail', email);
+        localStorage.setItem('userName', `${firstName} ${lastName}`);
+
+        console.log('✓ Data saved to localStorage');
+
+        // Show success
+        showMessage('Account created! Redirecting...', 'success');
+
+        // Redirect
+        setTimeout(() => {
+          window.location.href = './select-role.html';
+        }, 1500);
+
+      } catch (error) {
+        console.error('✗ Error:', error);
+        showMessage(error.message || 'Failed to create account', 'error');
+        btn.disabled = false;
+        btn.textContent = 'Create Account';
+      }
+    });
+
+    function showMessage(text, type) {
+      const msg = document.getElementById('message');
+      msg.textContent = text;
+      msg.className = 'message ' + type;
+    }
+  </script>
+</body>
+</html>

@@ -1,0 +1,419 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Deposit Funds — TrustBridge Escrow</title>
+  <link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,300;0,400;0,600;1,300;1,400&family=DM+Sans:wght@300;400;500;600&display=swap" rel="stylesheet">
+  <link rel="icon" type="image/svg+xml" href="favicon.svg">
+  <style>
+    :root {
+      --navy: #0a0e1a;
+      --navy-mid: #111827;
+      --navy-light: #1e2a3a;
+      --gold: #c9a84c;
+      --gold-light: #e4c97a;
+      --white: #ffffff;
+      --gray-300: #b0b0b0;
+      --gray-500: #707070;
+      --green: #2ecc71;
+      --red: #e74c3c;
+      --transition: 0.35s cubic-bezier(0.4,0,0.2,1);
+      --font-display: 'Cormorant Garamond', serif;
+      --font-body: 'DM Sans', sans-serif;
+    }
+
+    * { box-sizing: border-box; margin: 0; padding: 0; }
+    html { scroll-behavior: smooth; font-size: 16px; }
+    body {
+      font-family: var(--font-body);
+      background: var(--navy);
+      color: var(--white);
+      line-height: 1.6;
+    }
+
+    a { text-decoration: none; color: inherit; }
+    button { cursor: pointer; border: none; background: none; font-family: var(--font-body); }
+
+    /* Header */
+    header {
+      position: fixed;
+      top: 0; left: 0; right: 0;
+      z-index: 1000;
+      padding: 0 40px;
+      height: 76px;
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      background: rgba(10,14,26,0.94);
+      backdrop-filter: blur(16px);
+      border-bottom: 1px solid rgba(201,168,76,0.15);
+    }
+
+    .nav-logo { display: flex; align-items: center; gap: 10px; font-family: var(--font-display); font-size: 1.3rem; font-weight: 600; }
+    .nav-logo span { color: var(--gold); }
+    .nav-links { display: flex; gap: 30px; }
+    .nav-links a { font-size: 0.9rem; color: var(--gray-300); transition: color var(--transition); }
+    .nav-links a:hover { color: var(--gold); }
+
+    /* Main */
+    main { padding-top: 100px; padding-bottom: 60px; }
+    .container { max-width: 1200px; margin: 0 auto; padding: 0 40px; }
+
+    /* Page Header */
+    .page-header { text-align: center; margin-bottom: 60px; }
+    .page-header h1 { font-family: var(--font-display); font-size: clamp(2.5rem, 6vw, 4rem); font-weight: 300; margin-bottom: 14px; }
+    .page-header p { font-size: 1.1rem; color: var(--gray-300); }
+
+    /* Content Layout */
+    .deposit-layout { display: grid; grid-template-columns: 1fr 1fr; gap: 60px; align-items: start; }
+
+    /* Left Side: Amount & Method Selection */
+    .deposit-form { background: var(--navy-mid); padding: 44px; border-radius: 14px; border: 1px solid rgba(201,168,76,0.15); }
+    .form-group { margin-bottom: 28px; }
+    .form-label { font-size: 0.85rem; font-weight: 600; color: var(--gold); text-transform: uppercase; letter-spacing: 0.1em; margin-bottom: 10px; display: block; }
+    .form-input { width: 100%; padding: 14px 16px; background: var(--navy); border: 1px solid rgba(201,168,76,0.15); border-radius: 6px; color: var(--white); font-size: 1rem; font-family: var(--font-body); transition: border-color var(--transition); }
+    .form-input:focus { outline: none; border-color: var(--gold); }
+
+    .method-grid { display: grid; grid-template-columns: repeat(2, 1fr); gap: 12px; }
+    .method-btn {
+      padding: 16px;
+      background: var(--navy);
+      border: 2px solid rgba(201,168,76,0.15);
+      border-radius: 8px;
+      color: var(--gray-300);
+      font-size: 0.9rem;
+      font-weight: 600;
+      transition: var(--transition);
+      cursor: pointer;
+    }
+
+    .method-btn:hover { border-color: var(--gold); color: var(--gold-light); }
+    .method-btn.active { background: var(--gold); color: var(--navy); border-color: var(--gold); }
+
+    .method-icon { font-size: 1.4rem; margin-bottom: 8px; }
+
+    .btn-deposit { width: 100%; padding: 16px; background: var(--gold); color: var(--navy); font-size: 0.95rem; font-weight: 600; border-radius: 6px; margin-top: 20px; transition: var(--transition); }
+    .btn-deposit:hover { background: var(--gold-light); transform: translateY(-2px); }
+
+    /* Right Side: QR Code Display */
+    .qr-display { background: var(--navy-mid); padding: 44px; border-radius: 14px; border: 1px solid rgba(201,168,76,0.15); text-align: center; }
+    .qr-container { margin-bottom: 30px; padding: 30px; background: var(--white); border-radius: 12px; display: inline-block; }
+    .qr-code { max-width: 250px; }
+    .qr-code img { width: 100%; height: auto; }
+
+    .address-display { background: var(--navy); padding: 16px; border-radius: 8px; border: 1px solid rgba(201,168,76,0.15); margin-bottom: 20px; word-break: break-all; font-family: 'Courier New', monospace; font-size: 0.85rem; color: var(--gray-300); }
+    .copy-btn { padding: 10px 20px; background: var(--gold); color: var(--navy); font-weight: 600; border-radius: 6px; font-size: 0.85rem; transition: var(--transition); }
+    .copy-btn:hover { background: var(--gold-light); }
+    .copy-btn.copied { background: var(--green); }
+
+    /* Payment Info */
+    .payment-info { background: rgba(201,168,76,0.08); padding: 20px; border-left: 4px solid var(--gold); border-radius: 6px; margin-top: 30px; font-size: 0.9rem; line-height: 1.7; }
+    .info-title { font-weight: 600; color: var(--gold); margin-bottom: 10px; }
+
+    /* Security Badges */
+    .security-badges { display: flex; gap: 16px; margin-top: 30px; flex-wrap: wrap; justify-content: center; }
+    .badge { display: flex; align-items: center; gap: 8px; font-size: 0.8rem; color: var(--gray-500); }
+    .badge-icon { color: var(--gold); font-size: 1rem; }
+
+    /* Status Message */
+    .status-msg { padding: 12px 16px; border-radius: 6px; margin-top: 20px; font-size: 0.9rem; display: none; }
+    .status-msg.success { background: rgba(46,204,113,0.15); color: var(--green); border: 1px solid var(--green); display: block; }
+    .status-msg.error { background: rgba(231,76,60,0.15); color: var(--red); border: 1px solid var(--red); display: block; }
+    .status-msg.info { background: rgba(201,168,76,0.15); color: var(--gold); border: 1px solid var(--gold); display: block; }
+
+    /* Responsive */
+    @media (max-width: 1024px) {
+      .deposit-layout { grid-template-columns: 1fr; gap: 40px; }
+      .method-grid { grid-template-columns: repeat(3, 1fr); }
+    }
+
+    @media (max-width: 768px) {
+      .container { padding: 0 20px; }
+      header { padding: 0 20px; }
+      main { padding-top: 80px; padding-bottom: 40px; }
+      .deposit-form, .qr-display { padding: 28px; }
+      .method-grid { grid-template-columns: repeat(2, 1fr); gap: 10px; }
+      .method-btn { padding: 12px; font-size: 0.8rem; }
+      .qr-container { padding: 20px; }
+      .security-badges { justify-content: flex-start; }
+    }
+
+    @media (max-width: 480px) {
+      .container { padding: 0 16px; }
+      header { padding: 0 16px; }
+      .page-header h1 { font-size: 1.8rem; }
+      .deposit-form, .qr-display { padding: 20px; }
+      .method-grid { grid-template-columns: 1fr; }
+      .qr-container { padding: 16px; }
+      .qr-code { max-width: 200px; }
+    }
+  </style>
+</head>
+<body>
+
+<header>
+  <a href="index.html" class="nav-logo">Trust<span>Bridge</span></a>
+  <nav class="nav-links">
+    <a href="index.html">Home</a>
+    <a href="company.html">Company</a>
+    <a href="escrow.html">Escrow</a>
+    <a href="support.html">Support</a>
+  </nav>
+</header>
+
+<main>
+  <div class="container">
+    <div class="page-header">
+      <h1>Deposit Funds</h1>
+      <p>Add cryptocurrency to your TrustBridge account. Fast, secure, and transparent.</p>
+    </div>
+
+    <div class="deposit-layout">
+      <!-- LEFT: FORM -->
+      <div class="deposit-form">
+        <form id="depositForm">
+          <div class="form-group">
+            <label class="form-label">Deposit Amount (USD)</label>
+            <input
+              type="number"
+              id="amount"
+              class="form-input"
+              placeholder="Enter amount..."
+              min="10"
+              step="1"
+              required
+            >
+          </div>
+
+          <div class="form-group">
+            <label class="form-label">Select Payment Method</label>
+            <div class="method-grid">
+              <button type="button" class="method-btn active" data-method="btc">
+                <div class="method-icon">₿</div>
+                <div>Bitcoin</div>
+              </button>
+              <button type="button" class="method-btn" data-method="eth">
+                <div class="method-icon">Ξ</div>
+                <div>Ethereum</div>
+              </button>
+              <button type="button" class="method-btn" data-method="sol">
+                <div class="method-icon">◎</div>
+                <div>Solana</div>
+              </button>
+              <button type="button" class="method-btn" data-method="bnb">
+                <div class="method-icon">BNB</div>
+                <div>BNB Chain</div>
+              </button>
+              <button type="button" class="method-btn" data-method="usdt">
+                <div class="method-icon">₮</div>
+                <div>USDT</div>
+              </button>
+              <button type="button" class="method-btn" data-method="trx">
+                <div class="method-icon">TRX</div>
+                <div>Tron</div>
+              </button>
+              <button type="button" class="method-btn" data-method="xrp">
+                <div class="method-icon">✕</div>
+                <div>Ripple</div>
+              </button>
+            </div>
+          </div>
+
+          <div id="statusMsg" class="status-msg"></div>
+          <button type="submit" class="btn-deposit">Proceed to Payment</button>
+        </form>
+
+        <div class="payment-info">
+          <div class="info-title">💡 How it works:</div>
+          <ol style="margin-left: 20px;">
+            <li>Enter the amount you want to deposit</li>
+            <li>Select your preferred cryptocurrency</li>
+            <li>Scan the QR code or copy the address</li>
+            <li>Send payment from your crypto wallet</li>
+            <li>We verify and credit your account</li>
+          </ol>
+        </div>
+      </div>
+
+      <!-- RIGHT: QR CODE -->
+      <div class="qr-display">
+        <h2 style="font-family: var(--font-display); font-size: 1.8rem; margin-bottom: 20px;">Payment Address</h2>
+
+        <div id="selectedMethod" style="margin-bottom: 20px;">
+          <div style="font-size: 1.2rem; font-weight: 600; color: var(--gold); margin-bottom: 8px;">
+            <span id="methodName">Bitcoin</span>
+          </div>
+          <div style="font-size: 0.9rem; color: var(--gray-300);">Amount: <strong id="amountDisplay">0.00 USD</strong></div>
+        </div>
+
+        <div class="qr-container">
+          <div class="qr-code" id="qrCode"></div>
+        </div>
+
+        <div class="address-display" id="addressDisplay">
+          Loading address...
+        </div>
+
+        <button class="copy-btn" id="copyBtn" onclick="copyAddress()">
+           Copy Address
+        </button>
+
+        <div class="security-badges">
+          <div class="badge">
+            <span class="badge-icon">🔒</span>
+            <span>Secure HTTPS</span>
+          </div>
+          <div class="badge">
+            <span class="badge-icon">✓</span>
+            <span>Real Addresses</span>
+          </div>
+          <div class="badge">
+            <span class="badge-icon">✓</span>
+            <span>Licensed Escrow</span>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</main>
+
+<!-- QR Code Library -->
+<script src="https://cdnjs.cloudflare.com/ajax/libs/qrcodejs/1.0.0/qrcode.min.js"></script>
+
+<script>
+  // Payment methods & addresses
+  const PAYMENT_METHODS = {
+    btc: {
+      name: 'Bitcoin',
+      address: 'bc1qx3ul9a6kw2h2hfckwttgh8c6am2zjkg66rkl08',
+      icon: '₿'
+    },
+    eth: {
+      name: 'Ethereum',
+      address: '0x014198cD564f8366261b97EF59ec27d3C3AB0035',
+      icon: 'Ξ'
+    },
+    sol: {
+      name: 'Solana',
+      address: 'AwTuC8HngoxHZr46H6QgBSK1aPg8knKmsax6upbMj31b',
+      icon: '◎'
+    },
+    bnb: {
+      name: 'BNB Chain',
+      address: '0x014198cD564f8366261b97EF59ec27d3C3AB0035',
+      icon: 'BNB'
+    },
+    usdt: {
+      name: 'USDT (Tether)',
+      address: '0x014198cD564f8366261b97EF59ec27d3C3AB0035',
+      icon: '₮'
+    },
+    trx: {
+      name: 'Tron (TRX)',
+      address: 'TKahJXYiyngew58j25nDfCMsuAAksn9YLq',
+      icon: 'TRX'
+    },
+    xrp: {
+      name: 'Ripple (XRP)',
+      address: 'rMK5RcCfJhNqGN6shFf6Yq3jxt9oJDg7SV',
+      icon: '✕'
+    }
+  };
+
+  let selectedMethod = 'btc';
+
+  // Method selection
+  document.querySelectorAll('.method-btn').forEach(btn => {
+    btn.addEventListener('click', (e) => {
+      e.preventDefault();
+      document.querySelectorAll('.method-btn').forEach(b => b.classList.remove('active'));
+      btn.classList.add('active');
+      selectedMethod = btn.dataset.method;
+      updateQRCode();
+    });
+  });
+
+  // Update amount display
+  document.getElementById('amount').addEventListener('change', updateQRCode);
+
+  // Generate QR code
+  function updateQRCode() {
+    const method = PAYMENT_METHODS[selectedMethod];
+    const amount = document.getElementById('amount').value || '0.00';
+
+    document.getElementById('methodName').textContent = method.name;
+    document.getElementById('amountDisplay').textContent = amount + ' USD';
+    document.getElementById('addressDisplay').textContent = method.address;
+
+    // Clear old QR
+    document.getElementById('qrCode').innerHTML = '';
+
+    // Generate new QR
+    if (method.address) {
+      new QRCode(document.getElementById('qrCode'), {
+        text: method.address,
+        width: 250,
+        height: 250,
+        colorDark: '#0a0e1a',
+        colorLight: '#ffffff',
+        correctLevel: QRCode.CorrectLevel.H
+      });
+    }
+  }
+
+  // Copy address to clipboard
+  function copyAddress() {
+    const address = PAYMENT_METHODS[selectedMethod].address;
+    navigator.clipboard.writeText(address).then(() => {
+      const btn = document.getElementById('copyBtn');
+      btn.classList.add('copied');
+      btn.textContent = '✓ Copied!';
+      setTimeout(() => {
+        btn.classList.remove('copied');
+        btn.textContent = ' Copy Address';
+      }, 2000);
+    });
+  }
+
+  // Form submission
+  document.getElementById('depositForm').addEventListener('submit', (e) => {
+    e.preventDefault();
+
+    const amount = parseFloat(document.getElementById('amount').value);
+    const method = selectedMethod;
+
+    if (!amount || amount < 10) {
+      showStatus('Minimum deposit is $10 USD', 'error');
+      return;
+    }
+
+    const methodInfo = PAYMENT_METHODS[method];
+    const depositData = {
+      amount: amount,
+      currency: method.toUpperCase(),
+      wallet_address: methodInfo.address,
+      method_name: methodInfo.name,
+      timestamp: new Date().toISOString()
+    };
+
+    console.log('Deposit initiated:', depositData);
+    showStatus(`Payment details ready. Please send ${amount} USD worth of ${methodInfo.name} to the address above. We'll confirm your payment within 30 minutes.`, 'success');
+
+    // Store in sessionStorage temporarily (cleared on browser close for security)
+    // TODO: Save to Supabase backend instead of client-side storage
+    sessionStorage.setItem('lastDeposit', JSON.stringify(depositData));
+  });
+
+  function showStatus(msg, type) {
+    const el = document.getElementById('statusMsg');
+    el.textContent = msg;
+    el.className = 'status-msg ' + type;
+  }
+
+  // Initialize
+  updateQRCode();
+</script>
+
+</body>
+</html>
