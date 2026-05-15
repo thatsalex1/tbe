@@ -146,6 +146,17 @@
   <script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2"></script>
 
   <script>
+    // Global error handler
+    window.addEventListener('error', (event) => {
+      console.error('🔴 Window Error:', event.message, event.filename, event.lineno);
+    });
+
+    window.addEventListener('unhandledrejection', (event) => {
+      console.error('🔴 Unhandled Promise Rejection:', event.reason);
+    });
+  </script>
+
+  <script>
     const SUPABASE_URL = 'https://wdhvrghpmypjthpkfffb.supabase.co';
     const SUPABASE_ANON_KEY = 'eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpc3MiOiJzdXBhYmFzZSIsInJlZiI6IndkaHZyZ2hwbXlwanRocGtmZmZiIiwicm9sZSI6ImFub24iLCJpYXQiOjE3NzgwNDUzNzksImV4cCI6MjA5MzYyMTM3OX0.dXNJyQZNOfvqLwYl10gtZv5sCHP9XLlxYdRnHzp5p3g';
 
@@ -164,13 +175,18 @@
       }
     }
 
-    if (document.readyState === 'loading') {
-      document.addEventListener('DOMContentLoaded', initSupabase);
-    } else {
-      initSupabase();
+    function attachFormHandler() {
+      const form = document.getElementById('signinForm');
+      if (!form) {
+        console.log('⏳ Form not ready, retrying...');
+        setTimeout(attachFormHandler, 100);
+        return;
+      }
+      form.addEventListener('submit', handleFormSubmit);
+      console.log('✅ Signin form handler attached');
     }
 
-    document.getElementById('signinForm').addEventListener('submit', async (e) => {
+    async function handleFormSubmit(e) {
       e.preventDefault();
       console.log('🚀 Sign in attempt');
 
@@ -187,7 +203,15 @@
       btn.textContent = 'Signing in...';
 
       try {
-        if (!supabase) throw new Error('Database not connected');
+        // Wait for Supabase to be ready
+        if (!supabase) {
+          console.warn('⏳ Waiting for Supabase to initialize...');
+          await new Promise(resolve => setTimeout(resolve, 1000));
+        }
+
+        if (!supabase) {
+          throw new Error('Database connection not initialized. Please check your internet connection.');
+        }
 
         console.log('🔍 Looking up user:', email);
 
@@ -228,12 +252,23 @@
         btn.disabled = false;
         btn.textContent = 'Sign In';
       }
-    });
+    }
 
     function showMessage(text, type) {
       const msg = document.getElementById('message');
       msg.textContent = text;
       msg.className = 'message ' + type;
+    }
+
+    // Initialize when page loads
+    if (document.readyState === 'loading') {
+      document.addEventListener('DOMContentLoaded', () => {
+        initSupabase();
+        attachFormHandler();
+      });
+    } else {
+      initSupabase();
+      attachFormHandler();
     }
   </script>
 </body>
