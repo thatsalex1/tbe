@@ -185,14 +185,19 @@
     }
 
     // Initialize when page loads
-    if (document.readyState === 'loading') {
-      document.addEventListener('DOMContentLoaded', initSupabase);
-    } else {
-      initSupabase();
+    function attachFormHandler() {
+      const form = document.getElementById('signupForm');
+      if (!form) {
+        console.log('⏳ Form not ready, retrying...');
+        setTimeout(attachFormHandler, 100);
+        return;
+      }
+
+      form.addEventListener('submit', handleFormSubmit);
+      console.log('✅ Form handler attached');
     }
 
-    // Handle form submission
-    document.getElementById('signupForm').addEventListener('submit', async (e) => {
+    async function handleFormSubmit(e) {
       e.preventDefault();
       console.log('🚀 Form submission started');
 
@@ -280,12 +285,23 @@
         btn.disabled = false;
         btn.textContent = 'Create Account';
       }
-    });
+    }
 
     function showMessage(text, type) {
       const msg = document.getElementById('message');
       msg.textContent = text;
       msg.className = 'message ' + type;
+    }
+
+    // Initialize when page loads
+    if (document.readyState === 'loading') {
+      document.addEventListener('DOMContentLoaded', () => {
+        initSupabase();
+        attachFormHandler();
+      });
+    } else {
+      initSupabase();
+      attachFormHandler();
     }
   </script>
 </body>
