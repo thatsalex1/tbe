@@ -67,7 +67,11 @@
       "Bash(git rm *)",
       "Bash(grep -E \"\\\\.\\(html|css|json|js\\)$\")",
       "Bash(grep -i \"bitcoin\\\\|ethereum\\\\|btc\\\\|eth\\\\|usdc\\\\|usdt\\\\|litecoin\\\\|0x[a-fA-F0-9]\\\\|1[1-9A-HJ-NP-Z]\\\\|L[a-km-zA-Z1-9]\" /c/Users/联想/.claude/projects/C--Users----Documents-trustbridge-escrow/50561f4c-be72-4d96-a2ef-78e6af0e03de.jsonl | head -50)",
-      "Bash(grep -o \"0x[a-fA-F0-9]\\\\{40\\\\}\\\\|1[1-9A-HJ-NP-Z]\\\\{25,34\\\\}\\\\|L[a-km-zA-Z1-9]\\\\{26,33\\\\}\" /c/Users/联想/.claude/projects/C--Users----Documents-trustbridge-escrow/50561f4c-be72-4d96-a2ef-78e6af0e03de.jsonl)"
+      "Bash(grep -o \"0x[a-fA-F0-9]\\\\{40\\\\}\\\\|1[1-9A-HJ-NP-Z]\\\\{25,34\\\\}\\\\|L[a-km-zA-Z1-9]\\\\{26,33\\\\}\" /c/Users/联想/.claude/projects/C--Users----Documents-trustbridge-escrow/50561f4c-be72-4d96-a2ef-78e6af0e03de.jsonl)",
+      "Bash(cp *.html public/)",
+      "Bash(cp -r css/ public/)",
+      "Bash(cp -r js/ public/)",
+      "Bash(rm *.html status.html 2>/dev/null; rm -rf css js config.js favicon.svg 2>/dev/null; ls -la | grep -v \"^\\\\.\" | head -15)"
     ]
   }
 }
