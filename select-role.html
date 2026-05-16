@@ -3,8 +3,7 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Select Role - LegacyHoldEscrow</title>
-  <link rel="icon" type="image/svg+xml" href="favicon.svg">
+  <title>Select Role - LegacyHold Escrow</title>
   <link rel="stylesheet" href="css/style.css">
   <style>
     body {
@@ -133,11 +132,9 @@
       .role-container {
         padding: 2rem 1.5rem;
       }
-
       .role-header h1 {
         font-size: 1.5rem;
       }
-
       .role-options {
         grid-template-columns: 1fr;
       }
@@ -154,11 +151,11 @@
     <div id="errorMessage" class="error-message"></div>
 
     <div class="role-options">
-      <div class="role-card" onclick="selectRole('buyer')">
+      <div class="role-card" onclick="selectRole(event, 'buyer')">
         <h3>Buyer</h3>
         <p>Purchase items with full escrow protection and secure payment</p>
       </div>
-      <div class="role-card" onclick="selectRole('seller')">
+      <div class="role-card" onclick="selectRole(event, 'seller')">
         <h3>Seller</h3>
         <p>Sell items safely and get paid instantly after delivery</p>
       </div>
@@ -174,23 +171,21 @@
   </div>
 
   <script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2"></script>
-
   <script>
     const SUPABASE_URL = 'https://wdhvrghpmypjthpkfffb.supabase.co';
     const SUPABASE_ANON_KEY = 'eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpc3MiOiJzdXBhYmFzZSIsInJlZiI6IndkaHZyZ2hwbXlwanRocGtmZmZiIiwicm9sZSI6ImFub24iLCJpYXQiOjE3NzgwNDUzNzksImV4cCI6MjA5MzYyMTM3OX0.dXNJyQZNOfvqLwYl10gtZv5sCHP9XLlxYdRnHzp5p3g';
 
-    // Initialize Supabase client
-    let supabase = null;
-    try {
-      supabase = window.supabase.createClient(SUPABASE_URL, SUPABASE_ANON_KEY);
-      console.log('✓ Supabase client initialized successfully');
-    } catch (error) {
-      console.error('✗ Failed to initialize Supabase:', error);
-    }
-
+    let sbClient = null;
     let selectedRole = null;
 
-    function selectRole(role) {
+    try {
+      sbClient = window.supabase.createClient(SUPABASE_URL, SUPABASE_ANON_KEY);
+      console.log('Supabase initialized');
+    } catch (error) {
+      console.error('Supabase init error:', error);
+    }
+
+    function selectRole(event, role) {
       selectedRole = role;
       document.querySelectorAll('.role-card').forEach(card => {
         card.classList.remove('selected');
@@ -210,56 +205,38 @@
       document.getElementById('continueBtn').disabled = true;
 
       try {
-        console.log('🚀 Starting role selection...');
-
-        // Get user from localStorage (set during signup)
         const userId = localStorage.getItem('userId');
         const userEmail = localStorage.getItem('userEmail');
-        const userName = localStorage.getItem('userName');
-
-        console.log('📝 User from localStorage:', { userId, userEmail, userName });
 
         if (!userId || !userEmail) {
           throw new Error('User session not found. Please sign up again.');
         }
 
-        // Verify Supabase client is initialized
-        if (!supabase) {
+        if (!sbClient) {
           throw new Error('Database connection failed');
         }
 
-        // Update user's role in Supabase
-        console.log('📝 Updating user role to:', selectedRole);
-        const { data, error: updateError } = await supabase
+        const { data, error: updateError } = await sbClient
           .from('users')
           .update({ role: selectedRole })
           .eq('id', userId)
           .select();
 
-        console.log('📝 Update response - Data:', data, 'Error:', updateError);
-
         if (updateError) {
-          throw new Error(`Failed to save role: ${updateError.message}`);
+          throw new Error('Failed to save role: ' + updateError.message);
         }
 
-        console.log('✓ Role saved successfully');
-
-        // Update localStorage with role
         localStorage.setItem('userRole', selectedRole);
-        console.log('✓ Role stored in localStorage');
 
-        // Redirect to appropriate dashboard
         const dashboardUrl = selectedRole === 'buyer'
           ? './buyer-dashboard.html'
           : './seller-dashboard.html';
 
-        console.log('📝 Redirecting to', dashboardUrl);
         window.location.href = dashboardUrl;
 
       } catch (error) {
-        console.error('✗ Error occurred:', error);
-        const errorMsg = error.message || 'An error occurred. Please check the browser console for details.';
-        document.getElementById('errorMessage').textContent = errorMsg;
+        console.error('Error:', error);
+        document.getElementById('errorMessage').textContent = error.message || 'An error occurred';
         document.getElementById('errorMessage').style.display = 'block';
         document.getElementById('loading').style.display = 'none';
         document.getElementById('continueBtn').disabled = false;
