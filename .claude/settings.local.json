@@ -71,7 +71,10 @@
       "Bash(cp *.html public/)",
       "Bash(cp -r css/ public/)",
       "Bash(cp -r js/ public/)",
-      "Bash(rm *.html status.html 2>/dev/null; rm -rf css js config.js favicon.svg 2>/dev/null; ls -la | grep -v \"^\\\\.\" | head -15)"
+      "Bash(rm *.html status.html 2>/dev/null; rm -rf css js config.js favicon.svg 2>/dev/null; ls -la | grep -v \"^\\\\.\" | head -15)",
+      "Bash(cp public/*.html .)",
+      "Bash(cp -r public/css .)",
+      "Bash(cp -r public/js .)"
     ]
   }
 }

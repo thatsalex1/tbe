@@ -1,8 +1,8 @@
 {
   "version": 2,
   "buildCommand": "echo 'Static site - no build required'",
-  "outputDirectory": "public",
-  "public": true,
+  "outputDirectory": ".",
+  "public": false,
   "headers": [
     {
       "source": "/(.*)",
@@ -10,22 +10,14 @@
         {
           "key": "Cache-Control",
           "value": "public, max-age=0, must-revalidate"
-        },
-        {
-          "key": "X-Content-Type-Options",
-          "value": "nosniff"
         }
       ]
     }
   ],
   "routes": [
     {
-      "src": "/(.*\\..*)",
-      "dest": "/$1"
-    },
-    {
       "src": "/(.*)",
-      "dest": "/$1.html"
+      "dest": "/$1"
     }
   ]
 }
