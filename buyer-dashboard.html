@@ -35,20 +35,60 @@
       return true;
     }
 
-    // Logout function
-    function logout() {
-      if (confirm('Are you sure you want to logout?')) {
-        localStorage.removeItem('userId');
-        localStorage.removeItem('userEmail');
-        localStorage.removeItem('userName');
-        localStorage.removeItem('userRole');
-        window.location.href = './signin-custom.html';
-      }
+    // Show professional logout confirmation modal
+    function showLogoutConfirmation() {
+      // Create modal backdrop
+      const backdrop = document.createElement('div');
+      backdrop.style.cssText = 'position: fixed; top: 0; left: 0; right: 0; bottom: 0; background: rgba(0, 0, 0, 0.6); display: flex; align-items: center; justify-content: center; z-index: 9999;';
+
+      // Create modal dialog
+      const modal = document.createElement('div');
+      modal.style.cssText = 'background: linear-gradient(135deg, #1a2a3a 0%, #111827 100%); border: 1px solid rgba(201, 168, 76, 0.3); border-radius: 16px; padding: 40px; max-width: 400px; width: 90%; box-shadow: 0 20px 60px rgba(0, 0, 0, 0.5);';
+
+      modal.innerHTML = `
+        <h2 style="color: #c9a84c; margin: 0 0 15px 0; font-size: 1.4rem; font-weight: 600; text-align: center;">Confirm Logout</h2>
+        <p style="color: #b0b0b0; margin: 0 0 30px 0; text-align: center; font-size: 1rem; line-height: 1.6;">Are you sure you want to logout from your account? You will need to sign in again to access your dashboard.</p>
+
+        <div style="display: grid; grid-template-columns: 1fr 1fr; gap: 15px;">
+          <button id="logoutCancelBtn" style="background: rgba(201, 168, 76, 0.1); border: 1px solid rgba(201, 168, 76, 0.3); color: #b0b0b0; padding: 12px 24px; border-radius: 8px; cursor: pointer; font-weight: 600; font-size: 0.95rem; transition: all 0.3s ease;">Cancel</button>
+          <button id="logoutConfirmBtn" style="background: #c9a84c; border: none; color: #0a0e1a; padding: 12px 24px; border-radius: 8px; cursor: pointer; font-weight: 600; font-size: 0.95rem; transition: all 0.3s ease;">Yes, Logout</button>
+        </div>
+      `;
+
+      backdrop.appendChild(modal);
+      document.body.appendChild(backdrop);
+
+      // Cancel button
+      document.getElementById('logoutCancelBtn').addEventListener('click', () => {
+        backdrop.remove();
+      });
+
+      // Confirm logout button
+      document.getElementById('logoutConfirmBtn').addEventListener('click', () => {
+        performLogout();
+        backdrop.remove();
+      });
+
+      // Close modal when clicking outside
+      backdrop.addEventListener('click', (e) => {
+        if (e.target === backdrop) {
+          backdrop.remove();
+        }
+      });
+    }
+
+    // Perform the actual logout
+    function performLogout() {
+      localStorage.removeItem('userId');
+      localStorage.removeItem('userEmail');
+      localStorage.removeItem('userName');
+      localStorage.removeItem('userRole');
+      window.location.href = './index.html';
     }
 
     // Logout click handler
     function logoutClick() {
-      logout();
+      showLogoutConfirmation();
     }
 
     // Switch between dashboard sections
