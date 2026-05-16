@@ -17,18 +17,34 @@
 
       if (!userId || !userEmail) {
         console.log('User not logged in, redirecting to login');
-        window.location.href = './login.html';
+        window.location.href = './signin-custom.html';
         return false;
       }
 
       if (userRole !== 'buyer') {
         console.log('User is not a buyer, redirecting to login');
-        window.location.href = './login.html';
+        window.location.href = './signin-custom.html';
         return false;
       }
 
       console.log('User authenticated as buyer');
       return true;
+    }
+
+    // Logout function
+    function logout() {
+      if (confirm('Are you sure you want to logout?')) {
+        localStorage.removeItem('userId');
+        localStorage.removeItem('userEmail');
+        localStorage.removeItem('userName');
+        localStorage.removeItem('userRole');
+        window.location.href = './signin-custom.html';
+      }
+    }
+
+    // Logout click handler
+    function logoutClick() {
+      logout();
     }
 
     // Check auth immediately
