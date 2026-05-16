@@ -1,0 +1,43 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <title>Deployment Status - LegacyHold</title>
+  <style>
+    body { background: #0a0e1a; color: #fff; font-family: Arial; padding: 40px; text-align: center; }
+    .status { background: #1e2a3a; padding: 40px; border-radius: 8px; border: 2px solid #c9a84c; }
+    h1 { color: #c9a84c; }
+    .timestamp { font-size: 24px; color: #2ecc71; margin: 20px 0; font-weight: bold; }
+    .info { color: #b0b0b0; margin-top: 20px; }
+  </style>
+</head>
+<body>
+  <div class="status">
+    <h1>🚀 Deployment Status</h1>
+    <p style="color: #707070; margin: 20px 0;">Last Updated: May 16, 2026 - 15:45 UTC</p>
+    <div class="timestamp" id="time"></div>
+
+    <div class="info">
+      <h2 style="color: #c9a84c;">Vercel Deployment Test</h2>
+      <p>If you can see this page, Vercel IS deploying updates.</p>
+      <p>Check this timestamp:</p>
+      <div style="background: #0a0e1a; padding: 15px; margin: 20px 0; border-radius: 4px; font-family: monospace;">
+        <span id="currentTime" style="color: #c9a84c;">Loading...</span>
+      </div>
+      <p style="margin-top: 30px;">
+        <strong style="color: #e4c97a;">Deposits Page:</strong><br>
+        <a href="./deposits.html" style="color: #c9a84c; text-decoration: none; font-size: 18px;">Click here to check Deposits →</a>
+      </p>
+    </div>
+  </div>
+
+  <script>
+    // Show current browser time
+    document.getElementById('currentTime').textContent = new Date().toLocaleString();
+
+    // Update every second
+    setInterval(() => {
+      document.getElementById('currentTime').textContent = new Date().toLocaleString();
+    }, 1000);
+  </script>
+</body>
+</html>

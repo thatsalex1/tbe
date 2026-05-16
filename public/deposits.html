@@ -1,0 +1,753 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta http-equiv="Cache-Control" content="no-cache, no-store, must-revalidate" />
+  <meta http-equiv="Pragma" content="no-cache" />
+  <meta http-equiv="Expires" content="0" />
+  <!-- Version: May 16, 2026 v2.5 - 7 Real Crypto Addresses with QR Codes -->
+  <title>Deposit Funds - LegacyHoldEscrow</title>
+  <link rel="stylesheet" href="css/style.css">
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/qrcode.js/1.5.3/qrcode.min.js"></script>
+  <style>
+    body {
+      background: linear-gradient(135deg, #0a0e1a 0%, #111827 100%);
+      font-family: 'DM Sans', sans-serif;
+      color: #fff;
+      margin: 0;
+      padding: 0;
+    }
+
+    .deposit-container {
+      max-width: 1200px;
+      margin: 0 auto;
+      padding: 40px 20px;
+    }
+
+    .deposit-header {
+      margin-bottom: 50px;
+      text-align: center;
+    }
+
+    .deposit-header h1 {
+      font-size: 2.8rem;
+      margin: 0 0 12px 0;
+      color: #fff;
+      font-weight: 300;
+    }
+
+    .deposit-header p {
+      font-size: 1.05rem;
+      color: #b0b0b0;
+      margin: 0;
+    }
+
+    .balance-card {
+      background: rgba(201, 168, 76, 0.05);
+      border: 1px solid rgba(201, 168, 76, 0.2);
+      border-radius: 12px;
+      padding: 30px 40px;
+      margin-bottom: 40px;
+      text-align: center;
+    }
+
+    .balance-label {
+      font-size: 0.85rem;
+      color: #707070;
+      text-transform: uppercase;
+      letter-spacing: 0.1em;
+      margin-bottom: 8px;
+    }
+
+    .balance-amount {
+      font-size: 2.4rem;
+      color: #c9a84c;
+      font-weight: 300;
+      margin: 0;
+    }
+
+    .deposit-methods {
+      display: grid;
+      grid-template-columns: repeat(2, 1fr);
+      gap: 30px;
+      margin-bottom: 40px;
+    }
+
+    @media (max-width: 768px) {
+      .deposit-methods {
+        grid-template-columns: 1fr;
+      }
+    }
+
+    .method-card {
+      background: #1e2a3a;
+      border: 1px solid rgba(201, 168, 76, 0.15);
+      border-radius: 12px;
+      padding: 30px;
+      cursor: pointer;
+      transition: all 0.3s ease;
+      position: relative;
+    }
+
+    .method-card:hover {
+      border-color: #c9a84c;
+      background: rgba(201, 168, 76, 0.08);
+      transform: translateY(-4px);
+    }
+
+    .method-card.active {
+      border-color: #c9a84c;
+      background: rgba(201, 168, 76, 0.12);
+    }
+
+    .method-icon {
+      font-size: 2rem;
+      margin-bottom: 15px;
+    }
+
+    .method-title {
+      font-size: 1.3rem;
+      margin: 0 0 8px 0;
+      color: #e4c97a;
+    }
+
+    .method-desc {
+      font-size: 0.9rem;
+      color: #707070;
+      margin: 0;
+    }
+
+    .crypto-section {
+      margin-top: 40px;
+    }
+
+    .section-title {
+      font-size: 1.5rem;
+      color: #fff;
+      margin: 0 0 30px 0;
+      font-weight: 300;
+    }
+
+    .crypto-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+      gap: 25px;
+    }
+
+    .crypto-card {
+      background: #111827;
+      border: 1px solid rgba(201, 168, 76, 0.15);
+      border-radius: 12px;
+      padding: 25px;
+      transition: all 0.3s ease;
+    }
+
+    .crypto-card:hover {
+      border-color: #c9a84c;
+      transform: translateY(-4px);
+    }
+
+    .crypto-header {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      margin-bottom: 20px;
+    }
+
+    .crypto-name {
+      font-size: 1.1rem;
+      font-weight: 600;
+      color: #c9a84c;
+      margin: 0;
+    }
+
+    .crypto-network {
+      font-size: 0.75rem;
+      color: #707070;
+      text-transform: uppercase;
+      letter-spacing: 0.08em;
+    }
+
+    #qrContainer {
+      text-align: center;
+      margin: 20px 0;
+      min-height: 200px;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      background: rgba(255, 255, 255, 0.02);
+      border-radius: 8px;
+    }
+
+    #qrContainer canvas,
+    #qrContainer img {
+      max-width: 180px;
+      height: auto;
+    }
+
+    .address-box {
+      background: #0a0e1a;
+      border: 1px solid rgba(201, 168, 76, 0.15);
+      border-radius: 8px;
+      padding: 12px 15px;
+      margin: 15px 0;
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      gap: 10px;
+      font-family: 'Courier New', monospace;
+      font-size: 0.8rem;
+      word-break: break-all;
+      flex-wrap: wrap;
+    }
+
+    .address-text {
+      flex: 1;
+      min-width: 150px;
+      color: #b0b0b0;
+    }
+
+    .copy-btn {
+      background: #c9a84c;
+      color: #0a0e1a;
+      border: none;
+      padding: 8px 16px;
+      border-radius: 4px;
+      cursor: pointer;
+      font-weight: 600;
+      font-size: 0.85rem;
+      white-space: nowrap;
+      transition: all 0.3s ease;
+      flex-shrink: 0;
+    }
+
+    .copy-btn:hover {
+      background: #e4c97a;
+      transform: scale(1.05);
+    }
+
+    .copy-btn.copied {
+      background: #2ecc71;
+    }
+
+    .method-toggle {
+      display: grid;
+      grid-template-columns: repeat(2, 1fr);
+      gap: 15px;
+      margin-bottom: 25px;
+    }
+
+    .toggle-btn {
+      background: rgba(201, 168, 76, 0.1);
+      border: 1px solid rgba(201, 168, 76, 0.2);
+      color: #b0b0b0;
+      padding: 12px 20px;
+      border-radius: 6px;
+      cursor: pointer;
+      font-size: 0.9rem;
+      font-weight: 500;
+      transition: all 0.3s ease;
+    }
+
+    .toggle-btn.active {
+      background: #c9a84c;
+      border-color: #c9a84c;
+      color: #0a0e1a;
+    }
+
+    .qr-view {
+      display: none;
+    }
+
+    .qr-view.active {
+      display: block;
+    }
+
+    .address-view {
+      display: none;
+    }
+
+    .address-view.active {
+      display: block;
+    }
+
+    .bank-section {
+      background: #1e2a3a;
+      border: 1px solid rgba(201, 168, 76, 0.15);
+      border-radius: 12px;
+      padding: 30px;
+      margin-top: 40px;
+    }
+
+    .bank-title {
+      font-size: 1.3rem;
+      color: #e4c97a;
+      margin: 0 0 20px 0;
+    }
+
+    .bank-info {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+      gap: 20px;
+    }
+
+    .bank-detail {
+      padding: 15px 0;
+      border-bottom: 1px solid rgba(201, 168, 76, 0.1);
+    }
+
+    .bank-detail:last-child {
+      border-bottom: none;
+    }
+
+    .detail-label {
+      font-size: 0.85rem;
+      color: #707070;
+      text-transform: uppercase;
+      letter-spacing: 0.08em;
+      margin-bottom: 5px;
+    }
+
+    .detail-value {
+      font-size: 1rem;
+      color: #fff;
+      font-weight: 500;
+      font-family: 'Courier New', monospace;
+      word-break: break-word;
+    }
+
+    .info-box {
+      background: rgba(46, 204, 113, 0.1);
+      border-left: 3px solid #2ecc71;
+      padding: 15px 20px;
+      border-radius: 6px;
+      margin-top: 20px;
+      font-size: 0.9rem;
+      color: #90ee90;
+    }
+
+    .back-btn {
+      display: inline-block;
+      padding: 10px 20px;
+      background: rgba(201, 168, 76, 0.1);
+      border: 1px solid rgba(201, 168, 76, 0.2);
+      color: #c9a84c;
+      text-decoration: none;
+      border-radius: 6px;
+      margin-bottom: 40px;
+      transition: all 0.3s ease;
+      cursor: pointer;
+      font-size: 0.9rem;
+      font-weight: 500;
+    }
+
+    .back-btn:hover {
+      background: rgba(201, 168, 76, 0.2);
+      border-color: #c9a84c;
+    }
+
+    .bank-cta-button {
+      display: inline-block;
+      background: #c9a84c;
+      color: #0a0e1a;
+      padding: 14px 32px;
+      border-radius: 8px;
+      text-decoration: none;
+      font-weight: 600;
+      font-size: 0.95rem;
+      transition: all 0.3s ease;
+      margin-bottom: 25px;
+      cursor: pointer;
+      border: none;
+    }
+
+    .bank-cta-button:hover {
+      background: #e4c97a;
+      transform: translateY(-2px);
+      box-shadow: 0 8px 24px rgba(201, 168, 76, 0.35);
+    }
+
+    .bank-cta-text {
+      font-size: 1rem;
+      color: #b0b0b0;
+      margin: 0 0 15px 0;
+      line-height: 1.6;
+    }
+  </style>
+</head>
+<body>
+  <script>
+    // Check authentication
+    function checkAuth() {
+      const userId = localStorage.getItem('userId');
+      const userEmail = localStorage.getItem('userEmail');
+      if (!userId || !userEmail) {
+        window.location.href = './signin-custom.html';
+        return false;
+      }
+      return true;
+    }
+
+    // Load balance
+    function loadBalance() {
+      const balance = localStorage.getItem('userBalance') || '0.00';
+      document.getElementById('balanceAmount').textContent = '$' + parseFloat(balance).toLocaleString('en-US', { minimumFractionDigits: 2, maximumFractionDigits: 2 });
+    }
+
+    checkAuth();
+  </script>
+
+  <div class="deposit-container">
+    <button class="back-btn" onclick="window.history.back()">← Back</button>
+
+    <div class="deposit-header">
+      <h1>Deposit Funds</h1>
+      <p>Add funds to your account using any of our secure payment methods</p>
+    </div>
+
+    <div class="balance-card">
+      <div class="balance-label">Current Balance</div>
+      <p class="balance-amount" id="balanceAmount">$0.00</p>
+    </div>
+
+    <!-- Cryptocurrency Section - Updated May 16 2026 -->
+    <div class="crypto-section">
+      <h2 class="section-title">Cryptocurrency Deposits</h2>
+
+      <div class="crypto-grid">
+        <!-- Bitcoin -->
+        <div class="crypto-card">
+          <div class="crypto-header">
+            <div>
+              <h3 class="crypto-name">Bitcoin</h3>
+              <div class="crypto-network">BTC</div>
+            </div>
+          </div>
+
+          <div class="method-toggle">
+            <button class="toggle-btn active" onclick="toggleCryptoMethod(this, 'btc-qr')">QR Code</button>
+            <button class="toggle-btn" onclick="toggleCryptoMethod(this, 'btc-address')">Copy Address</button>
+          </div>
+
+          <div class="qr-view active" id="btc-qr">
+            <div id="btc-qr-code" style="text-align: center; background: #fff; padding: 15px; border-radius: 8px;"></div>
+            <p style="font-size: 0.8rem; color: #707070; margin-top: 10px; text-align: center;">Network: Bitcoin Mainnet</p>
+          </div>
+
+          <div class="address-view" id="btc-address">
+            <div class="address-box">
+              <div class="address-text" id="btc-addr">bc1qx3ul9a6kw2h2hfckwttgh8c6am2zjkg66rkl08</div>
+              <button class="copy-btn" onclick="copyAddress('btc-addr', this)">Copy</button>
+            </div>
+            <div style="font-size: 0.8rem; color: #707070; margin-top: 10px;">
+              Estimated Arrival: 10-30 minutes<br>
+              Send only BTC to this address
+            </div>
+          </div>
+        </div>
+
+        <!-- Ethereum -->
+        <div class="crypto-card">
+          <div class="crypto-header">
+            <div>
+              <h3 class="crypto-name">Ethereum</h3>
+              <div class="crypto-network">ETH</div>
+            </div>
+          </div>
+
+          <div class="method-toggle">
+            <button class="toggle-btn active" onclick="toggleCryptoMethod(this, 'eth-qr')">QR Code</button>
+            <button class="toggle-btn" onclick="toggleCryptoMethod(this, 'eth-address')">Copy Address</button>
+          </div>
+
+          <div class="qr-view active" id="eth-qr">
+            <div id="eth-qr-code" style="text-align: center; background: #fff; padding: 15px; border-radius: 8px;"></div>
+            <p style="font-size: 0.8rem; color: #707070; margin-top: 10px; text-align: center;">Network: Ethereum Mainnet</p>
+          </div>
+
+          <div class="address-view" id="eth-address">
+            <div class="address-box">
+              <div class="address-text" id="eth-addr">0x014198cD564f8366261b97EF59ec27d3C3AB0035</div>
+              <button class="copy-btn" onclick="copyAddress('eth-addr', this)">Copy</button>
+            </div>
+            <div style="font-size: 0.8rem; color: #707070; margin-top: 10px;">
+              Estimated Arrival: 3-15 minutes<br>
+              Send only ETH to this address
+            </div>
+          </div>
+        </div>
+
+        <!-- Solana -->
+        <div class="crypto-card">
+          <div class="crypto-header">
+            <div>
+              <h3 class="crypto-name">Solana</h3>
+              <div class="crypto-network">SOL</div>
+            </div>
+          </div>
+
+          <div class="method-toggle">
+            <button class="toggle-btn active" onclick="toggleCryptoMethod(this, 'sol-qr')">QR Code</button>
+            <button class="toggle-btn" onclick="toggleCryptoMethod(this, 'sol-address')">Copy Address</button>
+          </div>
+
+          <div class="qr-view active" id="sol-qr">
+            <div id="sol-qr-code" style="text-align: center; background: #fff; padding: 15px; border-radius: 8px;"></div>
+            <p style="font-size: 0.8rem; color: #707070; margin-top: 10px; text-align: center;">Network: Solana Mainnet</p>
+          </div>
+
+          <div class="address-view" id="sol-address">
+            <div class="address-box">
+              <div class="address-text" id="sol-addr">AwTuC8HngoxHZr46H6QgBSK1aPg8knKmsax6upbMj31b</div>
+              <button class="copy-btn" onclick="copyAddress('sol-addr', this)">Copy</button>
+            </div>
+            <div style="font-size: 0.8rem; color: #707070; margin-top: 10px;">
+              Estimated Arrival: 3-15 minutes<br>
+              Send only SOL to this address
+            </div>
+          </div>
+        </div>
+
+        <!-- Binance Coin -->
+        <div class="crypto-card">
+          <div class="crypto-header">
+            <div>
+              <h3 class="crypto-name">Binance Coin</h3>
+              <div class="crypto-network">BNB</div>
+            </div>
+          </div>
+
+          <div class="method-toggle">
+            <button class="toggle-btn active" onclick="toggleCryptoMethod(this, 'bnb-qr')">QR Code</button>
+            <button class="toggle-btn" onclick="toggleCryptoMethod(this, 'bnb-address')">Copy Address</button>
+          </div>
+
+          <div class="qr-view active" id="bnb-qr">
+            <div id="bnb-qr-code" style="text-align: center; background: #fff; padding: 15px; border-radius: 8px;"></div>
+            <p style="font-size: 0.8rem; color: #707070; margin-top: 10px; text-align: center;">Network: BNB Smart Chain</p>
+          </div>
+
+          <div class="address-view" id="bnb-address">
+            <div class="address-box">
+              <div class="address-text" id="bnb-addr">0x014198cD564f8366261b97EF59ec27d3C3AB0035</div>
+              <button class="copy-btn" onclick="copyAddress('bnb-addr', this)">Copy</button>
+            </div>
+            <div style="font-size: 0.8rem; color: #707070; margin-top: 10px;">
+              Estimated Arrival: 3-15 minutes<br>
+              Send only BNB to this address
+            </div>
+          </div>
+        </div>
+
+        <!-- USDT -->
+        <div class="crypto-card">
+          <div class="crypto-header">
+            <div>
+              <h3 class="crypto-name">Tether (USDT)</h3>
+              <div class="crypto-network">Stablecoin</div>
+            </div>
+          </div>
+
+          <div class="method-toggle">
+            <button class="toggle-btn active" onclick="toggleCryptoMethod(this, 'usdt-qr')">QR Code</button>
+            <button class="toggle-btn" onclick="toggleCryptoMethod(this, 'usdt-address')">Copy Address</button>
+          </div>
+
+          <div class="qr-view active" id="usdt-qr">
+            <div id="usdt-qr-code" style="text-align: center; background: #fff; padding: 15px; border-radius: 8px;"></div>
+            <p style="font-size: 0.8rem; color: #707070; margin-top: 10px; text-align: center;">Network: Ethereum Mainnet</p>
+          </div>
+
+          <div class="address-view" id="usdt-address">
+            <div class="address-box">
+              <div class="address-text" id="usdt-addr">0x014198cD564f8366261b97EF59ec27d3C3AB0035</div>
+              <button class="copy-btn" onclick="copyAddress('usdt-addr', this)">Copy</button>
+            </div>
+            <div style="font-size: 0.8rem; color: #707070; margin-top: 10px;">
+              Estimated Arrival: 3-15 minutes<br>
+              Send only USDT to this address
+            </div>
+          </div>
+        </div>
+
+        <!-- Tron -->
+        <div class="crypto-card">
+          <div class="crypto-header">
+            <div>
+              <h3 class="crypto-name">Tron</h3>
+              <div class="crypto-network">TRX</div>
+            </div>
+          </div>
+
+          <div class="method-toggle">
+            <button class="toggle-btn active" onclick="toggleCryptoMethod(this, 'trx-qr')">QR Code</button>
+            <button class="toggle-btn" onclick="toggleCryptoMethod(this, 'trx-address')">Copy Address</button>
+          </div>
+
+          <div class="qr-view active" id="trx-qr">
+            <div id="trx-qr-code" style="text-align: center; background: #fff; padding: 15px; border-radius: 8px;"></div>
+            <p style="font-size: 0.8rem; color: #707070; margin-top: 10px; text-align: center;">Network: Tron Mainnet</p>
+          </div>
+
+          <div class="address-view" id="trx-address">
+            <div class="address-box">
+              <div class="address-text" id="trx-addr">TKahJXYiyngew58j25nDfCMsuAAksn9YLq</div>
+              <button class="copy-btn" onclick="copyAddress('trx-addr', this)">Copy</button>
+            </div>
+            <div style="font-size: 0.8rem; color: #707070; margin-top: 10px;">
+              Estimated Arrival: 5-20 minutes<br>
+              Send only TRX to this address
+            </div>
+          </div>
+        </div>
+
+        <!-- XRP -->
+        <div class="crypto-card">
+          <div class="crypto-header">
+            <div>
+              <h3 class="crypto-name">Ripple</h3>
+              <div class="crypto-network">XRP</div>
+            </div>
+          </div>
+
+          <div class="method-toggle">
+            <button class="toggle-btn active" onclick="toggleCryptoMethod(this, 'xrp-qr')">QR Code</button>
+            <button class="toggle-btn" onclick="toggleCryptoMethod(this, 'xrp-address')">Copy Address</button>
+          </div>
+
+          <div class="qr-view active" id="xrp-qr">
+            <div id="xrp-qr-code" style="text-align: center; background: #fff; padding: 15px; border-radius: 8px;"></div>
+            <p style="font-size: 0.8rem; color: #707070; margin-top: 10px; text-align: center;">Network: XRP Mainnet</p>
+          </div>
+
+          <div class="address-view" id="xrp-address">
+            <div class="address-box">
+              <div class="address-text" id="xrp-addr">rMK5RcCfJhNqGN6shFf6Yq3jxt9oJDg7SV</div>
+              <button class="copy-btn" onclick="copyAddress('xrp-addr', this)">Copy</button>
+            </div>
+            <div style="font-size: 0.8rem; color: #707070; margin-top: 10px;">
+              Estimated Arrival: 5-20 minutes<br>
+              Send only XRP to this address
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <div class="info-box">
+        Deposits are processed automatically upon network confirmation. Please ensure you send the correct cryptocurrency to the correct address.
+      </div>
+    </div>
+
+    <!-- Bank Transfer Section -->
+    <div class="bank-section">
+      <h2 class="bank-title">Bank Transfer Deposit</h2>
+
+      <p class="bank-cta-text">
+        Need to deposit via bank transfer? Request our bank account details and we'll send you complete instructions for secure transfers in any currency.
+      </p>
+
+      <a href="mailto:legacyholdescrow@gmail.com?subject=Request%20Bank%20Account%20Details%20for%20Deposit&body=Hello%20LegacyHold%20Team%2C%0A%0AI%20would%20like%20to%20deposit%20funds%20via%20bank%20transfer.%20Please%20send%20me%20the%20bank%20account%20details%20and%20instructions%20for%20deposit.%0A%0AThank%20you!" class="bank-cta-button">
+        Email to Request Bank Details
+      </a>
+
+      <div class="info-box">
+        Click the button above to send an email requesting bank account details for wire transfer. Our team will provide you with personalized account information for secure deposits in your preferred currency.
+      </div>
+
+      <h3 style="color: #c9a84c; margin-top: 30px; font-size: 1.2rem;">Why Email for Bank Details?</h3>
+      <p style="color: #707070; line-height: 1.8; margin-top: 10px;">
+        We provide personalized account information via email to ensure your deposits are processed securely and credited to your account correctly. Our team will respond within 1 hour with complete instructions for your preferred currency and region.
+      </p>
+    </div>
+
+    <!-- Other Cryptocurrencies Section -->
+    <div class="bank-section" style="margin-top: 40px;">
+      <h2 class="bank-title">Other Cryptocurrencies</h2>
+
+      <p class="bank-cta-text">
+        Need to deposit another cryptocurrency? We support multiple additional coins including Cardano (ADA), Polkadot (DOT), Dogecoin (DOGE), and many others.
+      </p>
+
+      <a href="mailto:legacyholdescrow@gmail.com?subject=Request%20Deposit%20Address%20for%20Other%20Cryptocurrency&body=Hello%20LegacyHold%20Team%2C%0A%0AI%20would%20like%20to%20deposit%20using%20a%20cryptocurrency%20not%20listed%20on%20your%20deposit%20page.%0A%0APlease%20provide%20the%20deposit%20address%20for%3A%0A%0A-%20Cryptocurrency%20name%20%28e.g.%2C%20Cardano%2C%20Polkadot%2C%20etc.%29%0A%0AThank%20you%21" class="bank-cta-button">
+        Request Other Coin Deposit Address
+      </a>
+
+      <div class="info-box">
+        Simply email us with the cryptocurrency you'd like to use, and we'll provide you with the deposit address and wallet details within 1 hour. Our team supports a wide range of cryptocurrencies and blockchain networks.
+      </div>
+    </div>
+  </div>
+
+  <script>
+    // Initialize QR codes
+    function initializeQRCodes() {
+      const cryptoData = [
+        { id: 'btc', address: 'bc1qx3ul9a6kw2h2hfckwttgh8c6am2zjkg66rkl08', name: 'Bitcoin' },
+        { id: 'eth', address: '0x014198cD564f8366261b97EF59ec27d3C3AB0035', name: 'Ethereum' },
+        { id: 'sol', address: 'AwTuC8HngoxHZr46H6QgBSK1aPg8knKmsax6upbMj31b', name: 'Solana' },
+        { id: 'bnb', address: '0x014198cD564f8366261b97EF59ec27d3C3AB0035', name: 'Binance Coin' },
+        { id: 'usdt', address: '0x014198cD564f8366261b97EF59ec27d3C3AB0035', name: 'USDT' },
+        { id: 'trx', address: 'TKahJXYiyngew58j25nDfCMsuAAksn9YLq', name: 'Tron' },
+        { id: 'xrp', address: 'rMK5RcCfJhNqGN6shFf6Yq3jxt9oJDg7SV', name: 'Ripple' }
+      ];
+
+      cryptoData.forEach(crypto => {
+        const qrElement = document.getElementById(crypto.id + '-qr-code');
+        if (qrElement) {
+          new QRCode(qrElement, {
+            text: crypto.address,
+            width: 180,
+            height: 180,
+            colorDark: '#000000',
+            colorLight: '#ffffff',
+            correctLevel: QRCode.CorrectLevel.H
+          });
+        }
+      });
+    }
+
+    // Toggle between QR and address view
+    function toggleCryptoMethod(button, viewId) {
+      const card = button.closest('.crypto-card');
+      const allToggleBtns = card.querySelectorAll('.toggle-btn');
+      const baseId = viewId.split('-')[0];
+
+      allToggleBtns.forEach(btn => btn.classList.remove('active'));
+      button.classList.add('active');
+
+      const qrView = card.querySelector(`#${baseId}-qr`);
+      const addressView = card.querySelector(`#${baseId}-address`);
+
+      if (qrView) qrView.classList.remove('active');
+      if (addressView) addressView.classList.remove('active');
+
+      const activeView = card.querySelector(`#${viewId}`);
+      if (activeView) activeView.classList.add('active');
+    }
+
+    // Copy address to clipboard
+    function copyAddress(elementId, button) {
+      const addressElement = document.getElementById(elementId);
+      const text = addressElement.textContent;
+
+      navigator.clipboard.writeText(text).then(() => {
+        button.textContent = 'Copied!';
+        button.classList.add('copied');
+        setTimeout(() => {
+          button.textContent = 'Copy';
+          button.classList.remove('copied');
+        }, 2000);
+      }).catch(() => {
+        alert('Failed to copy address');
+      });
+    }
+
+    // Load balance on page load
+    window.addEventListener('load', () => {
+      loadBalance();
+      initializeQRCodes();
+    });
+  </script>
+</body>
+</html>
