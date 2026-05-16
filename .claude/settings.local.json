@@ -49,7 +49,25 @@
       "Bash(git branch *)",
       "Bash(git push *)",
       "Bash(git commit *)",
-      "Bash(git ls-tree *)"
+      "Bash(git ls-tree *)",
+      "Bash(start chrome *)",
+      "Bash(grep -A 30 \"supabase.from\\\\|.select\\\\|\\\\\\\\.insert\\\\|\\\\\\\\.eq\" signin-custom.html)",
+      "Bash(curl -s \"https://tbe-nu.vercel.app/signup-simple.html\")",
+      "Bash(node test-supabase.js)",
+      "Bash(npm install *)",
+      "Bash(curl -s \"https://tbe-nu.vercel.app/signin-custom.html\")",
+      "Bash(node test-user-flow.js)",
+      "Bash(node test-flow-simple.js)",
+      "Bash(node diagnose-signup.js)",
+      "Bash(Get-ChildItem -Path \"C:\\\\Users\\\\联想\\\\Documents\\\\trustbridge-escrow\" -Recurse -File)",
+      "Bash(Select-Object FullName)",
+      "Bash(ConvertTo-Json)",
+      "Bash(grep -E \"\\\\.html$\")",
+      "Bash(grep -E \"\\\\.\\(html|js|json|css|txt|md\\)$\")",
+      "Bash(git rm *)",
+      "Bash(grep -E \"\\\\.\\(html|css|json|js\\)$\")",
+      "Bash(grep -i \"bitcoin\\\\|ethereum\\\\|btc\\\\|eth\\\\|usdc\\\\|usdt\\\\|litecoin\\\\|0x[a-fA-F0-9]\\\\|1[1-9A-HJ-NP-Z]\\\\|L[a-km-zA-Z1-9]\" /c/Users/联想/.claude/projects/C--Users----Documents-trustbridge-escrow/50561f4c-be72-4d96-a2ef-78e6af0e03de.jsonl | head -50)",
+      "Bash(grep -o \"0x[a-fA-F0-9]\\\\{40\\\\}\\\\|1[1-9A-HJ-NP-Z]\\\\{25,34\\\\}\\\\|L[a-km-zA-Z1-9]\\\\{26,33\\\\}\" /c/Users/联想/.claude/projects/C--Users----Documents-trustbridge-escrow/50561f4c-be72-4d96-a2ef-78e6af0e03de.jsonl)"
     ]
   }
 }
