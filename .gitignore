@@ -32,7 +32,9 @@ temp/
 Thumbs.db
 .DS_Store
 
-# Backend files (if not deploying backend)
+# Backend and frontend folders (using root-level files instead)
+backend/
+frontend/
 backend/node_modules/
 backend/.env
 
