@@ -342,6 +342,34 @@
       background: rgba(201, 168, 76, 0.2);
       border-color: #c9a84c;
     }
+
+    .bank-cta-button {
+      display: inline-block;
+      background: #c9a84c;
+      color: #0a0e1a;
+      padding: 14px 32px;
+      border-radius: 8px;
+      text-decoration: none;
+      font-weight: 600;
+      font-size: 0.95rem;
+      transition: all 0.3s ease;
+      margin-bottom: 25px;
+      cursor: pointer;
+      border: none;
+    }
+
+    .bank-cta-button:hover {
+      background: #e4c97a;
+      transform: translateY(-2px);
+      box-shadow: 0 8px 24px rgba(201, 168, 76, 0.35);
+    }
+
+    .bank-cta-text {
+      font-size: 1rem;
+      color: #b0b0b0;
+      margin: 0 0 15px 0;
+      line-height: 1.6;
+    }
   </style>
 </head>
 <body>
@@ -547,36 +575,29 @@
 
     <!-- Bank Transfer Section -->
     <div class="bank-section">
-      <h2 class="bank-title">Bank Transfer Deposit</h2>
-      <div class="bank-info">
-        <div class="bank-detail">
-          <div class="detail-label">Account Holder</div>
-          <div class="detail-value">LegacyHold Escrow Services Inc</div>
-        </div>
-        <div class="bank-detail">
-          <div class="detail-label">Bank Name</div>
-          <div class="detail-value">Metropolitan Bank & Trust Co</div>
-        </div>
-        <div class="bank-detail">
-          <div class="detail-label">Account Number</div>
-          <div class="detail-value">0021-0012-3456</div>
-        </div>
-        <div class="bank-detail">
-          <div class="detail-label">Routing Number</div>
-          <div class="detail-value">021000021</div>
-        </div>
-        <div class="bank-detail">
-          <div class="detail-label">SWIFT Code</div>
-          <div class="detail-value">MBTCUS33</div>
-        </div>
-        <div class="bank-detail">
-          <div class="detail-label">Processing Time</div>
-          <div class="detail-value">1-2 Business Days</div>
+      <h2 class="bank-title">Bank Transfer Deposit (Naira & Wire Transfer)</h2>
+
+      <p class="bank-cta-text">
+        Request bank account details for wire transfer deposits, including support for Nigerian Naira (NGN) and international bank transfers.
+      </p>
+
+      <a href="mailto:legacyholdescrow@gmail.com?subject=Request%20Bank%20Account%20Details%20for%20Deposit&body=Hello%20LegacyHold%20Team%2C%0A%0AI%20would%20like%20to%20deposit%20funds%20via%20bank%20transfer.%20Please%20send%20me%20the%20bank%20account%20details%20including%3A%0A%0A-%20Account%20number%0A-%20Bank%20name%0A-%20Routing%2FSWIFT%20code%0A-%20Any%20other%20required%20details%20for%20wire%20transfer%0A%0AThank%20you!" class="bank-cta-button">
+        Email to Request Bank Details
+      </a>
+
+      <div class="info-box">
+        Click the button above to send an email requesting bank account details for wire transfer. We support deposits in:
+        <div style="margin-top: 10px; font-size: 0.95rem;">
+          <strong>Naira (NGN)</strong> - Nigerian bank transfers<br>
+          <strong>USD</strong> - International wire transfers<br>
+          <strong>EUR</strong> - SWIFT transfers available
         </div>
       </div>
-      <div class="info-box" style="margin-top: 20px;">
-        Include your username or user ID in the memo/reference field for instant credit to your account.
-      </div>
+
+      <h3 style="color: #c9a84c; margin-top: 30px; font-size: 1.2rem;">Why Email for Bank Details?</h3>
+      <p style="color: #707070; line-height: 1.8; margin-top: 10px;">
+        We provide personalized account information via email to ensure your deposits are processed securely and credited to your account correctly. Our team will respond within 1 hour with complete instructions.
+      </p>
     </div>
   </div>
 
