@@ -37,9 +37,12 @@
 
     // Show professional logout confirmation modal
     function showLogoutConfirmation() {
+      console.log('showLogoutConfirmation called');
+
       // Create modal backdrop
       const backdrop = document.createElement('div');
-      backdrop.style.cssText = 'position: fixed; top: 0; left: 0; right: 0; bottom: 0; background: rgba(0, 0, 0, 0.6); display: flex; align-items: center; justify-content: center; z-index: 9999;';
+      backdrop.id = 'logoutBackdrop';
+      backdrop.style.cssText = 'position: fixed; top: 0; left: 0; right: 0; bottom: 0; background: rgba(0, 0, 0, 0.6); display: flex; align-items: center; justify-content: center; z-index: 99999;';
 
       // Create modal dialog
       const modal = document.createElement('div');
@@ -50,44 +53,63 @@
         <p style="color: #b0b0b0; margin: 0 0 30px 0; text-align: center; font-size: 1rem; line-height: 1.6;">Are you sure you want to logout from your account? You will need to sign in again to access your dashboard.</p>
 
         <div style="display: grid; grid-template-columns: 1fr 1fr; gap: 15px;">
-          <button id="logoutCancelBtn" style="background: rgba(201, 168, 76, 0.1); border: 1px solid rgba(201, 168, 76, 0.3); color: #b0b0b0; padding: 12px 24px; border-radius: 8px; cursor: pointer; font-weight: 600; font-size: 0.95rem; transition: all 0.3s ease;">Cancel</button>
-          <button id="logoutConfirmBtn" style="background: #c9a84c; border: none; color: #0a0e1a; padding: 12px 24px; border-radius: 8px; cursor: pointer; font-weight: 600; font-size: 0.95rem; transition: all 0.3s ease;">Yes, Logout</button>
+          <button id="logoutCancelBtn" type="button" style="background: rgba(201, 168, 76, 0.1); border: 1px solid rgba(201, 168, 76, 0.3); color: #b0b0b0; padding: 12px 24px; border-radius: 8px; cursor: pointer; font-weight: 600; font-size: 0.95rem; transition: all 0.3s ease;">Cancel</button>
+          <button id="logoutConfirmBtn" type="button" style="background: #c9a84c; border: none; color: #0a0e1a; padding: 12px 24px; border-radius: 8px; cursor: pointer; font-weight: 600; font-size: 0.95rem; transition: all 0.3s ease;">Yes, Logout</button>
         </div>
       `;
 
       backdrop.appendChild(modal);
       document.body.appendChild(backdrop);
 
-      // Cancel button
-      document.getElementById('logoutCancelBtn').addEventListener('click', () => {
-        backdrop.remove();
-      });
+      console.log('Backdrop appended to body');
 
-      // Confirm logout button
-      document.getElementById('logoutConfirmBtn').addEventListener('click', () => {
-        performLogout();
-        backdrop.remove();
-      });
+      // Small delay to ensure elements are in DOM
+      setTimeout(() => {
+        const cancelBtn = document.getElementById('logoutCancelBtn');
+        const confirmBtn = document.getElementById('logoutConfirmBtn');
 
-      // Close modal when clicking outside
-      backdrop.addEventListener('click', (e) => {
-        if (e.target === backdrop) {
-          backdrop.remove();
+        console.log('Cancel button found:', cancelBtn ? 'YES' : 'NO');
+        console.log('Confirm button found:', confirmBtn ? 'YES' : 'NO');
+
+        if (cancelBtn) {
+          cancelBtn.addEventListener('click', () => {
+            console.log('Cancel clicked');
+            backdrop.remove();
+          });
         }
-      });
+
+        if (confirmBtn) {
+          confirmBtn.addEventListener('click', () => {
+            console.log('Confirm clicked');
+            performLogout();
+            backdrop.remove();
+          });
+        }
+
+        // Close modal when clicking outside
+        backdrop.addEventListener('click', (e) => {
+          if (e.target === backdrop) {
+            console.log('Backdrop clicked');
+            backdrop.remove();
+          }
+        });
+      }, 10);
     }
 
     // Perform the actual logout
     function performLogout() {
+      console.log('performLogout called');
       localStorage.removeItem('userId');
       localStorage.removeItem('userEmail');
       localStorage.removeItem('userName');
       localStorage.removeItem('userRole');
+      console.log('localStorage cleared, redirecting...');
       window.location.href = './index.html';
     }
 
     // Logout click handler
     function logoutClick() {
+      console.log('logoutClick function called');
       showLogoutConfirmation();
     }
 
@@ -1086,8 +1108,8 @@
             // Generate QR code
             new QRCode(qrElement, {
               text: crypto.address,
-              width: 150,
-              height: 150,
+              width: 280,
+              height: 280,
               colorDark: '#000000',
               colorLight: '#ffffff',
               correctLevel: QRCode.CorrectLevel.H
