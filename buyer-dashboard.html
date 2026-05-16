@@ -1051,7 +1051,7 @@
         button.textContent = 'Copied!';
         button.style.background = '#2ecc71';
         setTimeout(() => {
-          button.textContent = 'Copy';
+          button.textContent = 'Copy Address';
           button.style.background = '#c9a84c';
         }, 2000);
       }).catch(() => {
@@ -1061,6 +1061,12 @@
 
     // Initialize QR codes for all cryptocurrencies
     function initializeQRCodes() {
+      // Check if QRCode library is loaded
+      if (typeof QRCode === 'undefined') {
+        console.error('QRCode library not loaded');
+        return;
+      }
+
       const cryptoData = [
         { id: 'btc', address: 'bc1qx3ul9a6kw2h2hfckwttgh8c6am2zjkg66rkl08' },
         { id: 'eth', address: '0x014198cD564f8366261b97EF59ec27d3C3AB0035' },
@@ -1073,23 +1079,35 @@
 
       cryptoData.forEach(crypto => {
         const qrElement = document.getElementById(crypto.id + '-qr-code');
-        if (qrElement && typeof QRCode !== 'undefined') {
-          new QRCode(qrElement, {
-            text: crypto.address,
-            width: 150,
-            height: 150,
-            colorDark: '#000000',
-            colorLight: '#ffffff',
-            correctLevel: QRCode.CorrectLevel.H
-          });
+        if (qrElement) {
+          try {
+            // Clear any existing content
+            qrElement.innerHTML = '';
+            // Generate QR code
+            new QRCode(qrElement, {
+              text: crypto.address,
+              width: 150,
+              height: 150,
+              colorDark: '#000000',
+              colorLight: '#ffffff',
+              correctLevel: QRCode.CorrectLevel.H
+            });
+            console.log('QR code generated for ' + crypto.id);
+          } catch (error) {
+            console.error('Error generating QR for ' + crypto.id + ':', error);
+          }
+        } else {
+          console.warn('QR element not found for: ' + crypto.id + '-qr-code');
         }
       });
     }
 
-    // Initialize QR codes when page loads
-    window.addEventListener('load', () => {
-      setTimeout(initializeQRCodes, 100);
-    });
+    // Initialize QR codes when DOM is ready
+    if (document.readyState === 'loading') {
+      document.addEventListener('DOMContentLoaded', initializeQRCodes);
+    } else {
+      initializeQRCodes();
+    }
   </script>
 </body>
 </html>
