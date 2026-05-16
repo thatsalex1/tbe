@@ -3,7 +3,7 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>[UPDATED May 16 v3.0] Seller Dashboard - LegacyHoldEscrow</title>
+  <title>[FORCE DEPLOY v4.0] Seller Dashboard - LegacyHoldEscrow - No Naira</title>
   <meta http-equiv="Cache-Control" content="no-cache, no-store, must-revalidate" />
   <meta http-equiv="Pragma" content="no-cache" />
   <meta http-equiv="Expires" content="0" />
@@ -493,15 +493,15 @@
 
         <div class="stat-grid">
           <div class="stat-card">
-            <div class="stat-number" id="availableBalance">₦0.00</div>
+            <div class="stat-number" id="availableBalance">$0.00</div>
             <div class="stat-label">Available Balance</div>
           </div>
           <div class="stat-card">
-            <div class="stat-number" id="pendingBalance">₦0.00</div>
+            <div class="stat-number" id="pendingBalance">$0.00</div>
             <div class="stat-label">In Escrow</div>
           </div>
           <div class="stat-card">
-            <div class="stat-number" id="totalBalance">₦0.00</div>
+            <div class="stat-number" id="totalBalance">$0.00</div>
             <div class="stat-label">Total Balance</div>
           </div>
         </div>
@@ -602,15 +602,15 @@
 
         <div class="stat-grid">
           <div class="stat-card">
-            <div class="stat-number">₦0.00</div>
+            <div class="stat-number">$0.00</div>
             <div class="stat-label">This Month</div>
           </div>
           <div class="stat-card">
-            <div class="stat-number">₦0.00</div>
+            <div class="stat-number">$0.00</div>
             <div class="stat-label">This Year</div>
           </div>
           <div class="stat-card">
-            <div class="stat-number">₦0.00</div>
+            <div class="stat-number">$0.00</div>
             <div class="stat-label">Total Earnings</div>
           </div>
         </div>
@@ -697,9 +697,9 @@
           <form id="withdrawForm">
             <div class="form-row">
               <div class="form-group">
-                <label for="withdrawAmount">Amount (₦)</label>
+                <label for="withdrawAmount">Amount ($)</label>
                 <input type="number" id="withdrawAmount" placeholder="Enter amount" min="1000" step="1000" required>
-                <small id="maxAmount" style="color: var(--text-gray);">Available: ₦0.00</small>
+                <small id="maxAmount" style="color: var(--text-gray);">Available: $0.00</small>
               </div>
               <div class="form-group">
                 <label for="withdrawMethod">Method</label>
@@ -720,7 +720,7 @@
 
             <button type="submit" class="btn btn-primary btn-block">Request Withdrawal</button>
             <p style="margin-top: 1rem; color: var(--text-gray); font-size: 0.9rem; text-align: center;">
-              Minimum withdrawal: ₦1,000 | Processing time: 1-3 business days
+              Minimum withdrawal: $1,000 | Processing time: 1-3 business days
             </p>
           </form>
         </div>
