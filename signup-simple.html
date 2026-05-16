@@ -75,7 +75,7 @@
       transition: all 0.3s ease;
     }
 
-    .btn:hover {
+    .btn:hover:not(:disabled) {
       background: #e0bc5f;
       transform: translateY(-2px);
     }
@@ -124,7 +124,7 @@
     <h1>Create Account</h1>
     <div id="message" class="message"></div>
 
-    <form id="signupForm">
+    <form id="signupForm" onsubmit="handleSignup(event)">
       <div class="form-group">
         <label>First Name</label>
         <input type="text" id="firstName" placeholder="John" required>
@@ -150,7 +150,7 @@
         <input type="password" id="confirmPassword" placeholder="Re-enter password" required>
       </div>
 
-      <button type="submit" class="btn">Create Account</button>
+      <button type="submit" class="btn" id="submitBtn">Create Account</button>
     </form>
 
     <div class="signin-link">
@@ -162,98 +162,96 @@
   <script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2"></script>
 
   <script>
-    // Global error handler
-    window.addEventListener('error', (event) => {
-      console.error('🔴 Window Error:', event.message, event.filename, event.lineno);
-    });
-
-    window.addEventListener('unhandledrejection', (event) => {
-      console.error('🔴 Unhandled Promise Rejection:', event.reason);
-    });
-  </script>
-
-  <script>
+    // ============================================
+    // SUPABASE CONFIGURATION
+    // ============================================
     const SUPABASE_URL = 'https://wdhvrghpmypjthpkfffb.supabase.co';
     const SUPABASE_ANON_KEY = 'eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpc3MiOiJzdXBhYmFzZSIsInJlZiI6IndkaHZyZ2hwbXlwanRocGtmZmZiIiwicm9sZSI6ImFub24iLCJpYXQiOjE3NzgwNDUzNzksImV4cCI6MjA5MzYyMTM3OX0.dXNJyQZNOfvqLwYl10gtZv5sCHP9XLlxYdRnHzp5p3g';
 
     let supabase = null;
 
-    // Initialize Supabase
-    async function initSupabase() {
+    // ============================================
+    // INITIALIZE SUPABASE
+    // ============================================
+    function initSupabase() {
       try {
         if (!window.supabase) {
           console.error('❌ Supabase JS library not loaded');
-          showMessage('Database library failed to load', 'error');
-          return;
+          return false;
         }
-
         supabase = window.supabase.createClient(SUPABASE_URL, SUPABASE_ANON_KEY);
         console.log('✅ Supabase initialized successfully');
+        return true;
       } catch (error) {
         console.error('❌ Failed to initialize Supabase:', error);
-        showMessage('Failed to connect to database', 'error');
+        return false;
       }
     }
 
-    // Initialize when page loads
-    function attachFormHandler() {
-      const form = document.getElementById('signupForm');
-      if (!form) {
-        console.log('⏳ Form not ready, retrying...');
-        setTimeout(attachFormHandler, 100);
-        return;
-      }
-
-      form.addEventListener('submit', handleFormSubmit);
-      console.log('✅ Form handler attached');
+    // ============================================
+    // SHOW MESSAGE TO USER
+    // ============================================
+    function showMessage(text, type) {
+      const msg = document.getElementById('message');
+      msg.textContent = text;
+      msg.className = 'message ' + type;
+      console.log(`📢 Message [${type}]: ${text}`);
     }
 
-    async function handleFormSubmit(e) {
-      e.preventDefault();
+    // ============================================
+    // HANDLE SIGNUP FORM SUBMISSION
+    // ============================================
+    async function handleSignup(event) {
+      event.preventDefault();
       console.log('🚀 Form submission started');
 
+      // Get form values
       const firstName = document.getElementById('firstName').value.trim();
       const lastName = document.getElementById('lastName').value.trim();
       const email = document.getElementById('email').value.trim();
       const password = document.getElementById('password').value;
       const confirmPassword = document.getElementById('confirmPassword').value;
 
-      // Validation
+      console.log('📝 Form values:', { firstName, lastName, email });
+
+      // ===== VALIDATION =====
       if (!firstName || !lastName || !email || !password) {
-        showMessage('Please fill in all fields', 'error');
+        showMessage('❌ Please fill in all fields', 'error');
         return;
       }
 
       if (password !== confirmPassword) {
-        showMessage('Passwords do not match', 'error');
+        showMessage('❌ Passwords do not match', 'error');
         return;
       }
 
       if (password.length < 6) {
-        showMessage('Password must be at least 6 characters', 'error');
+        showMessage('❌ Password must be at least 6 characters', 'error');
         return;
       }
 
-      const btn = document.querySelector('.btn');
-      btn.disabled = true;
-      btn.textContent = 'Creating account...';
+      // ===== DISABLE BUTTON DURING SUBMISSION =====
+      const submitBtn = document.getElementById('submitBtn');
+      submitBtn.disabled = true;
+      submitBtn.textContent = 'Creating account...';
 
       try {
-        // Wait for Supabase to be ready
+        // ===== ENSURE SUPABASE IS INITIALIZED =====
         if (!supabase) {
-          console.warn('⏳ Waiting for Supabase to initialize...');
-          await new Promise(resolve => setTimeout(resolve, 1000));
+          console.log('⏳ Supabase not initialized, initializing now...');
+          const initialized = initSupabase();
+          if (!initialized) {
+            throw new Error('Failed to initialize database connection');
+          }
         }
 
-        if (!supabase) {
-          throw new Error('Database connection not initialized. Please check your internet connection.');
-        }
-
-        console.log('📝 Inserting user into Supabase...');
+        console.log('📝 Inserting user into database...');
         console.log('Email:', email);
 
+        // Generate unique user ID
         const userId = `user_${Date.now()}`;
 
+        // ===== INSERT USER INTO DATABASE =====
         const { data, error } = await supabase
           .from('users')
           .insert([
@@ -276,12 +274,12 @@
         }
 
         if (!data || data.length === 0) {
-          throw new Error('No data returned after insert');
+          throw new Error('No data returned after account creation');
         }
 
         console.log('✅ User created successfully:', data[0]);
 
-        // Store in localStorage
+        // ===== STORE IN LOCAL STORAGE =====
         const user = data[0];
         localStorage.setItem('userId', user.id);
         localStorage.setItem('userEmail', user.email);
@@ -290,35 +288,35 @@
 
         console.log('✅ Data saved to localStorage');
 
-        showMessage('Account created! Redirecting...', 'success');
+        // ===== SHOW SUCCESS MESSAGE =====
+        showMessage('✅ Account created successfully! Redirecting...', 'success');
 
+        // ===== REDIRECT TO ROLE SELECTION =====
         setTimeout(() => {
+          console.log('🔄 Redirecting to role selection page...');
           window.location.href = './select-role.html';
         }, 1500);
 
       } catch (error) {
         console.error('❌ Signup error:', error);
-        showMessage(error.message || 'Failed to create account. Please try again.', 'error');
-        btn.disabled = false;
-        btn.textContent = 'Create Account';
+        showMessage(`❌ Error: ${error.message || 'Failed to create account. Please try again.'}`, 'error');
+        submitBtn.disabled = false;
+        submitBtn.textContent = 'Create Account';
       }
     }
 
-    function showMessage(text, type) {
-      const msg = document.getElementById('message');
-      msg.textContent = text;
-      msg.className = 'message ' + type;
-    }
-
-    // Initialize when page loads
-    if (document.readyState === 'loading') {
-      document.addEventListener('DOMContentLoaded', () => {
-        initSupabase();
-        attachFormHandler();
-      });
-    } else {
+    // ============================================
+    // INITIALIZE ON PAGE LOAD
+    // ============================================
+    document.addEventListener('DOMContentLoaded', () => {
+      console.log('📄 Page loaded, initializing Supabase...');
       initSupabase();
-      attachFormHandler();
+    });
+
+    // Also try immediate initialization in case DOM is already ready
+    if (document.readyState === 'complete' || document.readyState === 'interactive') {
+      console.log('📄 DOM already ready, initializing Supabase...');
+      initSupabase();
     }
   </script>
 </body>
