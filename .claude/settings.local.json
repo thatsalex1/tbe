@@ -74,7 +74,8 @@
       "Bash(rm *.html status.html 2>/dev/null; rm -rf css js config.js favicon.svg 2>/dev/null; ls -la | grep -v \"^\\\\.\" | head -15)",
       "Bash(cp public/*.html .)",
       "Bash(cp -r public/css .)",
-      "Bash(cp -r public/js .)"
+      "Bash(cp -r public/js .)",
+      "Bash(grep -E \"\\\\.html$|css/|js/\")"
     ]
   }
 }

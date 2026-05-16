@@ -1,23 +1,30 @@
 {
   "version": 2,
-  "buildCommand": "echo 'Static site - no build required'",
-  "outputDirectory": ".",
-  "public": false,
+  "buildCommand": null,
+  "outputDirectory": null,
+  "installCommand": "echo 'No install needed'",
+  "env": {
+    "VERCEL_ANALYTICS_ID": ""
+  },
   "headers": [
     {
-      "source": "/(.*)",
+      "source": "/:path*",
       "headers": [
         {
           "key": "Cache-Control",
           "value": "public, max-age=0, must-revalidate"
+        },
+        {
+          "key": "X-Content-Type-Options",
+          "value": "nosniff"
+        },
+        {
+          "key": "X-Frame-Options",
+          "value": "SAMEORIGIN"
         }
       ]
     }
   ],
-  "routes": [
-    {
-      "src": "/(.*)",
-      "dest": "/$1"
-    }
-  ]
+  "cleanUrls": true,
+  "trailingSlash": false
 }
