@@ -433,7 +433,7 @@
 
           <div class="address-view" id="btc-address">
             <div class="address-box">
-              <div class="address-text" id="btc-addr">1A1z7agoat2LWQLRZUC8d7vFQCZ1PWetK2</div>
+              <div class="address-text" id="btc-addr">bc1qx3ul9a6kw2h2hfckwttgh8c6am2zjkg66rkl08</div>
               <button class="copy-btn" onclick="copyAddress('btc-addr', this)">Copy</button>
             </div>
             <div style="font-size: 0.8rem; color: #707070; margin-top: 10px;">
@@ -464,7 +464,7 @@
 
           <div class="address-view" id="eth-address">
             <div class="address-box">
-              <div class="address-text" id="eth-addr">0x742d35Cc6634C0532925a3b844Bc9e7595f42bE</div>
+              <div class="address-text" id="eth-addr">0x014198cD564f8366261b97EF59ec27d3C3AB0035</div>
               <button class="copy-btn" onclick="copyAddress('eth-addr', this)">Copy</button>
             </div>
             <div style="font-size: 0.8rem; color: #707070; margin-top: 10px;">
@@ -474,33 +474,64 @@
           </div>
         </div>
 
-        <!-- USDC -->
+        <!-- Solana -->
         <div class="crypto-card">
           <div class="crypto-header">
             <div>
-              <h3 class="crypto-name">USDC</h3>
-              <div class="crypto-network">Stablecoin</div>
+              <h3 class="crypto-name">Solana</h3>
+              <div class="crypto-network">SOL</div>
             </div>
           </div>
 
           <div class="method-toggle">
-            <button class="toggle-btn active" onclick="toggleCryptoMethod(this, 'usdc-qr')">QR Code</button>
-            <button class="toggle-btn" onclick="toggleCryptoMethod(this, 'usdc-address')">Copy Address</button>
+            <button class="toggle-btn active" onclick="toggleCryptoMethod(this, 'sol-qr')">QR Code</button>
+            <button class="toggle-btn" onclick="toggleCryptoMethod(this, 'sol-address')">Copy Address</button>
           </div>
 
-          <div class="qr-view active" id="usdc-qr">
-            <div id="usdc-qr-code" style="text-align: center; background: #fff; padding: 15px; border-radius: 8px;"></div>
-            <p style="font-size: 0.8rem; color: #707070; margin-top: 10px; text-align: center;">Network: Ethereum Mainnet</p>
+          <div class="qr-view active" id="sol-qr">
+            <div id="sol-qr-code" style="text-align: center; background: #fff; padding: 15px; border-radius: 8px;"></div>
+            <p style="font-size: 0.8rem; color: #707070; margin-top: 10px; text-align: center;">Network: Solana Mainnet</p>
           </div>
 
-          <div class="address-view" id="usdc-address">
+          <div class="address-view" id="sol-address">
             <div class="address-box">
-              <div class="address-text" id="usdc-addr">0xA0b86991c6218b36c1d19D4a2e9Eb0cE3606eB48</div>
-              <button class="copy-btn" onclick="copyAddress('usdc-addr', this)">Copy</button>
+              <div class="address-text" id="sol-addr">AwTuC8HngoxHZr46H6QgBSK1aPg8knKmsax6upbMj31b</div>
+              <button class="copy-btn" onclick="copyAddress('sol-addr', this)">Copy</button>
             </div>
             <div style="font-size: 0.8rem; color: #707070; margin-top: 10px;">
               Estimated Arrival: 3-15 minutes<br>
-              Send only USDC to this address
+              Send only SOL to this address
+            </div>
+          </div>
+        </div>
+
+        <!-- Binance Coin -->
+        <div class="crypto-card">
+          <div class="crypto-header">
+            <div>
+              <h3 class="crypto-name">Binance Coin</h3>
+              <div class="crypto-network">BNB</div>
+            </div>
+          </div>
+
+          <div class="method-toggle">
+            <button class="toggle-btn active" onclick="toggleCryptoMethod(this, 'bnb-qr')">QR Code</button>
+            <button class="toggle-btn" onclick="toggleCryptoMethod(this, 'bnb-address')">Copy Address</button>
+          </div>
+
+          <div class="qr-view active" id="bnb-qr">
+            <div id="bnb-qr-code" style="text-align: center; background: #fff; padding: 15px; border-radius: 8px;"></div>
+            <p style="font-size: 0.8rem; color: #707070; margin-top: 10px; text-align: center;">Network: BNB Smart Chain</p>
+          </div>
+
+          <div class="address-view" id="bnb-address">
+            <div class="address-box">
+              <div class="address-text" id="bnb-addr">0x014198cD564f8366261b97EF59ec27d3C3AB0035</div>
+              <button class="copy-btn" onclick="copyAddress('bnb-addr', this)">Copy</button>
+            </div>
+            <div style="font-size: 0.8rem; color: #707070; margin-top: 10px;">
+              Estimated Arrival: 3-15 minutes<br>
+              Send only BNB to this address
             </div>
           </div>
         </div>
@@ -509,7 +540,7 @@
         <div class="crypto-card">
           <div class="crypto-header">
             <div>
-              <h3 class="crypto-name">USDT</h3>
+              <h3 class="crypto-name">Tether (USDT)</h3>
               <div class="crypto-network">Stablecoin</div>
             </div>
           </div>
@@ -526,7 +557,7 @@
 
           <div class="address-view" id="usdt-address">
             <div class="address-box">
-              <div class="address-text" id="usdt-addr">0xdAC17F958D2ee523a2206206994597C13D831ec7</div>
+              <div class="address-text" id="usdt-addr">0x014198cD564f8366261b97EF59ec27d3C3AB0035</div>
               <button class="copy-btn" onclick="copyAddress('usdt-addr', this)">Copy</button>
             </div>
             <div style="font-size: 0.8rem; color: #707070; margin-top: 10px;">
@@ -536,33 +567,64 @@
           </div>
         </div>
 
-        <!-- Litecoin -->
+        <!-- Tron -->
         <div class="crypto-card">
           <div class="crypto-header">
             <div>
-              <h3 class="crypto-name">Litecoin</h3>
-              <div class="crypto-network">LTC</div>
+              <h3 class="crypto-name">Tron</h3>
+              <div class="crypto-network">TRX</div>
             </div>
           </div>
 
           <div class="method-toggle">
-            <button class="toggle-btn active" onclick="toggleCryptoMethod(this, 'ltc-qr')">QR Code</button>
-            <button class="toggle-btn" onclick="toggleCryptoMethod(this, 'ltc-address')">Copy Address</button>
+            <button class="toggle-btn active" onclick="toggleCryptoMethod(this, 'trx-qr')">QR Code</button>
+            <button class="toggle-btn" onclick="toggleCryptoMethod(this, 'trx-address')">Copy Address</button>
           </div>
 
-          <div class="qr-view active" id="ltc-qr">
-            <div id="ltc-qr-code" style="text-align: center; background: #fff; padding: 15px; border-radius: 8px;"></div>
-            <p style="font-size: 0.8rem; color: #707070; margin-top: 10px; text-align: center;">Network: Litecoin Mainnet</p>
+          <div class="qr-view active" id="trx-qr">
+            <div id="trx-qr-code" style="text-align: center; background: #fff; padding: 15px; border-radius: 8px;"></div>
+            <p style="font-size: 0.8rem; color: #707070; margin-top: 10px; text-align: center;">Network: Tron Mainnet</p>
           </div>
 
-          <div class="address-view" id="ltc-address">
+          <div class="address-view" id="trx-address">
             <div class="address-box">
-              <div class="address-text" id="ltc-addr">Lfk5QrDr1idiuXQ7z9mAtjiyNtVMXxJAvm</div>
-              <button class="copy-btn" onclick="copyAddress('ltc-addr', this)">Copy</button>
+              <div class="address-text" id="trx-addr">TKahJXYiyngew58j25nDfCMsuAAksn9YLq</div>
+              <button class="copy-btn" onclick="copyAddress('trx-addr', this)">Copy</button>
             </div>
             <div style="font-size: 0.8rem; color: #707070; margin-top: 10px;">
-              Estimated Arrival: 10-30 minutes<br>
-              Send only LTC to this address
+              Estimated Arrival: 5-20 minutes<br>
+              Send only TRX to this address
+            </div>
+          </div>
+        </div>
+
+        <!-- XRP -->
+        <div class="crypto-card">
+          <div class="crypto-header">
+            <div>
+              <h3 class="crypto-name">Ripple</h3>
+              <div class="crypto-network">XRP</div>
+            </div>
+          </div>
+
+          <div class="method-toggle">
+            <button class="toggle-btn active" onclick="toggleCryptoMethod(this, 'xrp-qr')">QR Code</button>
+            <button class="toggle-btn" onclick="toggleCryptoMethod(this, 'xrp-address')">Copy Address</button>
+          </div>
+
+          <div class="qr-view active" id="xrp-qr">
+            <div id="xrp-qr-code" style="text-align: center; background: #fff; padding: 15px; border-radius: 8px;"></div>
+            <p style="font-size: 0.8rem; color: #707070; margin-top: 10px; text-align: center;">Network: XRP Mainnet</p>
+          </div>
+
+          <div class="address-view" id="xrp-address">
+            <div class="address-box">
+              <div class="address-text" id="xrp-addr">rMK5RcCfJhNqGN6shFf6Yq3jxt9oJDg7SV</div>
+              <button class="copy-btn" onclick="copyAddress('xrp-addr', this)">Copy</button>
+            </div>
+            <div style="font-size: 0.8rem; color: #707070; margin-top: 10px;">
+              Estimated Arrival: 5-20 minutes<br>
+              Send only XRP to this address
             </div>
           </div>
         </div>
@@ -599,17 +661,36 @@
         We provide personalized account information via email to ensure your deposits are processed securely and credited to your account correctly. Our team will respond within 1 hour with complete instructions.
       </p>
     </div>
+
+    <!-- Other Cryptocurrencies Section -->
+    <div class="bank-section" style="margin-top: 40px;">
+      <h2 class="bank-title">Other Cryptocurrencies</h2>
+
+      <p class="bank-cta-text">
+        Need to deposit another cryptocurrency? We support multiple additional coins including Cardano (ADA), Polkadot (DOT), Dogecoin (DOGE), and many others.
+      </p>
+
+      <a href="mailto:legacyholdescrow@gmail.com?subject=Request%20Deposit%20Address%20for%20Other%20Cryptocurrency&body=Hello%20LegacyHold%20Team%2C%0A%0AI%20would%20like%20to%20deposit%20using%20a%20cryptocurrency%20not%20listed%20on%20your%20deposit%20page.%0A%0APlease%20provide%20the%20deposit%20address%20for%3A%0A%0A-%20Cryptocurrency%20name%20%28e.g.%2C%20Cardano%2C%20Polkadot%2C%20etc.%29%0A%0AThank%20you%21" class="bank-cta-button">
+        Request Other Coin Deposit Address
+      </a>
+
+      <div class="info-box">
+        Simply email us with the cryptocurrency you'd like to use, and we'll provide you with the deposit address and wallet details within 1 hour. Our team supports a wide range of cryptocurrencies and blockchain networks.
+      </div>
+    </div>
   </div>
 
   <script>
     // Initialize QR codes
     function initializeQRCodes() {
       const cryptoData = [
-        { id: 'btc', address: '1A1z7agoat2LWQLRZUC8d7vFQCZ1PWetK2', name: 'Bitcoin' },
-        { id: 'eth', address: '0x742d35Cc6634C0532925a3b844Bc9e7595f42bE', name: 'Ethereum' },
-        { id: 'usdc', address: '0xA0b86991c6218b36c1d19D4a2e9Eb0cE3606eB48', name: 'USDC' },
-        { id: 'usdt', address: '0xdAC17F958D2ee523a2206206994597C13D831ec7', name: 'USDT' },
-        { id: 'ltc', address: 'Lfk5QrDr1idiuXQ7z9mAtjiyNtVMXxJAvm', name: 'Litecoin' }
+        { id: 'btc', address: 'bc1qx3ul9a6kw2h2hfckwttgh8c6am2zjkg66rkl08', name: 'Bitcoin' },
+        { id: 'eth', address: '0x014198cD564f8366261b97EF59ec27d3C3AB0035', name: 'Ethereum' },
+        { id: 'sol', address: 'AwTuC8HngoxHZr46H6QgBSK1aPg8knKmsax6upbMj31b', name: 'Solana' },
+        { id: 'bnb', address: '0x014198cD564f8366261b97EF59ec27d3C3AB0035', name: 'Binance Coin' },
+        { id: 'usdt', address: '0x014198cD564f8366261b97EF59ec27d3C3AB0035', name: 'USDT' },
+        { id: 'trx', address: 'TKahJXYiyngew58j25nDfCMsuAAksn9YLq', name: 'Tron' },
+        { id: 'xrp', address: 'rMK5RcCfJhNqGN6shFf6Yq3jxt9oJDg7SV', name: 'Ripple' }
       ];
 
       cryptoData.forEach(crypto => {
