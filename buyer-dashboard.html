@@ -47,8 +47,53 @@
       logout();
     }
 
+    // Switch between dashboard sections
+    function switchSection(sectionName) {
+      // Hide all sections
+      const sections = document.querySelectorAll('.section');
+      sections.forEach(section => {
+        section.classList.remove('active');
+      });
+
+      // Remove active state from all sidebar items
+      const sidebarItems = document.querySelectorAll('.sidebar-item');
+      sidebarItems.forEach(item => {
+        item.classList.remove('active');
+      });
+
+      // Show the selected section
+      const activeSection = document.getElementById(sectionName);
+      if (activeSection) {
+        activeSection.classList.add('active');
+      }
+
+      // Highlight the sidebar item
+      const activeItem = document.querySelector(`[data-section="${sectionName}"]`);
+      if (activeItem) {
+        activeItem.classList.add('active');
+      }
+    }
+
+    // Make sidebar items clickable
+    function initializeSidebarItems() {
+      const sidebarItems = document.querySelectorAll('.sidebar-item[data-section]');
+      sidebarItems.forEach(item => {
+        item.addEventListener('click', () => {
+          const section = item.getAttribute('data-section');
+          switchSection(section);
+        });
+      });
+    }
+
     // Check auth immediately
     checkAuth();
+
+    // Initialize sidebar when DOM is ready
+    if (document.readyState === 'loading') {
+      document.addEventListener('DOMContentLoaded', initializeSidebarItems);
+    } else {
+      initializeSidebarItems();
+    }
   </script>
   <style>
     .dashboard-container {
