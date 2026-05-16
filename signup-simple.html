@@ -15,7 +15,6 @@
       font-family: 'DM Sans', sans-serif;
       color: #fff;
     }
-
     .signup-container {
       width: 100%;
       max-width: 500px;
@@ -25,25 +24,21 @@
       border-radius: 12px;
       backdrop-filter: blur(10px);
     }
-
     h1 {
       color: #c9a84c;
       margin-bottom: 30px;
       text-align: center;
       font-size: 28px;
     }
-
     .form-group {
       margin-bottom: 20px;
     }
-
     label {
       display: block;
       margin-bottom: 8px;
       font-size: 14px;
       color: #ccc;
     }
-
     input {
       width: 100%;
       padding: 12px;
@@ -54,13 +49,11 @@
       font-size: 14px;
       box-sizing: border-box;
     }
-
     input:focus {
       outline: none;
       border-color: #c9a84c;
       background: rgba(255, 255, 255, 0.15);
     }
-
     .btn {
       width: 100%;
       padding: 12px;
@@ -74,17 +67,14 @@
       margin-top: 20px;
       transition: all 0.3s ease;
     }
-
     .btn:hover:not(:disabled) {
       background: #e0bc5f;
       transform: translateY(-2px);
     }
-
     .btn:disabled {
       opacity: 0.7;
       cursor: not-allowed;
     }
-
     .message {
       padding: 12px;
       border-radius: 6px;
@@ -92,27 +82,23 @@
       font-size: 14px;
       display: none;
     }
-
     .message.success {
       display: block;
       background: rgba(76, 175, 80, 0.2);
       border: 1px solid #4caf50;
       color: #90ee90;
     }
-
     .message.error {
       display: block;
       background: rgba(244, 67, 54, 0.2);
       border: 1px solid #f44336;
       color: #ff9999;
     }
-
     .signin-link {
       text-align: center;
       margin-top: 20px;
       font-size: 14px;
     }
-
     .signin-link a {
       color: #c9a84c;
       text-decoration: none;
@@ -129,27 +115,22 @@
         <label>First Name</label>
         <input type="text" id="firstName" placeholder="John" required>
       </div>
-
       <div class="form-group">
         <label>Last Name</label>
         <input type="text" id="lastName" placeholder="Doe" required>
       </div>
-
       <div class="form-group">
         <label>Email</label>
         <input type="email" id="email" placeholder="you@example.com" required>
       </div>
-
       <div class="form-group">
         <label>Password</label>
         <input type="password" id="password" placeholder="At least 6 characters" required>
       </div>
-
       <div class="form-group">
         <label>Confirm Password</label>
         <input type="password" id="confirmPassword" placeholder="Re-enter password" required>
       </div>
-
       <button type="submit" class="btn" id="submitBtn">Create Account</button>
     </form>
 
@@ -158,164 +139,112 @@
     </div>
   </div>
 
-  <!-- Supabase JS -->
   <script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2"></script>
-
   <script>
-    // ============================================
-    // SUPABASE CONFIGURATION
-    // ============================================
     const SUPABASE_URL = 'https://wdhvrghpmypjthpkfffb.supabase.co';
     const SUPABASE_ANON_KEY = 'eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpc3MiOiJzdXBhYmFzZSIsInJlZiI6IndkaHZyZ2hwbXlwanRocGtmZmZiIiwicm9sZSI6ImFub24iLCJpYXQiOjE3NzgwNDUzNzksImV4cCI6MjA5MzYyMTM3OX0.dXNJyQZNOfvqLwYl10gtZv5sCHP9XLlxYdRnHzp5p3g';
 
-    let supabase = null;
+    let sbClient = null;
 
-    // ============================================
-    // INITIALIZE SUPABASE
-    // ============================================
     function initSupabase() {
-      try {
-        if (!window.supabase) {
-          console.error('❌ Supabase JS library not loaded');
-          return false;
-        }
-        supabase = window.supabase.createClient(SUPABASE_URL, SUPABASE_ANON_KEY);
-        console.log('✅ Supabase initialized successfully');
-        return true;
-      } catch (error) {
-        console.error('❌ Failed to initialize Supabase:', error);
-        return false;
+      if (!window.supabase) {
+        console.error('Supabase library not loaded');
+        return;
       }
+      sbClient = window.supabase.createClient(SUPABASE_URL, SUPABASE_ANON_KEY);
+      console.log('✅ Supabase initialized');
     }
 
-    // ============================================
-    // SHOW MESSAGE TO USER
-    // ============================================
     function showMessage(text, type) {
       const msg = document.getElementById('message');
       msg.textContent = text;
       msg.className = 'message ' + type;
-      console.log(`📢 Message [${type}]: ${text}`);
     }
 
-    // ============================================
-    // HANDLE SIGNUP FORM SUBMISSION
-    // ============================================
     async function handleSignup(event) {
       event.preventDefault();
-      console.log('🚀 Form submission started');
+      console.log('Form submitted');
 
-      // Get form values
       const firstName = document.getElementById('firstName').value.trim();
       const lastName = document.getElementById('lastName').value.trim();
       const email = document.getElementById('email').value.trim();
       const password = document.getElementById('password').value;
       const confirmPassword = document.getElementById('confirmPassword').value;
 
-      console.log('📝 Form values:', { firstName, lastName, email });
-
-      // ===== VALIDATION =====
       if (!firstName || !lastName || !email || !password) {
-        showMessage('❌ Please fill in all fields', 'error');
+        showMessage('Please fill in all fields', 'error');
         return;
       }
 
       if (password !== confirmPassword) {
-        showMessage('❌ Passwords do not match', 'error');
+        showMessage('Passwords do not match', 'error');
         return;
       }
 
       if (password.length < 6) {
-        showMessage('❌ Password must be at least 6 characters', 'error');
+        showMessage('Password must be at least 6 characters', 'error');
         return;
       }
 
-      // ===== DISABLE BUTTON DURING SUBMISSION =====
       const submitBtn = document.getElementById('submitBtn');
       submitBtn.disabled = true;
       submitBtn.textContent = 'Creating account...';
 
       try {
-        // ===== ENSURE SUPABASE IS INITIALIZED =====
-        if (!supabase) {
-          console.log('⏳ Supabase not initialized, initializing now...');
-          const initialized = initSupabase();
-          if (!initialized) {
-            throw new Error('Failed to initialize database connection');
-          }
+        if (!sbClient) {
+          initSupabase();
         }
 
-        console.log('📝 Inserting user into database...');
-        console.log('Email:', email);
+        if (!sbClient) {
+          throw new Error('Database not connected');
+        }
 
-        // Generate unique user ID
-        const userId = `user_${Date.now()}`;
+        const userId = 'user_' + Date.now();
 
-        // ===== INSERT USER INTO DATABASE =====
-        const { data, error } = await supabase
+        const { data, error } = await sbClient
           .from('users')
-          .insert([
-            {
-              id: userId,
-              email: email,
-              password: password,
-              full_name: `${firstName} ${lastName}`,
-              phone: '',
-              role: null,
-              available_balance: 0,
-              pending_balance: 0
-            }
-          ])
+          .insert([{
+            id: userId,
+            email: email,
+            password: password,
+            full_name: firstName + ' ' + lastName,
+            phone: '',
+            role: null,
+            available_balance: 0,
+            pending_balance: 0
+          }])
           .select();
 
         if (error) {
-          console.error('❌ Database error:', error);
           throw new Error(error.message || 'Failed to create account');
         }
 
         if (!data || data.length === 0) {
-          throw new Error('No data returned after account creation');
+          throw new Error('Account creation failed');
         }
 
-        console.log('✅ User created successfully:', data[0]);
+        localStorage.setItem('userId', data[0].id);
+        localStorage.setItem('userEmail', data[0].email);
+        localStorage.setItem('userName', data[0].full_name);
+        localStorage.setItem('userRole', data[0].role || '');
 
-        // ===== STORE IN LOCAL STORAGE =====
-        const user = data[0];
-        localStorage.setItem('userId', user.id);
-        localStorage.setItem('userEmail', user.email);
-        localStorage.setItem('userName', user.full_name);
-        localStorage.setItem('userRole', user.role || '');
+        showMessage('Account created! Redirecting...', 'success');
 
-        console.log('✅ Data saved to localStorage');
-
-        // ===== SHOW SUCCESS MESSAGE =====
-        showMessage('✅ Account created successfully! Redirecting...', 'success');
-
-        // ===== REDIRECT TO ROLE SELECTION =====
         setTimeout(() => {
-          console.log('🔄 Redirecting to role selection page...');
           window.location.href = './select-role.html';
         }, 1500);
 
       } catch (error) {
-        console.error('❌ Signup error:', error);
-        showMessage(`❌ Error: ${error.message || 'Failed to create account. Please try again.'}`, 'error');
+        console.error('Error:', error);
+        showMessage('Error: ' + error.message, 'error');
         submitBtn.disabled = false;
         submitBtn.textContent = 'Create Account';
       }
     }
 
-    // ============================================
-    // INITIALIZE ON PAGE LOAD
-    // ============================================
-    document.addEventListener('DOMContentLoaded', () => {
-      console.log('📄 Page loaded, initializing Supabase...');
-      initSupabase();
-    });
-
-    // Also try immediate initialization in case DOM is already ready
-    if (document.readyState === 'complete' || document.readyState === 'interactive') {
-      console.log('📄 DOM already ready, initializing Supabase...');
+    if (document.readyState === 'loading') {
+      document.addEventListener('DOMContentLoaded', initSupabase);
+    } else {
       initSupabase();
     }
   </script>
