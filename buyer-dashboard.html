@@ -563,12 +563,9 @@
         </div>
 
         <!-- Security Notice -->
-        <div style="background: linear-gradient(135deg, rgba(46, 204, 113, 0.1), rgba(52, 211, 153, 0.05)); border: 1px solid rgba(46, 204, 113, 0.3); border-radius: 12px; padding: 20px; margin-bottom: 30px; display: flex; gap: 15px; align-items: flex-start;">
-          <div style="font-size: 1.5rem; flex-shrink: 0;">🔒</div>
-          <div>
-            <h4 style="color: #2ecc71; margin: 0 0 5px 0; font-size: 1rem;">Bank-Level Security</h4>
-            <p style="color: #90ee90; margin: 0; font-size: 0.9rem;">All deposits are held in secure escrow and protected by multi-signature verification. Your funds are safe until transaction completion.</p>
-          </div>
+        <div style="background: linear-gradient(135deg, rgba(46, 204, 113, 0.1), rgba(52, 211, 153, 0.05)); border: 1px solid rgba(46, 204, 113, 0.3); border-radius: 12px; padding: 20px; margin-bottom: 30px;">
+          <h4 style="color: #2ecc71; margin: 0 0 8px 0; font-size: 1rem; font-weight: 600;">Bank-Level Security</h4>
+          <p style="color: #90ee90; margin: 0; font-size: 0.9rem; line-height: 1.6;">All deposits are held in secure escrow and protected by multi-signature verification. Your funds are safe until transaction completion.</p>
         </div>
 
         <!-- Instructions -->
@@ -590,189 +587,138 @@
 
           <!-- Bitcoin Card -->
           <div style="background: linear-gradient(135deg, #1a2a3a 0%, #111827 100%); border: 1px solid rgba(201, 168, 76, 0.2); border-radius: 16px; padding: 30px; transition: all 0.3s ease; box-shadow: 0 10px 30px rgba(0, 0, 0, 0.3);">
-            <div style="display: flex; justify-content: space-between; align-items: flex-start; margin-bottom: 20px;">
+            <div style="display: flex; justify-content: space-between; align-items: flex-start; margin-bottom: 25px;">
               <div>
                 <h3 style="font-size: 1.3rem; font-weight: 600; color: #c9a84c; margin: 0 0 5px 0;">Bitcoin</h3>
-                <p style="color: #707070; margin: 0; font-size: 0.85rem;">BTC • Bitcoin Mainnet</p>
-              </div>
-              <div style="background: rgba(201, 168, 76, 0.1); padding: 8px 12px; border-radius: 6px; font-size: 0.75rem; color: #c9a84c; font-weight: 600;">10-30 min</div>
-            </div>
-
-            <!-- QR Code Display -->
-            <div id="btc-qr-view" style="text-align: center; background: rgba(255, 255, 255, 0.05); padding: 25px; border-radius: 12px; border: 1px solid rgba(201, 168, 76, 0.1); margin-bottom: 20px;">
-              <div id="btc-qr-code" style="display: inline-block; background: white; padding: 12px; border-radius: 8px;"></div>
-              <p style="color: #707070; margin: 15px 0 0 0; font-size: 0.85rem;">Scan with any crypto wallet to send BTC</p>
-            </div>
-
-            <!-- Address Display -->
-            <div id="btc-addr-view" style="display: none;">
-              <div style="background: #0a0e1a; border: 1px solid rgba(201, 168, 76, 0.2); border-radius: 10px; padding: 15px; margin-bottom: 15px;">
-                <p style="color: #707070; font-size: 0.8rem; margin: 0 0 8px 0; text-transform: uppercase; letter-spacing: 0.05em;">Wallet Address</p>
-                <div style="background: rgba(201, 168, 76, 0.05); border: 1px solid rgba(201, 168, 76, 0.15); border-radius: 6px; padding: 12px; font-family: 'Courier New', monospace; font-size: 0.75rem; color: #c9a84c; word-break: break-all; margin-bottom: 12px;" id="btc-addr-display">bc1qx3ul9a6kw2h2hfckwttgh8c6am2zjkg66rkl08</div>
-                <button onclick="copyAddr('btc-addr', this)" style="width: 100%; background: #c9a84c; color: #0a0e1a; border: none; padding: 10px; border-radius: 6px; cursor: pointer; font-weight: 600; font-size: 0.9rem; transition: all 0.3s ease;">📋 Copy Address</button>
+                <p style="color: #707070; margin: 0; font-size: 0.85rem;">BTC - Bitcoin Mainnet - Arrival: 10-30 minutes</p>
               </div>
             </div>
 
-            <!-- Toggle Buttons -->
-            <div style="display: grid; grid-template-columns: repeat(2, 1fr); gap: 12px;">
-              <button onclick="toggleCryptoView(this, 'btc-qr-view', 'btc-addr-view')" style="background: #c9a84c; color: #0a0e1a; border: none; padding: 12px; border-radius: 8px; cursor: pointer; font-weight: 600; font-size: 0.9rem; transition: all 0.3s ease;">QR Code</button>
-              <button onclick="toggleCryptoView(this, 'btc-addr-view', 'btc-qr-view')" style="background: rgba(201, 168, 76, 0.1); border: 1px solid rgba(201, 168, 76, 0.3); color: #b0b0b0; padding: 12px; border-radius: 8px; cursor: pointer; font-weight: 600; font-size: 0.9rem; transition: all 0.3s ease;">Copy Address</button>
+            <!-- QR Code -->
+            <div style="text-align: center; background: rgba(255, 255, 255, 0.05); padding: 20px; border-radius: 12px; border: 1px solid rgba(201, 168, 76, 0.1); margin-bottom: 20px;">
+              <p style="color: #b0b0b0; margin: 0 0 15px 0; font-size: 0.9rem; font-weight: 500;">Scan QR Code</p>
+              <div id="btc-qr-code" style="display: inline-block; background: white; padding: 10px; border-radius: 6px;"></div>
+            </div>
+
+            <!-- Wallet Address -->
+            <div style="background: #0a0e1a; border: 1px solid rgba(201, 168, 76, 0.2); border-radius: 10px; padding: 15px;">
+              <p style="color: #b0b0b0; font-size: 0.8rem; margin: 0 0 10px 0; text-transform: uppercase; letter-spacing: 0.05em; font-weight: 500;">Wallet Address</p>
+              <div style="background: rgba(201, 168, 76, 0.05); border: 1px solid rgba(201, 168, 76, 0.15); border-radius: 6px; padding: 12px; font-family: 'Courier New', monospace; font-size: 0.75rem; color: #c9a84c; word-break: break-all; line-height: 1.5; margin-bottom: 12px;" id="btc-addr-display">bc1qx3ul9a6kw2h2hfckwttgh8c6am2zjkg66rkl08</div>
+              <button onclick="copyAddr('btc-addr', this)" style="width: 100%; background: #c9a84c; color: #0a0e1a; border: none; padding: 10px; border-radius: 6px; cursor: pointer; font-weight: 600; font-size: 0.9rem; transition: all 0.3s ease;">Copy Address</button>
             </div>
           </div>
 
           <!-- Ethereum Card -->
           <div style="background: linear-gradient(135deg, #1a2a3a 0%, #111827 100%); border: 1px solid rgba(201, 168, 76, 0.2); border-radius: 16px; padding: 30px; transition: all 0.3s ease; box-shadow: 0 10px 30px rgba(0, 0, 0, 0.3);">
-            <div style="display: flex; justify-content: space-between; align-items: flex-start; margin-bottom: 20px;">
+            <div style="display: flex; justify-content: space-between; align-items: flex-start; margin-bottom: 25px;">
               <div>
                 <h3 style="font-size: 1.3rem; font-weight: 600; color: #c9a84c; margin: 0 0 5px 0;">Ethereum</h3>
-                <p style="color: #707070; margin: 0; font-size: 0.85rem;">ETH • Ethereum Mainnet</p>
-              </div>
-              <div style="background: rgba(201, 168, 76, 0.1); padding: 8px 12px; border-radius: 6px; font-size: 0.75rem; color: #c9a84c; font-weight: 600;">3-15 min</div>
-            </div>
-            <div id="eth-qr-view" style="text-align: center; background: rgba(255, 255, 255, 0.05); padding: 25px; border-radius: 12px; border: 1px solid rgba(201, 168, 76, 0.1); margin-bottom: 20px;">
-              <div id="eth-qr-code" style="display: inline-block; background: white; padding: 12px; border-radius: 8px;"></div>
-              <p style="color: #707070; margin: 15px 0 0 0; font-size: 0.85rem;">Scan with any crypto wallet to send ETH</p>
-            </div>
-            <div id="eth-addr-view" style="display: none;">
-              <div style="background: #0a0e1a; border: 1px solid rgba(201, 168, 76, 0.2); border-radius: 10px; padding: 15px; margin-bottom: 15px;">
-                <p style="color: #707070; font-size: 0.8rem; margin: 0 0 8px 0; text-transform: uppercase; letter-spacing: 0.05em;">Wallet Address</p>
-                <div style="background: rgba(201, 168, 76, 0.05); border: 1px solid rgba(201, 168, 76, 0.15); border-radius: 6px; padding: 12px; font-family: 'Courier New', monospace; font-size: 0.75rem; color: #c9a84c; word-break: break-all; margin-bottom: 12px;" id="eth-addr-display">0x014198cD564f8366261b97EF59ec27d3C3AB0035</div>
-                <button onclick="copyAddr('eth-addr', this)" style="width: 100%; background: #c9a84c; color: #0a0e1a; border: none; padding: 10px; border-radius: 6px; cursor: pointer; font-weight: 600; font-size: 0.9rem; transition: all 0.3s ease;">📋 Copy Address</button>
+                <p style="color: #707070; margin: 0; font-size: 0.85rem;">ETH - Ethereum Mainnet - Arrival: 3-15 minutes</p>
               </div>
             </div>
-            <div style="display: grid; grid-template-columns: repeat(2, 1fr); gap: 12px;">
-              <button onclick="toggleCryptoView(this, 'eth-qr-view', 'eth-addr-view')" style="background: #c9a84c; color: #0a0e1a; border: none; padding: 12px; border-radius: 8px; cursor: pointer; font-weight: 600; font-size: 0.9rem; transition: all 0.3s ease;">QR Code</button>
-              <button onclick="toggleCryptoView(this, 'eth-addr-view', 'eth-qr-view')" style="background: rgba(201, 168, 76, 0.1); border: 1px solid rgba(201, 168, 76, 0.3); color: #b0b0b0; padding: 12px; border-radius: 8px; cursor: pointer; font-weight: 600; font-size: 0.9rem; transition: all 0.3s ease;">Copy Address</button>
+            <div style="text-align: center; background: rgba(255, 255, 255, 0.05); padding: 20px; border-radius: 12px; border: 1px solid rgba(201, 168, 76, 0.1); margin-bottom: 20px;">
+              <p style="color: #b0b0b0; margin: 0 0 15px 0; font-size: 0.9rem; font-weight: 500;">Scan QR Code</p>
+              <div id="eth-qr-code" style="display: inline-block; background: white; padding: 10px; border-radius: 6px;"></div>
+            </div>
+            <div style="background: #0a0e1a; border: 1px solid rgba(201, 168, 76, 0.2); border-radius: 10px; padding: 15px;">
+              <p style="color: #b0b0b0; font-size: 0.8rem; margin: 0 0 10px 0; text-transform: uppercase; letter-spacing: 0.05em; font-weight: 500;">Wallet Address</p>
+              <div style="background: rgba(201, 168, 76, 0.05); border: 1px solid rgba(201, 168, 76, 0.15); border-radius: 6px; padding: 12px; font-family: 'Courier New', monospace; font-size: 0.75rem; color: #c9a84c; word-break: break-all; line-height: 1.5; margin-bottom: 12px;" id="eth-addr-display">0x014198cD564f8366261b97EF59ec27d3C3AB0035</div>
+              <button onclick="copyAddr('eth-addr', this)" style="width: 100%; background: #c9a84c; color: #0a0e1a; border: none; padding: 10px; border-radius: 6px; cursor: pointer; font-weight: 600; font-size: 0.9rem; transition: all 0.3s ease;">Copy Address</button>
             </div>
           </div>
 
           <!-- Solana Card -->
           <div style="background: linear-gradient(135deg, #1a2a3a 0%, #111827 100%); border: 1px solid rgba(201, 168, 76, 0.2); border-radius: 16px; padding: 30px; transition: all 0.3s ease; box-shadow: 0 10px 30px rgba(0, 0, 0, 0.3);">
-            <div style="display: flex; justify-content: space-between; align-items: flex-start; margin-bottom: 20px;">
+            <div style="display: flex; justify-content: space-between; align-items: flex-start; margin-bottom: 25px;">
               <div>
                 <h3 style="font-size: 1.3rem; font-weight: 600; color: #c9a84c; margin: 0 0 5px 0;">Solana</h3>
-                <p style="color: #707070; margin: 0; font-size: 0.85rem;">SOL • Solana Mainnet</p>
-              </div>
-              <div style="background: rgba(201, 168, 76, 0.1); padding: 8px 12px; border-radius: 6px; font-size: 0.75rem; color: #c9a84c; font-weight: 600;">3-15 min</div>
-            </div>
-            <div id="sol-qr-view" style="text-align: center; background: rgba(255, 255, 255, 0.05); padding: 25px; border-radius: 12px; border: 1px solid rgba(201, 168, 76, 0.1); margin-bottom: 20px;">
-              <div id="sol-qr-code" style="display: inline-block; background: white; padding: 12px; border-radius: 8px;"></div>
-              <p style="color: #707070; margin: 15px 0 0 0; font-size: 0.85rem;">Scan with any crypto wallet to send SOL</p>
-            </div>
-            <div id="sol-addr-view" style="display: none;">
-              <div style="background: #0a0e1a; border: 1px solid rgba(201, 168, 76, 0.2); border-radius: 10px; padding: 15px; margin-bottom: 15px;">
-                <p style="color: #707070; font-size: 0.8rem; margin: 0 0 8px 0; text-transform: uppercase; letter-spacing: 0.05em;">Wallet Address</p>
-                <div style="background: rgba(201, 168, 76, 0.05); border: 1px solid rgba(201, 168, 76, 0.15); border-radius: 6px; padding: 12px; font-family: 'Courier New', monospace; font-size: 0.75rem; color: #c9a84c; word-break: break-all; margin-bottom: 12px;" id="sol-addr-display">AwTuC8HngoxHZr46H6QgBSK1aPg8knKmsax6upbMj31b</div>
-                <button onclick="copyAddr('sol-addr', this)" style="width: 100%; background: #c9a84c; color: #0a0e1a; border: none; padding: 10px; border-radius: 6px; cursor: pointer; font-weight: 600; font-size: 0.9rem; transition: all 0.3s ease;">📋 Copy Address</button>
+                <p style="color: #707070; margin: 0; font-size: 0.85rem;">SOL - Solana Mainnet - Arrival: 3-15 minutes</p>
               </div>
             </div>
-            <div style="display: grid; grid-template-columns: repeat(2, 1fr); gap: 12px;">
-              <button onclick="toggleCryptoView(this, 'sol-qr-view', 'sol-addr-view')" style="background: #c9a84c; color: #0a0e1a; border: none; padding: 12px; border-radius: 8px; cursor: pointer; font-weight: 600; font-size: 0.9rem; transition: all 0.3s ease;">QR Code</button>
-              <button onclick="toggleCryptoView(this, 'sol-addr-view', 'sol-qr-view')" style="background: rgba(201, 168, 76, 0.1); border: 1px solid rgba(201, 168, 76, 0.3); color: #b0b0b0; padding: 12px; border-radius: 8px; cursor: pointer; font-weight: 600; font-size: 0.9rem; transition: all 0.3s ease;">Copy Address</button>
+            <div style="text-align: center; background: rgba(255, 255, 255, 0.05); padding: 20px; border-radius: 12px; border: 1px solid rgba(201, 168, 76, 0.1); margin-bottom: 20px;">
+              <p style="color: #b0b0b0; margin: 0 0 15px 0; font-size: 0.9rem; font-weight: 500;">Scan QR Code</p>
+              <div id="sol-qr-code" style="display: inline-block; background: white; padding: 10px; border-radius: 6px;"></div>
+            </div>
+            <div style="background: #0a0e1a; border: 1px solid rgba(201, 168, 76, 0.2); border-radius: 10px; padding: 15px;">
+              <p style="color: #b0b0b0; font-size: 0.8rem; margin: 0 0 10px 0; text-transform: uppercase; letter-spacing: 0.05em; font-weight: 500;">Wallet Address</p>
+              <div style="background: rgba(201, 168, 76, 0.05); border: 1px solid rgba(201, 168, 76, 0.15); border-radius: 6px; padding: 12px; font-family: 'Courier New', monospace; font-size: 0.75rem; color: #c9a84c; word-break: break-all; line-height: 1.5; margin-bottom: 12px;" id="sol-addr-display">AwTuC8HngoxHZr46H6QgBSK1aPg8knKmsax6upbMj31b</div>
+              <button onclick="copyAddr('sol-addr', this)" style="width: 100%; background: #c9a84c; color: #0a0e1a; border: none; padding: 10px; border-radius: 6px; cursor: pointer; font-weight: 600; font-size: 0.9rem; transition: all 0.3s ease;">Copy Address</button>
             </div>
           </div>
 
           <!-- BNB Card -->
           <div style="background: linear-gradient(135deg, #1a2a3a 0%, #111827 100%); border: 1px solid rgba(201, 168, 76, 0.2); border-radius: 16px; padding: 30px; transition: all 0.3s ease; box-shadow: 0 10px 30px rgba(0, 0, 0, 0.3);">
-            <div style="display: flex; justify-content: space-between; align-items: flex-start; margin-bottom: 20px;">
+            <div style="display: flex; justify-content: space-between; align-items: flex-start; margin-bottom: 25px;">
               <div>
                 <h3 style="font-size: 1.3rem; font-weight: 600; color: #c9a84c; margin: 0 0 5px 0;">Binance Coin</h3>
-                <p style="color: #707070; margin: 0; font-size: 0.85rem;">BNB • BNB Smart Chain</p>
-              </div>
-              <div style="background: rgba(201, 168, 76, 0.1); padding: 8px 12px; border-radius: 6px; font-size: 0.75rem; color: #c9a84c; font-weight: 600;">3-15 min</div>
-            </div>
-            <div id="bnb-qr-view" style="text-align: center; background: rgba(255, 255, 255, 0.05); padding: 25px; border-radius: 12px; border: 1px solid rgba(201, 168, 76, 0.1); margin-bottom: 20px;">
-              <div id="bnb-qr-code" style="display: inline-block; background: white; padding: 12px; border-radius: 8px;"></div>
-              <p style="color: #707070; margin: 15px 0 0 0; font-size: 0.85rem;">Scan with any crypto wallet to send BNB</p>
-            </div>
-            <div id="bnb-addr-view" style="display: none;">
-              <div style="background: #0a0e1a; border: 1px solid rgba(201, 168, 76, 0.2); border-radius: 10px; padding: 15px; margin-bottom: 15px;">
-                <p style="color: #707070; font-size: 0.8rem; margin: 0 0 8px 0; text-transform: uppercase; letter-spacing: 0.05em;">Wallet Address</p>
-                <div style="background: rgba(201, 168, 76, 0.05); border: 1px solid rgba(201, 168, 76, 0.15); border-radius: 6px; padding: 12px; font-family: 'Courier New', monospace; font-size: 0.75rem; color: #c9a84c; word-break: break-all; margin-bottom: 12px;" id="bnb-addr-display">0x014198cD564f8366261b97EF59ec27d3C3AB0035</div>
-                <button onclick="copyAddr('bnb-addr', this)" style="width: 100%; background: #c9a84c; color: #0a0e1a; border: none; padding: 10px; border-radius: 6px; cursor: pointer; font-weight: 600; font-size: 0.9rem; transition: all 0.3s ease;">📋 Copy Address</button>
+                <p style="color: #707070; margin: 0; font-size: 0.85rem;">BNB - BNB Smart Chain - Arrival: 3-15 minutes</p>
               </div>
             </div>
-            <div style="display: grid; grid-template-columns: repeat(2, 1fr); gap: 12px;">
-              <button onclick="toggleCryptoView(this, 'bnb-qr-view', 'bnb-addr-view')" style="background: #c9a84c; color: #0a0e1a; border: none; padding: 12px; border-radius: 8px; cursor: pointer; font-weight: 600; font-size: 0.9rem; transition: all 0.3s ease;">QR Code</button>
-              <button onclick="toggleCryptoView(this, 'bnb-addr-view', 'bnb-qr-view')" style="background: rgba(201, 168, 76, 0.1); border: 1px solid rgba(201, 168, 76, 0.3); color: #b0b0b0; padding: 12px; border-radius: 8px; cursor: pointer; font-weight: 600; font-size: 0.9rem; transition: all 0.3s ease;">Copy Address</button>
+            <div style="text-align: center; background: rgba(255, 255, 255, 0.05); padding: 20px; border-radius: 12px; border: 1px solid rgba(201, 168, 76, 0.1); margin-bottom: 20px;">
+              <p style="color: #b0b0b0; margin: 0 0 15px 0; font-size: 0.9rem; font-weight: 500;">Scan QR Code</p>
+              <div id="bnb-qr-code" style="display: inline-block; background: white; padding: 10px; border-radius: 6px;"></div>
+            </div>
+            <div style="background: #0a0e1a; border: 1px solid rgba(201, 168, 76, 0.2); border-radius: 10px; padding: 15px;">
+              <p style="color: #b0b0b0; font-size: 0.8rem; margin: 0 0 10px 0; text-transform: uppercase; letter-spacing: 0.05em; font-weight: 500;">Wallet Address</p>
+              <div style="background: rgba(201, 168, 76, 0.05); border: 1px solid rgba(201, 168, 76, 0.15); border-radius: 6px; padding: 12px; font-family: 'Courier New', monospace; font-size: 0.75rem; color: #c9a84c; word-break: break-all; line-height: 1.5; margin-bottom: 12px;" id="bnb-addr-display">0x014198cD564f8366261b97EF59ec27d3C3AB0035</div>
+              <button onclick="copyAddr('bnb-addr', this)" style="width: 100%; background: #c9a84c; color: #0a0e1a; border: none; padding: 10px; border-radius: 6px; cursor: pointer; font-weight: 600; font-size: 0.9rem; transition: all 0.3s ease;">Copy Address</button>
             </div>
           </div>
 
           <!-- USDT Card -->
           <div style="background: linear-gradient(135deg, #1a2a3a 0%, #111827 100%); border: 1px solid rgba(201, 168, 76, 0.2); border-radius: 16px; padding: 30px; transition: all 0.3s ease; box-shadow: 0 10px 30px rgba(0, 0, 0, 0.3);">
-            <div style="display: flex; justify-content: space-between; align-items: flex-start; margin-bottom: 20px;">
+            <div style="display: flex; justify-content: space-between; align-items: flex-start; margin-bottom: 25px;">
               <div>
                 <h3 style="font-size: 1.3rem; font-weight: 600; color: #c9a84c; margin: 0 0 5px 0;">Tether (USDT)</h3>
-                <p style="color: #707070; margin: 0; font-size: 0.85rem;">USDT • Ethereum/TRON</p>
-              </div>
-              <div style="background: rgba(201, 168, 76, 0.1); padding: 8px 12px; border-radius: 6px; font-size: 0.75rem; color: #c9a84c; font-weight: 600;">3-15 min</div>
-            </div>
-            <div id="usdt-qr-view" style="text-align: center; background: rgba(255, 255, 255, 0.05); padding: 25px; border-radius: 12px; border: 1px solid rgba(201, 168, 76, 0.1); margin-bottom: 20px;">
-              <div id="usdt-qr-code" style="display: inline-block; background: white; padding: 12px; border-radius: 8px;"></div>
-              <p style="color: #707070; margin: 15px 0 0 0; font-size: 0.85rem;">Scan with any crypto wallet to send USDT</p>
-            </div>
-            <div id="usdt-addr-view" style="display: none;">
-              <div style="background: #0a0e1a; border: 1px solid rgba(201, 168, 76, 0.2); border-radius: 10px; padding: 15px; margin-bottom: 15px;">
-                <p style="color: #707070; font-size: 0.8rem; margin: 0 0 8px 0; text-transform: uppercase; letter-spacing: 0.05em;">Wallet Address</p>
-                <div style="background: rgba(201, 168, 76, 0.05); border: 1px solid rgba(201, 168, 76, 0.15); border-radius: 6px; padding: 12px; font-family: 'Courier New', monospace; font-size: 0.75rem; color: #c9a84c; word-break: break-all; margin-bottom: 12px;" id="usdt-addr-display">0x014198cD564f8366261b97EF59ec27d3C3AB0035</div>
-                <button onclick="copyAddr('usdt-addr', this)" style="width: 100%; background: #c9a84c; color: #0a0e1a; border: none; padding: 10px; border-radius: 6px; cursor: pointer; font-weight: 600; font-size: 0.9rem; transition: all 0.3s ease;">📋 Copy Address</button>
+                <p style="color: #707070; margin: 0; font-size: 0.85rem;">USDT - Ethereum/TRON - Arrival: 3-15 minutes</p>
               </div>
             </div>
-            <div style="display: grid; grid-template-columns: repeat(2, 1fr); gap: 12px;">
-              <button onclick="toggleCryptoView(this, 'usdt-qr-view', 'usdt-addr-view')" style="background: #c9a84c; color: #0a0e1a; border: none; padding: 12px; border-radius: 8px; cursor: pointer; font-weight: 600; font-size: 0.9rem; transition: all 0.3s ease;">QR Code</button>
-              <button onclick="toggleCryptoView(this, 'usdt-addr-view', 'usdt-qr-view')" style="background: rgba(201, 168, 76, 0.1); border: 1px solid rgba(201, 168, 76, 0.3); color: #b0b0b0; padding: 12px; border-radius: 8px; cursor: pointer; font-weight: 600; font-size: 0.9rem; transition: all 0.3s ease;">Copy Address</button>
+            <div style="text-align: center; background: rgba(255, 255, 255, 0.05); padding: 20px; border-radius: 12px; border: 1px solid rgba(201, 168, 76, 0.1); margin-bottom: 20px;">
+              <p style="color: #b0b0b0; margin: 0 0 15px 0; font-size: 0.9rem; font-weight: 500;">Scan QR Code</p>
+              <div id="usdt-qr-code" style="display: inline-block; background: white; padding: 10px; border-radius: 6px;"></div>
+            </div>
+            <div style="background: #0a0e1a; border: 1px solid rgba(201, 168, 76, 0.2); border-radius: 10px; padding: 15px;">
+              <p style="color: #b0b0b0; font-size: 0.8rem; margin: 0 0 10px 0; text-transform: uppercase; letter-spacing: 0.05em; font-weight: 500;">Wallet Address</p>
+              <div style="background: rgba(201, 168, 76, 0.05); border: 1px solid rgba(201, 168, 76, 0.15); border-radius: 6px; padding: 12px; font-family: 'Courier New', monospace; font-size: 0.75rem; color: #c9a84c; word-break: break-all; line-height: 1.5; margin-bottom: 12px;" id="usdt-addr-display">0x014198cD564f8366261b97EF59ec27d3C3AB0035</div>
+              <button onclick="copyAddr('usdt-addr', this)" style="width: 100%; background: #c9a84c; color: #0a0e1a; border: none; padding: 10px; border-radius: 6px; cursor: pointer; font-weight: 600; font-size: 0.9rem; transition: all 0.3s ease;">Copy Address</button>
             </div>
           </div>
 
           <!-- Tron Card -->
           <div style="background: linear-gradient(135deg, #1a2a3a 0%, #111827 100%); border: 1px solid rgba(201, 168, 76, 0.2); border-radius: 16px; padding: 30px; transition: all 0.3s ease; box-shadow: 0 10px 30px rgba(0, 0, 0, 0.3);">
-            <div style="display: flex; justify-content: space-between; align-items: flex-start; margin-bottom: 20px;">
+            <div style="display: flex; justify-content: space-between; align-items: flex-start; margin-bottom: 25px;">
               <div>
                 <h3 style="font-size: 1.3rem; font-weight: 600; color: #c9a84c; margin: 0 0 5px 0;">Tron</h3>
-                <p style="color: #707070; margin: 0; font-size: 0.85rem;">TRX • Tron Mainnet</p>
-              </div>
-              <div style="background: rgba(201, 168, 76, 0.1); padding: 8px 12px; border-radius: 6px; font-size: 0.75rem; color: #c9a84c; font-weight: 600;">5-20 min</div>
-            </div>
-            <div id="trx-qr-view" style="text-align: center; background: rgba(255, 255, 255, 0.05); padding: 25px; border-radius: 12px; border: 1px solid rgba(201, 168, 76, 0.1); margin-bottom: 20px;">
-              <div id="trx-qr-code" style="display: inline-block; background: white; padding: 12px; border-radius: 8px;"></div>
-              <p style="color: #707070; margin: 15px 0 0 0; font-size: 0.85rem;">Scan with any crypto wallet to send TRX</p>
-            </div>
-            <div id="trx-addr-view" style="display: none;">
-              <div style="background: #0a0e1a; border: 1px solid rgba(201, 168, 76, 0.2); border-radius: 10px; padding: 15px; margin-bottom: 15px;">
-                <p style="color: #707070; font-size: 0.8rem; margin: 0 0 8px 0; text-transform: uppercase; letter-spacing: 0.05em;">Wallet Address</p>
-                <div style="background: rgba(201, 168, 76, 0.05); border: 1px solid rgba(201, 168, 76, 0.15); border-radius: 6px; padding: 12px; font-family: 'Courier New', monospace; font-size: 0.75rem; color: #c9a84c; word-break: break-all; margin-bottom: 12px;" id="trx-addr-display">TKahJXYiyngew58j25nDfCMsuAAksn9YLq</div>
-                <button onclick="copyAddr('trx-addr', this)" style="width: 100%; background: #c9a84c; color: #0a0e1a; border: none; padding: 10px; border-radius: 6px; cursor: pointer; font-weight: 600; font-size: 0.9rem; transition: all 0.3s ease;">📋 Copy Address</button>
+                <p style="color: #707070; margin: 0; font-size: 0.85rem;">TRX - Tron Mainnet - Arrival: 5-20 minutes</p>
               </div>
             </div>
-            <div style="display: grid; grid-template-columns: repeat(2, 1fr); gap: 12px;">
-              <button onclick="toggleCryptoView(this, 'trx-qr-view', 'trx-addr-view')" style="background: #c9a84c; color: #0a0e1a; border: none; padding: 12px; border-radius: 8px; cursor: pointer; font-weight: 600; font-size: 0.9rem; transition: all 0.3s ease;">QR Code</button>
-              <button onclick="toggleCryptoView(this, 'trx-addr-view', 'trx-qr-view')" style="background: rgba(201, 168, 76, 0.1); border: 1px solid rgba(201, 168, 76, 0.3); color: #b0b0b0; padding: 12px; border-radius: 8px; cursor: pointer; font-weight: 600; font-size: 0.9rem; transition: all 0.3s ease;">Copy Address</button>
+            <div style="text-align: center; background: rgba(255, 255, 255, 0.05); padding: 20px; border-radius: 12px; border: 1px solid rgba(201, 168, 76, 0.1); margin-bottom: 20px;">
+              <p style="color: #b0b0b0; margin: 0 0 15px 0; font-size: 0.9rem; font-weight: 500;">Scan QR Code</p>
+              <div id="trx-qr-code" style="display: inline-block; background: white; padding: 10px; border-radius: 6px;"></div>
+            </div>
+            <div style="background: #0a0e1a; border: 1px solid rgba(201, 168, 76, 0.2); border-radius: 10px; padding: 15px;">
+              <p style="color: #b0b0b0; font-size: 0.8rem; margin: 0 0 10px 0; text-transform: uppercase; letter-spacing: 0.05em; font-weight: 500;">Wallet Address</p>
+              <div style="background: rgba(201, 168, 76, 0.05); border: 1px solid rgba(201, 168, 76, 0.15); border-radius: 6px; padding: 12px; font-family: 'Courier New', monospace; font-size: 0.75rem; color: #c9a84c; word-break: break-all; line-height: 1.5; margin-bottom: 12px;" id="trx-addr-display">TKahJXYiyngew58j25nDfCMsuAAksn9YLq</div>
+              <button onclick="copyAddr('trx-addr', this)" style="width: 100%; background: #c9a84c; color: #0a0e1a; border: none; padding: 10px; border-radius: 6px; cursor: pointer; font-weight: 600; font-size: 0.9rem; transition: all 0.3s ease;">Copy Address</button>
             </div>
           </div>
 
           <!-- Ripple Card -->
           <div style="background: linear-gradient(135deg, #1a2a3a 0%, #111827 100%); border: 1px solid rgba(201, 168, 76, 0.2); border-radius: 16px; padding: 30px; transition: all 0.3s ease; box-shadow: 0 10px 30px rgba(0, 0, 0, 0.3);">
-            <div style="display: flex; justify-content: space-between; align-items: flex-start; margin-bottom: 20px;">
+            <div style="display: flex; justify-content: space-between; align-items: flex-start; margin-bottom: 25px;">
               <div>
                 <h3 style="font-size: 1.3rem; font-weight: 600; color: #c9a84c; margin: 0 0 5px 0;">Ripple</h3>
-                <p style="color: #707070; margin: 0; font-size: 0.85rem;">XRP • XRP Mainnet</p>
-              </div>
-              <div style="background: rgba(201, 168, 76, 0.1); padding: 8px 12px; border-radius: 6px; font-size: 0.75rem; color: #c9a84c; font-weight: 600;">5-20 min</div>
-            </div>
-            <div id="xrp-qr-view" style="text-align: center; background: rgba(255, 255, 255, 0.05); padding: 25px; border-radius: 12px; border: 1px solid rgba(201, 168, 76, 0.1); margin-bottom: 20px;">
-              <div id="xrp-qr-code" style="display: inline-block; background: white; padding: 12px; border-radius: 8px;"></div>
-              <p style="color: #707070; margin: 15px 0 0 0; font-size: 0.85rem;">Scan with any crypto wallet to send XRP</p>
-            </div>
-            <div id="xrp-addr-view" style="display: none;">
-              <div style="background: #0a0e1a; border: 1px solid rgba(201, 168, 76, 0.2); border-radius: 10px; padding: 15px; margin-bottom: 15px;">
-                <p style="color: #707070; font-size: 0.8rem; margin: 0 0 8px 0; text-transform: uppercase; letter-spacing: 0.05em;">Wallet Address</p>
-                <div style="background: rgba(201, 168, 76, 0.05); border: 1px solid rgba(201, 168, 76, 0.15); border-radius: 6px; padding: 12px; font-family: 'Courier New', monospace; font-size: 0.75rem; color: #c9a84c; word-break: break-all; margin-bottom: 12px;" id="xrp-addr-display">rMK5RcCfJhNqGN6shFf6Yq3jxt9oJDg7SV</div>
-                <button onclick="copyAddr('xrp-addr', this)" style="width: 100%; background: #c9a84c; color: #0a0e1a; border: none; padding: 10px; border-radius: 6px; cursor: pointer; font-weight: 600; font-size: 0.9rem; transition: all 0.3s ease;">📋 Copy Address</button>
+                <p style="color: #707070; margin: 0; font-size: 0.85rem;">XRP - XRP Mainnet - Arrival: 5-20 minutes</p>
               </div>
             </div>
-            <div style="display: grid; grid-template-columns: repeat(2, 1fr); gap: 12px;">
-              <button onclick="toggleCryptoView(this, 'xrp-qr-view', 'xrp-addr-view')" style="background: #c9a84c; color: #0a0e1a; border: none; padding: 12px; border-radius: 8px; cursor: pointer; font-weight: 600; font-size: 0.9rem; transition: all 0.3s ease;">QR Code</button>
-              <button onclick="toggleCryptoView(this, 'xrp-addr-view', 'xrp-qr-view')" style="background: rgba(201, 168, 76, 0.1); border: 1px solid rgba(201, 168, 76, 0.3); color: #b0b0b0; padding: 12px; border-radius: 8px; cursor: pointer; font-weight: 600; font-size: 0.9rem; transition: all 0.3s ease;">Copy Address</button>
+            <div style="text-align: center; background: rgba(255, 255, 255, 0.05); padding: 20px; border-radius: 12px; border: 1px solid rgba(201, 168, 76, 0.1); margin-bottom: 20px;">
+              <p style="color: #b0b0b0; margin: 0 0 15px 0; font-size: 0.9rem; font-weight: 500;">Scan QR Code</p>
+              <div id="xrp-qr-code" style="display: inline-block; background: white; padding: 10px; border-radius: 6px;"></div>
+            </div>
+            <div style="background: #0a0e1a; border: 1px solid rgba(201, 168, 76, 0.2); border-radius: 10px; padding: 15px;">
+              <p style="color: #b0b0b0; font-size: 0.8rem; margin: 0 0 10px 0; text-transform: uppercase; letter-spacing: 0.05em; font-weight: 500;">Wallet Address</p>
+              <div style="background: rgba(201, 168, 76, 0.05); border: 1px solid rgba(201, 168, 76, 0.15); border-radius: 6px; padding: 12px; font-family: 'Courier New', monospace; font-size: 0.75rem; color: #c9a84c; word-break: break-all; line-height: 1.5; margin-bottom: 12px;" id="xrp-addr-display">rMK5RcCfJhNqGN6shFf6Yq3jxt9oJDg7SV</div>
+              <button onclick="copyAddr('xrp-addr', this)" style="width: 100%; background: #c9a84c; color: #0a0e1a; border: none; padding: 10px; border-radius: 6px; cursor: pointer; font-weight: 600; font-size: 0.9rem; transition: all 0.3s ease;">Copy Address</button>
             </div>
           </div>
         </div>
