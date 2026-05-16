@@ -37,79 +37,121 @@
 
     // Show professional logout confirmation modal
     function showLogoutConfirmation() {
-      console.log('showLogoutConfirmation called');
-
       // Create modal backdrop
       const backdrop = document.createElement('div');
-      backdrop.id = 'logoutBackdrop';
-      backdrop.style.cssText = 'position: fixed; top: 0; left: 0; right: 0; bottom: 0; background: rgba(0, 0, 0, 0.6); display: flex; align-items: center; justify-content: center; z-index: 99999;';
+      backdrop.style.position = 'fixed';
+      backdrop.style.top = '0';
+      backdrop.style.left = '0';
+      backdrop.style.right = '0';
+      backdrop.style.bottom = '0';
+      backdrop.style.background = 'rgba(0, 0, 0, 0.6)';
+      backdrop.style.display = 'flex';
+      backdrop.style.alignItems = 'center';
+      backdrop.style.justifyContent = 'center';
+      backdrop.style.zIndex = '99999';
 
       // Create modal dialog
       const modal = document.createElement('div');
-      modal.style.cssText = 'background: linear-gradient(135deg, #1a2a3a 0%, #111827 100%); border: 1px solid rgba(201, 168, 76, 0.3); border-radius: 16px; padding: 40px; max-width: 400px; width: 90%; box-shadow: 0 20px 60px rgba(0, 0, 0, 0.5);';
+      modal.style.background = 'linear-gradient(135deg, #1a2a3a 0%, #111827 100%)';
+      modal.style.border = '1px solid rgba(201, 168, 76, 0.3)';
+      modal.style.borderRadius = '16px';
+      modal.style.padding = '40px';
+      modal.style.maxWidth = '400px';
+      modal.style.width = '90%';
+      modal.style.boxShadow = '0 20px 60px rgba(0, 0, 0, 0.5)';
 
-      modal.innerHTML = `
-        <h2 style="color: #c9a84c; margin: 0 0 15px 0; font-size: 1.4rem; font-weight: 600; text-align: center;">Confirm Logout</h2>
-        <p style="color: #b0b0b0; margin: 0 0 30px 0; text-align: center; font-size: 1rem; line-height: 1.6;">Are you sure you want to logout from your account? You will need to sign in again to access your dashboard.</p>
+      // Create title
+      const title = document.createElement('h2');
+      title.style.color = '#c9a84c';
+      title.style.margin = '0 0 15px 0';
+      title.style.fontSize = '1.4rem';
+      title.style.fontWeight = '600';
+      title.style.textAlign = 'center';
+      title.textContent = 'Confirm Logout';
 
-        <div style="display: grid; grid-template-columns: 1fr 1fr; gap: 15px;">
-          <button id="logoutCancelBtn" type="button" style="background: rgba(201, 168, 76, 0.1); border: 1px solid rgba(201, 168, 76, 0.3); color: #b0b0b0; padding: 12px 24px; border-radius: 8px; cursor: pointer; font-weight: 600; font-size: 0.95rem; transition: all 0.3s ease;">Cancel</button>
-          <button id="logoutConfirmBtn" type="button" style="background: #c9a84c; border: none; color: #0a0e1a; padding: 12px 24px; border-radius: 8px; cursor: pointer; font-weight: 600; font-size: 0.95rem; transition: all 0.3s ease;">Yes, Logout</button>
-        </div>
-      `;
+      // Create message
+      const message = document.createElement('p');
+      message.style.color = '#b0b0b0';
+      message.style.margin = '0 0 30px 0';
+      message.style.textAlign = 'center';
+      message.style.fontSize = '1rem';
+      message.style.lineHeight = '1.6';
+      message.textContent = 'Are you sure you want to logout from your account? You will need to sign in again to access your dashboard.';
 
+      // Create button container
+      const buttonContainer = document.createElement('div');
+      buttonContainer.style.display = 'grid';
+      buttonContainer.style.gridTemplateColumns = '1fr 1fr';
+      buttonContainer.style.gap = '15px';
+
+      // Create cancel button
+      const cancelBtn = document.createElement('button');
+      cancelBtn.type = 'button';
+      cancelBtn.style.background = 'rgba(201, 168, 76, 0.1)';
+      cancelBtn.style.border = '1px solid rgba(201, 168, 76, 0.3)';
+      cancelBtn.style.color = '#b0b0b0';
+      cancelBtn.style.padding = '12px 24px';
+      cancelBtn.style.borderRadius = '8px';
+      cancelBtn.style.cursor = 'pointer';
+      cancelBtn.style.fontWeight = '600';
+      cancelBtn.style.fontSize = '0.95rem';
+      cancelBtn.style.transition = 'all 0.3s ease';
+      cancelBtn.textContent = 'Cancel';
+
+      // Create confirm button
+      const confirmBtn = document.createElement('button');
+      confirmBtn.type = 'button';
+      confirmBtn.style.background = '#c9a84c';
+      confirmBtn.style.border = 'none';
+      confirmBtn.style.color = '#0a0e1a';
+      confirmBtn.style.padding = '12px 24px';
+      confirmBtn.style.borderRadius = '8px';
+      confirmBtn.style.cursor = 'pointer';
+      confirmBtn.style.fontWeight = '600';
+      confirmBtn.style.fontSize = '0.95rem';
+      confirmBtn.style.transition = 'all 0.3s ease';
+      confirmBtn.textContent = 'Yes, Logout';
+
+      // Build modal structure
+      buttonContainer.appendChild(cancelBtn);
+      buttonContainer.appendChild(confirmBtn);
+      modal.appendChild(title);
+      modal.appendChild(message);
+      modal.appendChild(buttonContainer);
       backdrop.appendChild(modal);
       document.body.appendChild(backdrop);
 
-      console.log('Backdrop appended to body');
+      // Attach event listeners
+      cancelBtn.addEventListener('click', function(e) {
+        e.preventDefault();
+        e.stopPropagation();
+        backdrop.remove();
+      });
 
-      // Small delay to ensure elements are in DOM
-      setTimeout(() => {
-        const cancelBtn = document.getElementById('logoutCancelBtn');
-        const confirmBtn = document.getElementById('logoutConfirmBtn');
+      confirmBtn.addEventListener('click', function(e) {
+        e.preventDefault();
+        e.stopPropagation();
+        performLogout();
+      });
 
-        console.log('Cancel button found:', cancelBtn ? 'YES' : 'NO');
-        console.log('Confirm button found:', confirmBtn ? 'YES' : 'NO');
-
-        if (cancelBtn) {
-          cancelBtn.addEventListener('click', () => {
-            console.log('Cancel clicked');
-            backdrop.remove();
-          });
+      backdrop.addEventListener('click', function(e) {
+        if (e.target === backdrop) {
+          backdrop.remove();
         }
-
-        if (confirmBtn) {
-          confirmBtn.addEventListener('click', () => {
-            console.log('Confirm clicked');
-            performLogout();
-            backdrop.remove();
-          });
-        }
-
-        // Close modal when clicking outside
-        backdrop.addEventListener('click', (e) => {
-          if (e.target === backdrop) {
-            console.log('Backdrop clicked');
-            backdrop.remove();
-          }
-        });
-      }, 10);
+      });
     }
 
     // Perform the actual logout
     function performLogout() {
-      console.log('performLogout called');
       localStorage.removeItem('userId');
       localStorage.removeItem('userEmail');
       localStorage.removeItem('userName');
       localStorage.removeItem('userRole');
-      console.log('localStorage cleared, redirecting...');
       window.location.href = './index.html';
     }
 
     // Logout click handler
     function logoutClick() {
-      console.log('logoutClick function called');
       showLogoutConfirmation();
     }
 
