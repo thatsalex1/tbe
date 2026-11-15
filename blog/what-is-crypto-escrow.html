@@ -1,0 +1,127 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1.0" />
+<title>What Is Crypto Escrow? — LegacyHold Blog</title>
+<link href="https://fonts.googleapis.com/css2?family=Sora:wght@400;500;600;700;800&family=DM+Sans:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+<style>
+  :root {
+    --green: #16a34a; --green-dark: #0f7a37; --green-light: #e9f8ef;
+    --navy: #0b1324; --navy-soft: #1c2a3a; --ink: #16202e; --body-text: #5b6b7b;
+    --line: #e7ece9; --white: #ffffff; --off-white: #f7f9f8;
+    --radius-md: 16px; --shadow-sm: 0 2px 14px rgba(15,30,25,0.06);
+    --font-display: 'Sora', sans-serif; --font-body: 'DM Sans', sans-serif;
+  }
+  * { box-sizing: border-box; margin: 0; padding: 0; }
+  body { font-family: var(--font-body); color: var(--body-text); background: var(--white); line-height: 1.75; }
+  a { text-decoration: none; color: inherit; }
+  .container { max-width: 760px; margin: 0 auto; padding: 0 24px; }
+  .nav-container { max-width: 1280px; margin: 0 auto; padding: 0 40px; }
+
+  header { height: 84px; display: flex; align-items: center; border-bottom: 1px solid var(--line); }
+  .nav-row { width: 100%; display: flex; align-items: center; justify-content: space-between; }
+  .nav-logo { display: flex; align-items: center; gap: 10px; }
+  .nav-logo-mark { width: 40px; height: 40px; border-radius: 10px; background: var(--navy); color: #fff; display: flex; align-items: center; justify-content: center; font-family: var(--font-display); font-weight: 800; font-size: 1.05rem; }
+  .nav-logo-name { font-family: var(--font-display); font-size: 1.3rem; font-weight: 800; color: var(--ink); }
+  .nav-logo-name span { color: var(--green); }
+  .back-link { font-size: 0.88rem; font-weight: 600; color: var(--body-text); display: flex; align-items: center; gap: 6px; }
+  .back-link:hover { color: var(--green); }
+  .btn-primary { display: inline-flex; padding: 12px 24px; background: var(--green); color: #fff; font-size: 0.85rem; font-weight: 700; border-radius: 50px; }
+  .btn-primary:hover { background: var(--green-dark); }
+
+  article { padding: 60px 0 80px; }
+  .eyebrow { display: inline-block; font-size: 0.75rem; font-weight: 700; letter-spacing: 0.1em; text-transform: uppercase; color: var(--green-dark); background: var(--green-light); padding: 6px 14px; border-radius: 20px; margin-bottom: 20px; }
+  h1 { font-family: var(--font-display); font-size: clamp(1.9rem, 4vw, 2.5rem); font-weight: 800; color: var(--ink); line-height: 1.2; margin-bottom: 14px; }
+  .meta { font-size: 0.85rem; color: var(--body-text); margin-bottom: 36px; }
+  h2 { font-family: var(--font-display); font-size: 1.35rem; font-weight: 700; color: var(--ink); margin: 38px 0 14px; }
+  p { margin-bottom: 18px; font-size: 1.02rem; }
+  ul, ol { margin: 0 0 18px 1.4rem; }
+  li { margin-bottom: 10px; font-size: 1.02rem; }
+  strong { color: var(--ink); }
+  .callout { background: var(--off-white); border-left: 3px solid var(--green); border-radius: 8px; padding: 18px 22px; margin: 28px 0; font-size: 0.95rem; }
+  .cta-box { margin-top: 48px; padding: 32px; background: var(--navy); border-radius: var(--radius-md); text-align: center; }
+  .cta-box h3 { font-family: var(--font-display); color: #fff; font-size: 1.2rem; margin-bottom: 10px; }
+  .cta-box p { color: rgba(255,255,255,0.65); margin-bottom: 20px; }
+  .related { border-top: 1px solid var(--line); margin-top: 50px; padding-top: 30px; }
+  .related h4 { font-family: var(--font-display); font-size: 0.95rem; color: var(--ink); margin-bottom: 14px; }
+  .related a { display: block; font-size: 0.95rem; font-weight: 600; color: var(--green-dark); margin-bottom: 8px; }
+  .related a:hover { text-decoration: underline; }
+
+  footer { background: var(--navy); color: rgba(255,255,255,0.55); padding: 36px 0; text-align: center; font-size: 0.85rem; }
+  footer a { color: var(--green); }
+</style>
+</head>
+<body>
+  <header>
+    <div class="nav-container nav-row">
+      <a href="../index.html" class="nav-logo">
+        <div class="nav-logo-mark">LH</div>
+        <div class="nav-logo-name">Legacy<span>Hold</span></div>
+      </a>
+      <div style="display:flex; align-items:center; gap:24px;">
+        <a href="../index.html#blog" class="back-link">← All Articles</a>
+        <a href="../signup-simple.html" class="btn-primary">Get Started</a>
+      </div>
+    </div>
+  </header>
+
+  <article>
+    <div class="container">
+      <div class="eyebrow">Crypto Escrow Basics</div>
+      <h1>What Is Crypto Escrow?</h1>
+      <div class="meta">By the LegacyHold Team · 6 min read</div>
+
+      <p>If you've ever agreed to buy or sell something valuable with a stranger over the internet — a chunk of Bitcoin, a rare NFT, a freelance job paid in USDT — you've probably felt the same uneasy question: <strong>who moves first?</strong></p>
+
+      <p>If the buyer pays first, the seller could disappear. If the seller delivers first, the buyer could just not pay. Crypto escrow exists to remove that standoff entirely.</p>
+
+      <h2>The basic idea</h2>
+      <p>Crypto escrow is a neutral third party — in this case, LegacyHold — that temporarily holds the buyer's cryptocurrency in a secure wallet while the deal is in progress. Nobody gets paid, and nobody has to deliver anything, until both sides have confirmed the deal went as agreed. Only then is the crypto released.</p>
+      <p>It's the same concept banks and lawyers have used for house sales for decades, adapted for a world where the "money" is BTC, ETH, USDT, or any other coin, and the counterparty might be anonymous and on the other side of the planet.</p>
+
+      <h2>How a deal actually flows</h2>
+      <ol>
+        <li><strong>Agreement.</strong> Buyer and seller agree on what's being exchanged and for how much.</li>
+        <li><strong>Fund escrow.</strong> The buyer sends the agreed amount of crypto to a dedicated escrow deposit address. We confirm it on-chain.</li>
+        <li><strong>Deliver.</strong> The seller holds up their end — ships the goods, hands over the asset, finishes the work.</li>
+        <li><strong>Release.</strong> Once the buyer confirms everything checks out, the crypto is released from escrow straight to the seller's wallet.</li>
+      </ol>
+      <p>If something goes wrong at step 3, either side can open a dispute before funds are released — more on that in <a href="./what-if-there-is-a-disagreement.html">our dispute resolution article</a>.</p>
+
+      <h2>Why not just use a normal wallet-to-wallet transfer?</h2>
+      <p>Because crypto transactions are irreversible. Once you send BTC or ETH directly to someone, there is no bank to call, no chargeback button, no "undo." That finality is a feature for payments you trust — and a serious liability for a deal with a stranger. Escrow reintroduces a safety net without reintroducing a middleman who can arbitrarily block your money.</p>
+
+      <h2>How LegacyHold secures escrowed funds</h2>
+      <ul>
+        <li><strong>Multi-signature wallets</strong> — no single party, including us, can move escrowed crypto alone.</li>
+        <li><strong>Two-factor authentication</strong> — required for account access and withdrawals.</li>
+        <li><strong>On-chain fraud monitoring</strong> — known scam addresses are flagged before a deal is funded.</li>
+      </ul>
+
+      <div class="callout">
+        <strong>Which coins are supported?</strong> Bitcoin, Ethereum, Tether (USDT), Solana, BNB, XRP, and TRON, with more networks added as demand grows. We're crypto-only — no bank transfers or cards.
+      </div>
+
+      <h2>When should you actually use it?</h2>
+      <p>Any time you're trading real value with someone you can't fully vouch for: buying a high-value asset from a stranger, an OTC trade above the amount you'd be comfortable losing, or a freelance arrangement where payment and delivery don't happen at the same moment. If losing the funds would genuinely hurt, escrow is the cheap insurance policy.</p>
+
+      <div class="cta-box">
+        <h3>Start your first escrow deal</h3>
+        <p>Create a free account and fund your first transaction in minutes.</p>
+        <a href="../signup-simple.html" class="btn-primary">Create Free Account</a>
+      </div>
+
+      <div class="related">
+        <h4>Keep reading</h4>
+        <a href="./crypto-escrow-scams-to-avoid.html">5 Common Crypto Escrow Scams to Avoid →</a>
+        <a href="./what-if-there-is-a-disagreement.html">What If There Is a Disagreement? →</a>
+      </div>
+    </div>
+  </article>
+
+  <footer>
+    &copy; 2026 LegacyHoldEscrow. All rights reserved. · <a href="../index.html">legacyholdescrow.com</a>
+  </footer>
+</body>
+</html>

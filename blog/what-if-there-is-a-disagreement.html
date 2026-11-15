@@ -1,0 +1,132 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1.0" />
+<title>What If There Is a Disagreement? — LegacyHold Blog</title>
+<link href="https://fonts.googleapis.com/css2?family=Sora:wght@400;500;600;700;800&family=DM+Sans:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+<style>
+  :root {
+    --green: #16a34a; --green-dark: #0f7a37; --green-light: #e9f8ef;
+    --navy: #0b1324; --navy-soft: #1c2a3a; --ink: #16202e; --body-text: #5b6b7b;
+    --line: #e7ece9; --white: #ffffff; --off-white: #f7f9f8;
+    --radius-md: 16px; --shadow-sm: 0 2px 14px rgba(15,30,25,0.06);
+    --font-display: 'Sora', sans-serif; --font-body: 'DM Sans', sans-serif;
+  }
+  * { box-sizing: border-box; margin: 0; padding: 0; }
+  body { font-family: var(--font-body); color: var(--body-text); background: var(--white); line-height: 1.75; }
+  a { text-decoration: none; color: inherit; }
+  .container { max-width: 760px; margin: 0 auto; padding: 0 24px; }
+  .nav-container { max-width: 1280px; margin: 0 auto; padding: 0 40px; }
+
+  header { height: 84px; display: flex; align-items: center; border-bottom: 1px solid var(--line); }
+  .nav-row { width: 100%; display: flex; align-items: center; justify-content: space-between; }
+  .nav-logo { display: flex; align-items: center; gap: 10px; }
+  .nav-logo-mark { width: 40px; height: 40px; border-radius: 10px; background: var(--navy); color: #fff; display: flex; align-items: center; justify-content: center; font-family: var(--font-display); font-weight: 800; font-size: 1.05rem; }
+  .nav-logo-name { font-family: var(--font-display); font-size: 1.3rem; font-weight: 800; color: var(--ink); }
+  .nav-logo-name span { color: var(--green); }
+  .back-link { font-size: 0.88rem; font-weight: 600; color: var(--body-text); display: flex; align-items: center; gap: 6px; }
+  .back-link:hover { color: var(--green); }
+  .btn-primary { display: inline-flex; padding: 12px 24px; background: var(--green); color: #fff; font-size: 0.85rem; font-weight: 700; border-radius: 50px; }
+  .btn-primary:hover { background: var(--green-dark); }
+
+  article { padding: 60px 0 80px; }
+  .eyebrow { display: inline-block; font-size: 0.75rem; font-weight: 700; letter-spacing: 0.1em; text-transform: uppercase; color: var(--green-dark); background: var(--green-light); padding: 6px 14px; border-radius: 20px; margin-bottom: 20px; }
+  h1 { font-family: var(--font-display); font-size: clamp(1.9rem, 4vw, 2.5rem); font-weight: 800; color: var(--ink); line-height: 1.2; margin-bottom: 14px; }
+  .meta { font-size: 0.85rem; color: var(--body-text); margin-bottom: 36px; }
+  h2 { font-family: var(--font-display); font-size: 1.35rem; font-weight: 700; color: var(--ink); margin: 38px 0 14px; }
+  p { margin-bottom: 18px; font-size: 1.02rem; }
+  ul, ol { margin: 0 0 18px 1.4rem; }
+  li { margin-bottom: 10px; font-size: 1.02rem; }
+  strong { color: var(--ink); }
+  .callout { background: var(--off-white); border-left: 3px solid var(--green); border-radius: 8px; padding: 18px 22px; margin: 28px 0; font-size: 0.95rem; }
+  table { width: 100%; border-collapse: collapse; margin: 24px 0; font-size: 0.95rem; }
+  th, td { text-align: left; padding: 10px 14px; border-bottom: 1px solid var(--line); }
+  th { color: var(--ink); font-family: var(--font-display); font-size: 0.85rem; }
+  .cta-box { margin-top: 48px; padding: 32px; background: var(--navy); border-radius: var(--radius-md); text-align: center; }
+  .cta-box h3 { font-family: var(--font-display); color: #fff; font-size: 1.2rem; margin-bottom: 10px; }
+  .cta-box p { color: rgba(255,255,255,0.65); margin-bottom: 20px; }
+  .related { border-top: 1px solid var(--line); margin-top: 50px; padding-top: 30px; }
+  .related h4 { font-family: var(--font-display); font-size: 0.95rem; color: var(--ink); margin-bottom: 14px; }
+  .related a { display: block; font-size: 0.95rem; font-weight: 600; color: var(--green-dark); margin-bottom: 8px; }
+  .related a:hover { text-decoration: underline; }
+
+  footer { background: var(--navy); color: rgba(255,255,255,0.55); padding: 36px 0; text-align: center; font-size: 0.85rem; }
+  footer a { color: var(--green); }
+</style>
+</head>
+<body>
+  <header>
+    <div class="nav-container nav-row">
+      <a href="../index.html" class="nav-logo">
+        <div class="nav-logo-mark">LH</div>
+        <div class="nav-logo-name">Legacy<span>Hold</span></div>
+      </a>
+      <div style="display:flex; align-items:center; gap:24px;">
+        <a href="../index.html#blog" class="back-link">← All Articles</a>
+        <a href="../signup-simple.html" class="btn-primary">Get Started</a>
+      </div>
+    </div>
+  </header>
+
+  <article>
+    <div class="container">
+      <div class="eyebrow">Dispute Resolution</div>
+      <h1>What If There Is a Disagreement?</h1>
+      <div class="meta">By the LegacyHold Team · 5 min read</div>
+
+      <p>Most escrow deals close without a hitch: the buyer funds escrow, the seller delivers, the buyer confirms, and the crypto releases. But deals between strangers occasionally go sideways — the item doesn't match the description, the service was never finished, or the seller simply goes quiet. That's exactly the situation escrow is built to handle.</p>
+
+      <h2>What happens when you open a dispute</h2>
+      <ol>
+        <li><strong>Either side can raise it.</strong> As long as the funds are still in escrow, either the buyer or the seller can flag that something's wrong — directly from the transaction in their dashboard.</li>
+        <li><strong>Funds are frozen immediately.</strong> The moment a dispute opens, the escrowed crypto is locked. Neither side can force a release while it's under review.</li>
+        <li><strong>Both sides submit evidence.</strong> See the table below for what actually helps.</li>
+        <li><strong>Our team reviews it.</strong> We look at the evidence from both sides against the original terms of the deal.</li>
+        <li><strong>A decision is made.</strong> The crypto is released to the seller, refunded to the buyer, or in some cases split, depending on what the evidence supports.</li>
+      </ol>
+
+      <h2>What counts as useful evidence</h2>
+      <table>
+        <tr><th>Evidence type</th><th>Why it helps</th></tr>
+        <tr><td>On-chain transaction hash</td><td>Proves exactly when and how much was sent to escrow</td></tr>
+        <tr><td>Chat logs from the deal</td><td>Shows what was actually agreed, not just remembered</td></tr>
+        <tr><td>Photos or screen recordings</td><td>Documents the condition of goods, a deliverable, or a service outcome</td></tr>
+        <tr><td>Tracking or delivery confirmation</td><td>Establishes whether and when something was actually sent</td></tr>
+      </table>
+      <p>The more specific and timestamped your evidence is, the faster we can resolve the case.</p>
+
+      <h2>How long it takes</h2>
+      <p>Straightforward cases with clear on-chain and photo evidence are usually resolved within 24 to 48 hours. Cases that need more back-and-forth between both parties can take longer. Either way, your crypto stays safely frozen in the multi-sig escrow wallet for the entire review — it can't be moved by either party while a dispute is open.</p>
+
+      <div class="callout">
+        <strong>Good to know:</strong> If a seller never responds or fails to prove they delivered, the buyer's crypto is refunded in full. Escrow exists precisely so one side going silent doesn't cost you your funds.
+      </div>
+
+      <h2>How to avoid needing a dispute at all</h2>
+      <ul>
+        <li>Write out exactly what's being exchanged, including specifics, before funding escrow.</li>
+        <li>Keep all communication about the deal on the platform, where it's part of the record.</li>
+        <li>Take photos or screen recordings of a deliverable the moment it's handed over.</li>
+        <li>Don't confirm receipt until you've actually verified everything matches what was agreed.</li>
+      </ul>
+
+      <div class="cta-box">
+        <h3>Trade knowing a fair process has your back</h3>
+        <p>Every deal is protected by the same dispute process, whether it's your first or your fiftieth.</p>
+        <a href="../signup-simple.html" class="btn-primary">Create Free Account</a>
+      </div>
+
+      <div class="related">
+        <h4>Keep reading</h4>
+        <a href="./what-is-crypto-escrow.html">What Is Crypto Escrow? →</a>
+        <a href="./crypto-escrow-scams-to-avoid.html">5 Common Crypto Escrow Scams to Avoid →</a>
+      </div>
+    </div>
+  </article>
+
+  <footer>
+    &copy; 2026 LegacyHoldEscrow. All rights reserved. · <a href="../index.html">legacyholdescrow.com</a>
+  </footer>
+</body>
+</html>
