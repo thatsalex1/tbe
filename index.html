@@ -118,10 +118,37 @@
   }
   .icon-circle svg { width: 26px; height: 26px; }
 
+  /* ===== TICKER ===== */
+  .ticker-bar {
+    position: fixed; top: 0; left: 0; right: 0; z-index: 1001;
+    height: 34px; background: var(--navy); overflow: hidden;
+    display: flex; align-items: center;
+  }
+  .ticker-track {
+    display: flex; align-items: center; gap: 36px;
+    white-space: nowrap;
+    animation: tickerScroll 28s linear infinite;
+    padding-left: 36px;
+  }
+  @keyframes tickerScroll {
+    from { transform: translateX(0); }
+    to   { transform: translateX(-50%); }
+  }
+  .ticker-item {
+    display: inline-flex; align-items: center; gap: 8px;
+    font-size: 0.78rem; font-weight: 600; color: rgba(255,255,255,0.85);
+    font-family: var(--font-body);
+  }
+  .ticker-item .coin-badge { width: 18px; height: 18px; font-size: 0.6rem; }
+  .ticker-item strong { color: #fff; font-weight: 700; }
+  .ticker-item .up   { color: #4ade80; }
+  .ticker-item .down { color: #f87171; }
+  .ticker-item .flat { color: rgba(255,255,255,0.5); }
+
   /* ===== HEADER ===== */
   #site-header {
     position: fixed;
-    top: 0; left: 0; right: 0;
+    top: 34px; left: 0; right: 0;
     z-index: 1000;
     padding: 0 40px;
     height: 84px;
@@ -148,7 +175,7 @@
   .nav-open-btn { padding: 12px 26px; }
 
   /* ===== HERO ===== */
-  #hero { position: relative; padding: 150px 0 120px; overflow: hidden; background: var(--off-white); }
+  #hero { position: relative; padding: 184px 0 120px; overflow: hidden; background: var(--off-white); }
   .hero-blob {
     position: absolute; top: -120px; right: -120px;
     width: 560px; height: 560px; border-radius: 50%;
@@ -210,11 +237,24 @@
   .hero-amount-row select { width: 90px; }
   .hero-card .btn-primary { width: 100%; margin-top: 6px; padding: 15px; }
 
-  /* ===== LOGO STRIP ===== */
-  #logos { padding: 50px 0; border-bottom: 1px solid var(--line); }
-  .logos-row { display: flex; justify-content: space-between; align-items: center; flex-wrap: wrap; gap: 30px; opacity: 0.6; }
-  .logo-chip { display: flex; align-items: center; gap: 8px; font-family: var(--font-display); font-weight: 700; font-size: 1.05rem; color: var(--navy-soft); }
-  .logo-chip svg { width: 20px; height: 20px; }
+  /* ===== SUPPORTED CRYPTOCURRENCIES ===== */
+  #logos { padding: 44px 0 50px; border-bottom: 1px solid var(--line); }
+  .coins-label { text-align: center; font-size: 0.72rem; font-weight: 700; letter-spacing: 0.14em; text-transform: uppercase; color: var(--body-text); opacity: 0.6; margin-bottom: 22px; }
+  .logos-row { display: flex; justify-content: space-between; align-items: center; flex-wrap: wrap; gap: 30px; }
+  .coin-chip { display: flex; align-items: center; gap: 10px; font-family: var(--font-display); font-weight: 700; font-size: 1rem; color: var(--navy-soft); }
+  .coin-badge {
+    width: 32px; height: 32px; border-radius: 50%;
+    display: flex; align-items: center; justify-content: center;
+    color: #fff; font-weight: 800; font-size: 0.95rem; font-family: var(--font-display);
+    flex-shrink: 0;
+  }
+  .coin-btc  { background: #f7931a; }
+  .coin-eth  { background: #627eea; }
+  .coin-usdt { background: #26a17b; }
+  .coin-sol  { background: linear-gradient(135deg, #9945ff, #14f195); }
+  .coin-bnb  { background: #f3ba2f; color: #1c1c1c; }
+  .coin-xrp  { background: #23292f; }
+  .coin-trx  { background: #eb0029; }
 
   /* ===== BENEFITS ===== */
   #benefits { background: var(--white); }
@@ -406,6 +446,8 @@
   @media (max-width: 768px) {
     .container { padding: 0 20px; }
     .section { padding: 64px 0; }
+    .ticker-item { font-size: 0.7rem; gap: 6px; }
+    .ticker-track { gap: 24px; animation-duration: 22s; }
     #site-header { padding: 0 16px; height: 68px; }
     .nav-links { display: none; }
     .nav-logo-mark { width: 34px; height: 34px; font-size: 0.9rem; }
@@ -413,7 +455,7 @@
     .nav-actions { gap: 10px; }
     .nav-login { display: none; }
     .nav-open-btn { padding: 9px 18px; font-size: 0.8rem; }
-    #hero { padding-top: 100px; }
+    #hero { padding-top: 134px; }
     .hero-stats { flex-wrap: wrap; gap: 28px; }
     .logos-row { justify-content: center; }
     .steps-row { grid-template-columns: 1fr; }
@@ -424,6 +466,26 @@
 </style>
 </head>
 <body>
+
+  <div class="ticker-bar">
+    <div class="ticker-track">
+      <span class="ticker-item"><span class="coin-badge coin-btc">₿</span>BTC <strong>$67,842</strong> <span class="up">▲ 2.4%</span></span>
+      <span class="ticker-item"><span class="coin-badge coin-eth">Ξ</span>ETH <strong>$3,481</strong> <span class="up">▲ 1.1%</span></span>
+      <span class="ticker-item"><span class="coin-badge coin-usdt">₮</span>USDT <strong>$1.00</strong> <span class="flat">● 0.0%</span></span>
+      <span class="ticker-item"><span class="coin-badge coin-sol">◎</span>SOL <strong>$178.32</strong> <span class="down">▼ 0.8%</span></span>
+      <span class="ticker-item"><span class="coin-badge coin-bnb">B</span>BNB <strong>$612.50</strong> <span class="up">▲ 0.6%</span></span>
+      <span class="ticker-item"><span class="coin-badge coin-xrp">X</span>XRP <strong>$0.624</strong> <span class="up">▲ 3.2%</span></span>
+      <span class="ticker-item"><span class="coin-badge coin-trx">T</span>TRX <strong>$0.118</strong> <span class="down">▼ 0.3%</span></span>
+      <!-- duplicate for seamless loop -->
+      <span class="ticker-item"><span class="coin-badge coin-btc">₿</span>BTC <strong>$67,842</strong> <span class="up">▲ 2.4%</span></span>
+      <span class="ticker-item"><span class="coin-badge coin-eth">Ξ</span>ETH <strong>$3,481</strong> <span class="up">▲ 1.1%</span></span>
+      <span class="ticker-item"><span class="coin-badge coin-usdt">₮</span>USDT <strong>$1.00</strong> <span class="flat">● 0.0%</span></span>
+      <span class="ticker-item"><span class="coin-badge coin-sol">◎</span>SOL <strong>$178.32</strong> <span class="down">▼ 0.8%</span></span>
+      <span class="ticker-item"><span class="coin-badge coin-bnb">B</span>BNB <strong>$612.50</strong> <span class="up">▲ 0.6%</span></span>
+      <span class="ticker-item"><span class="coin-badge coin-xrp">X</span>XRP <strong>$0.624</strong> <span class="up">▲ 3.2%</span></span>
+      <span class="ticker-item"><span class="coin-badge coin-trx">T</span>TRX <strong>$0.118</strong> <span class="down">▼ 0.3%</span></span>
+    </div>
+  </div>
 
   <header id="site-header">
     <div class="nav-logo">
@@ -449,9 +511,9 @@
     <div class="container">
       <div class="hero-layout">
         <div>
-          <div class="eyebrow">Secure Escrow Service</div>
-          <h1 class="hero-heading">Secure Every Deal <span class="accent">With Confidence</span></h1>
-          <p class="hero-sub">Complete escrow protection for every transaction. Your funds are held securely until both sides are satisfied — trade with zero risk.</p>
+          <div class="eyebrow">Secure Crypto Escrow</div>
+          <h1 class="hero-heading">Secure Every Crypto Deal <span class="accent">With Confidence</span></h1>
+          <p class="hero-sub">On-chain escrow for crypto-to-crypto and crypto-for-goods trades. Your BTC, ETH, USDT and more are held in a secure escrow wallet until both sides confirm — trade with zero counterparty risk.</p>
 
           <div class="hero-trust">
             <div class="avatar-stack">
@@ -480,7 +542,7 @@
         </div>
 
         <form class="hero-card" onsubmit="event.preventDefault(); window.location.href='signup-simple.html';">
-          <div class="hero-card-title">Start a Protected Transaction</div>
+          <div class="hero-card-title">Start a Protected Crypto Escrow</div>
           <div class="hero-field">
             <label>I am</label>
             <select>
@@ -489,13 +551,15 @@
             </select>
           </div>
           <div class="hero-field">
-            <label>Transaction type</label>
+            <label>Cryptocurrency</label>
             <select>
-              <option>General Goods</option>
-              <option>Vehicle</option>
-              <option>Freelance Service</option>
-              <option>Digital / Crypto Asset</option>
-              <option>Other</option>
+              <option>Bitcoin (BTC)</option>
+              <option>Ethereum (ETH)</option>
+              <option>Tether (USDT)</option>
+              <option>Solana (SOL)</option>
+              <option>BNB</option>
+              <option>XRP</option>
+              <option>TRON (TRX)</option>
             </select>
           </div>
           <div class="hero-field">
@@ -503,9 +567,8 @@
             <div class="hero-amount-row">
               <input type="text" placeholder="Enter amount" />
               <select>
-                <option>USD</option>
-                <option>NGN</option>
-                <option>EUR</option>
+                <option>USD value</option>
+                <option>Coin amount</option>
               </select>
             </div>
           </div>
@@ -515,16 +578,18 @@
     </div>
   </section>
 
-  <!-- LOGO STRIP -->
+  <!-- SUPPORTED CRYPTOCURRENCIES -->
   <section id="logos">
     <div class="container">
+      <div class="coins-label">Supported Cryptocurrencies</div>
       <div class="logos-row">
-        <div class="logo-chip"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="12" cy="12" r="9"/></svg>Nimbus</div>
-        <div class="logo-chip"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><rect x="4" y="4" width="16" height="16" rx="3"/></svg>Vertex</div>
-        <div class="logo-chip"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><polygon points="12,3 21,20 3,20"/></svg>Solace</div>
-        <div class="logo-chip"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M4 12h16M12 4v16"/></svg>Apex</div>
-        <div class="logo-chip"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="9" cy="12" r="5"/><circle cx="16" cy="12" r="5"/></svg>Lumen</div>
-        <div class="logo-chip"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M12 3l3 7h7l-5.5 4.5L18 21l-6-4-6 4 1.5-6.5L2 10h7z"/></svg>Halo</div>
+        <div class="coin-chip"><span class="coin-badge coin-btc">₿</span>Bitcoin</div>
+        <div class="coin-chip"><span class="coin-badge coin-eth">Ξ</span>Ethereum</div>
+        <div class="coin-chip"><span class="coin-badge coin-usdt">₮</span>Tether</div>
+        <div class="coin-chip"><span class="coin-badge coin-sol">◎</span>Solana</div>
+        <div class="coin-chip"><span class="coin-badge coin-bnb">B</span>BNB</div>
+        <div class="coin-chip"><span class="coin-badge coin-xrp">X</span>XRP</div>
+        <div class="coin-chip"><span class="coin-badge coin-trx">T</span>TRON</div>
       </div>
     </div>
   </section>
@@ -536,24 +601,24 @@
         <div>
           <div class="eyebrow">Why LegacyHold</div>
           <h2 class="section-title">Benefits of <span class="accent">LegacyHold</span></h2>
-          <p class="section-desc">Experience secure and hassle-free transactions, built around trust between buyers and sellers.</p>
+          <p class="section-desc">Experience secure and hassle-free crypto transactions, built around trust between buyers and sellers — no bank, no card, just your wallet.</p>
 
           <div class="benefit-list">
             <div class="benefit-item">
               <div class="icon-circle"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M12 3l7 3v5c0 4.5-3 7.8-7 9-4-1.2-7-4.5-7-9V6z"/><path d="M9 12l2 2 4-4"/></svg></div>
-              <div><h4>Dispute Prevention</h4><p>Clear, transparent processes help prevent disputes before they arise, reducing transaction friction.</p></div>
+              <div><h4>Dispute Prevention</h4><p>Clear, on-chain transaction records help prevent disputes before they arise, reducing friction between counterparties.</p></div>
             </div>
             <div class="benefit-item">
               <div class="icon-circle"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M4 7h16M4 12h10M4 17h16"/></svg></div>
-              <div><h4>Enhanced Flexibility</h4><p>Our platform adapts to your needs, offering flexible payment options and customizable terms.</p></div>
+              <div><h4>Multi-Chain Flexibility</h4><p>Escrow BTC, ETH, USDT, SOL, BNB, XRP, or TRX — our platform adapts to whichever chain your deal runs on.</p></div>
             </div>
             <div class="benefit-item">
               <div class="icon-circle"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M7 7h10M7 12h10M7 17h6"/><circle cx="4" cy="7" r="1"/><circle cx="4" cy="12" r="1"/><circle cx="4" cy="17" r="1"/></svg></div>
-              <div><h4>Simplified Transactions</h4><p>We make it easy to set up and manage transactions, reducing the time and effort required.</p></div>
+              <div><h4>Simplified Transactions</h4><p>Generate a deposit address, send your crypto, and we handle the rest — no complex smart contracts to configure.</p></div>
             </div>
             <div class="benefit-item">
               <div class="icon-circle"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M12 2l8 4v6c0 5-3.5 8.7-8 10-4.5-1.3-8-5-8-10V6z"/></svg></div>
-              <div><h4>Reduced Risk</h4><p>Protect yourself from fraud and ensure funds only move once both parties are satisfied.</p></div>
+              <div><h4>Reduced Risk</h4><p>Protect yourself from crypto scams and chargebacks — funds only move once both parties confirm the deal is complete.</p></div>
             </div>
           </div>
 
@@ -578,22 +643,22 @@
       <div style="margin-top: 50px;">
         <div class="feature-row">
           <div class="feature-row-thumb illus illus-mint"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6"><rect x="3" y="6" width="18" height="13" rx="2"/><path d="M3 10h18M7 15h4"/></svg></div>
-          <div><h4>Secure Payment Handling</h4><p>All transactions are processed through a robust payment system. Funds are held in escrow until both parties fulfil their obligations, significantly reducing the risk of non-payment.</p></div>
+          <div><h4>Secure Escrow Wallets</h4><p>Every deal gets its own dedicated deposit address. Your crypto is held in escrow until both parties fulfil their obligations, eliminating the risk of non-payment.</p></div>
           <div class="feature-check"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><path d="M5 13l4 4L19 7"/></svg></div>
         </div>
         <div class="feature-row">
           <div class="feature-row-thumb illus illus-mint"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6"><path d="M12 3l8 4.5v9L12 21l-8-4.5v-9z"/><path d="M12 12v4M12 8v.5"/></svg></div>
-          <div><h4>Easy Dispute Resolution</h4><p>A streamlined dispute process lets either party raise concerns quickly. Our dedicated support team reviews the evidence and helps reach a fair, impartial outcome.</p></div>
+          <div><h4>Easy Dispute Resolution</h4><p>A streamlined dispute process lets either party raise concerns quickly. Our team reviews the on-chain evidence and helps reach a fair, impartial outcome.</p></div>
           <div class="feature-check"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><path d="M5 13l4 4L19 7"/></svg></div>
         </div>
         <div class="feature-row">
           <div class="feature-row-thumb illus illus-mint"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6"><path d="M12 4a5 5 0 00-5 5v4l-2 3h14l-2-3V9a5 5 0 00-5-5z"/><path d="M10 19a2 2 0 004 0"/></svg></div>
-          <div><h4>Real-Time Notifications</h4><p>Stay informed at every stage of your transaction. Receive instant updates on payment confirmation, shipment status, and fund release so you're never left wondering.</p></div>
+          <div><h4>Real-Time Confirmations</h4><p>Stay informed at every stage of your transaction. Get instant alerts on network confirmations, escrow funding, and release so you're never left wondering.</p></div>
           <div class="feature-check"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><path d="M5 13l4 4L19 7"/></svg></div>
         </div>
         <div class="feature-row">
           <div class="feature-row-thumb illus illus-mint"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6"><circle cx="8" cy="12" r="5.5"/><circle cx="16" cy="12" r="5.5"/></svg></div>
-          <div><h4>Multicurrency Support</h4><p>Our platform supports transactions in multiple currencies, with real-time exchange rates, so you can trade confidently with partners anywhere in the world.</p></div>
+          <div><h4>Multi-Chain Support</h4><p>We support BTC, ETH, USDT, SOL, BNB, XRP, and TRX, with live network fee estimates, so you can trade confidently on whichever chain you hold.</p></div>
           <div class="feature-check"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><path d="M5 13l4 4L19 7"/></svg></div>
         </div>
       </div>
@@ -611,25 +676,25 @@
           <div class="step-num">Step 1</div>
           <div class="step-icon"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M8 12l3 3 6-6"/><circle cx="12" cy="12" r="9"/></svg></div>
           <div class="step-title">Agreement</div>
-          <div class="step-desc">Both parties agree on transaction terms, including price and delivery.</div>
+          <div class="step-desc">Both parties agree on the deal terms — coin, amount, and what's being exchanged.</div>
         </div>
         <div class="step-card">
           <div class="step-num">Step 2</div>
           <div class="step-icon"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><rect x="3" y="7" width="18" height="12" rx="2"/><path d="M3 10h18M7 15h4"/></svg></div>
-          <div class="step-title">Submit Payment</div>
-          <div class="step-desc">The buyer deposits the agreed amount securely into escrow.</div>
+          <div class="step-title">Fund Escrow</div>
+          <div class="step-desc">The buyer sends crypto to a dedicated escrow address and we confirm it on-chain.</div>
         </div>
         <div class="step-card raised">
           <div class="step-num">Step 3</div>
           <div class="step-icon"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M3 10l9-7 9 7"/><path d="M5 10v10h14V10"/></svg></div>
           <div class="step-title">Deliver</div>
-          <div class="step-desc">The seller ships the goods or delivers the agreed service.</div>
+          <div class="step-desc">The seller delivers the agreed goods, service, or asset.</div>
         </div>
         <div class="step-card">
           <div class="step-num">Step 4</div>
           <div class="step-icon"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M12 2l8 4v6c0 5-3.5 8.7-8 10-4.5-1.3-8-5-8-10V6z"/><path d="M9 12l2 2 4-4"/></svg></div>
-          <div class="step-title">Release Payment</div>
-          <div class="step-desc">Once the buyer confirms receipt, funds are released to the seller instantly.</div>
+          <div class="step-title">Release Crypto</div>
+          <div class="step-desc">Once the buyer confirms receipt, the crypto is released to the seller's wallet instantly.</div>
         </div>
       </div>
     </div>
@@ -649,19 +714,19 @@
         <div>
           <div class="eyebrow">Advanced Security</div>
           <h2 class="section-title">Advanced Security <span class="accent">Features</span></h2>
-          <p class="section-desc" style="margin-bottom: 30px;">Protecting your transactions with cutting-edge technology, from end to end.</p>
+          <p class="section-desc" style="margin-bottom: 30px;">Protecting your crypto with cutting-edge technology, from wallet to wallet.</p>
 
           <div class="security-feature">
-            <div class="icon-circle"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><rect x="4" y="10" width="16" height="10" rx="2"/><path d="M8 10V7a4 4 0 018 0v3"/></svg></div>
-            <div><h4>End-to-End Encryption</h4><p>All communications and transactions are protected with end-to-end encryption, keeping sensitive financial information secure.</p></div>
+            <div class="icon-circle"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M12 3l8 4v5c0 5-3.5 8.7-8 10-4.5-1.3-8-5-8-10V7z"/><path d="M12 8v8M8 10l4-2 4 2M8 14l4 2 4-2"/></svg></div>
+            <div><h4>Multi-Signature Escrow Wallets</h4><p>Funds are locked in multi-sig wallets that require multiple approvals to move — no single party can ever access escrowed crypto alone.</p></div>
           </div>
           <div class="security-feature">
             <div class="icon-circle"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><rect x="6" y="3" width="12" height="18" rx="2"/><path d="M10 7h4M9 17l2 2 4-4"/></svg></div>
-            <div><h4>Two-Factor Authentication</h4><p>Enhance your account security with two-factor authentication, adding an extra layer of protection for every login.</p></div>
+            <div><h4>Two-Factor Authentication</h4><p>Enhance your account security with two-factor authentication, adding an extra layer of protection for every login and withdrawal.</p></div>
           </div>
           <div class="security-feature">
             <div class="icon-circle"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="11" cy="11" r="7"/><path d="M21 21l-4.3-4.3"/></svg></div>
-            <div><h4>Fraud Detection</h4><p>Advanced fraud-detection algorithms monitor transactions in real time, flagging suspicious activity before it becomes a problem.</p></div>
+            <div><h4>On-Chain Fraud Detection</h4><p>We monitor wallet addresses and transaction patterns in real time, flagging known scam addresses before a deal is funded.</p></div>
           </div>
 
           <a href="signup-simple.html" class="btn-primary">Get Started</a>
@@ -687,7 +752,7 @@
       <div class="testimonials-grid">
         <div class="testimonial-card">
           <div class="testimonial-quote-icon"><svg viewBox="0 0 24 24" fill="currentColor"><path d="M7 7h5v5a5 5 0 01-5 5v-2a3 3 0 003-3H7V7zm9 0h5v5a5 5 0 01-5 5v-2a3 3 0 003-3h-3V7z"/></svg></div>
-          <p class="testimonial-text">LegacyHold gave me complete confidence on a high-value purchase. The seller shipped, I confirmed, and funds released — perfect, every step.</p>
+          <p class="testimonial-text">LegacyHold gave me complete confidence on a high-value OTC BTC trade. The seller delivered, I confirmed on-chain, and funds released — perfect, every step.</p>
           <div class="testimonial-author">
             <div class="testimonial-avatar">M</div>
             <div><div class="testimonial-name">Michael Chen</div><div class="testimonial-role">Verified Buyer</div></div>
@@ -695,7 +760,7 @@
         </div>
         <div class="testimonial-card">
           <div class="testimonial-quote-icon"><svg viewBox="0 0 24 24" fill="currentColor"><path d="M7 7h5v5a5 5 0 01-5 5v-2a3 3 0 003-3H7V7zm9 0h5v5a5 5 0 01-5 5v-2a3 3 0 003-3h-3V7z"/></svg></div>
-          <p class="testimonial-text">As a seller I was nervous about shipping first. LegacyHold held the buyer's funds and I was paid immediately after delivery — zero risk on my end.</p>
+          <p class="testimonial-text">As a seller I was nervous about sending crypto first. LegacyHold held the buyer's USDT in escrow and released it to my wallet the moment the deal was confirmed — zero risk on my end.</p>
           <div class="testimonial-author">
             <div class="testimonial-avatar">S</div>
             <div><div class="testimonial-name">Sarah Mitchell</div><div class="testimonial-role">Verified Seller</div></div>
@@ -703,7 +768,7 @@
         </div>
         <div class="testimonial-card">
           <div class="testimonial-quote-icon"><svg viewBox="0 0 24 24" fill="currentColor"><path d="M7 7h5v5a5 5 0 01-5 5v-2a3 3 0 003-3H7V7zm9 0h5v5a5 5 0 01-5 5v-2a3 3 0 003-3h-3V7z"/></svg></div>
-          <p class="testimonial-text">The fastest transaction I've ever done — account setup, deposit, escrow deal, delivery and release, all in a single afternoon.</p>
+          <p class="testimonial-text">The fastest crypto deal I've ever done — account setup, ETH deposit, escrow, delivery, and release, all in a single afternoon.</p>
           <div class="testimonial-author">
             <div class="testimonial-avatar">J</div>
             <div><div class="testimonial-name">James Rodriguez</div><div class="testimonial-role">Verified Buyer</div></div>
@@ -726,24 +791,24 @@
 
         <div class="faq-list">
           <div class="faq-item">
-            <button class="faq-question" onclick="toggleFAQ(this)"><span>What is an escrow service?</span><span class="faq-toggle"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><path d="M12 5v14M5 12h14"/></svg></span></button>
-            <div class="faq-answer"><div class="faq-answer-text">Escrow is a neutral third party that holds a buyer's funds until both sides confirm a deal is complete, so neither party is ever at risk.</div></div>
+            <button class="faq-question" onclick="toggleFAQ(this)"><span>What is crypto escrow?</span><span class="faq-toggle"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><path d="M12 5v14M5 12h14"/></svg></span></button>
+            <div class="faq-answer"><div class="faq-answer-text">Crypto escrow is a neutral third party that holds a buyer's cryptocurrency in a secure wallet until both sides confirm a deal is complete, so neither party is ever at risk.</div></div>
           </div>
           <div class="faq-item">
             <button class="faq-question" onclick="toggleFAQ(this)"><span>How does your escrow service work?</span><span class="faq-toggle"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><path d="M12 5v14M5 12h14"/></svg></span></button>
-            <div class="faq-answer"><div class="faq-answer-text">Both parties agree on terms, the buyer deposits funds with us, the seller delivers, and once the buyer confirms receipt we release the funds.</div></div>
+            <div class="faq-answer"><div class="faq-answer-text">Both parties agree on terms, the buyer sends crypto to a dedicated escrow address, the seller delivers, and once the buyer confirms receipt we release the crypto on-chain.</div></div>
           </div>
           <div class="faq-item">
             <button class="faq-question" onclick="toggleFAQ(this)"><span>Who can use this escrow service?</span><span class="faq-toggle"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><path d="M12 5v14M5 12h14"/></svg></span></button>
-            <div class="faq-answer"><div class="faq-answer-text">Any verified buyer or seller — individuals or businesses — trading goods, vehicles, services, or digital assets can open an escrow transaction.</div></div>
+            <div class="faq-answer"><div class="faq-answer-text">Any verified buyer or seller — individuals or businesses — trading crypto for goods, services, other coins, or digital assets can open an escrow transaction.</div></div>
           </div>
           <div class="faq-item">
-            <button class="faq-question" onclick="toggleFAQ(this)"><span>Is my personal and financial data safe?</span><span class="faq-toggle"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><path d="M12 5v14M5 12h14"/></svg></span></button>
-            <div class="faq-answer"><div class="faq-answer-text">Yes. All data is protected with end-to-end encryption, and access to your account requires two-factor authentication.</div></div>
+            <button class="faq-question" onclick="toggleFAQ(this)"><span>Is my crypto and personal data safe?</span><span class="faq-toggle"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><path d="M12 5v14M5 12h14"/></svg></span></button>
+            <div class="faq-answer"><div class="faq-answer-text">Yes. Escrowed funds sit in multi-signature wallets, all data is protected with end-to-end encryption, and access to your account requires two-factor authentication.</div></div>
           </div>
           <div class="faq-item">
-            <button class="faq-question" onclick="toggleFAQ(this)"><span>What payment methods do you accept?</span><span class="faq-toggle"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><path d="M12 5v14M5 12h14"/></svg></span></button>
-            <div class="faq-answer"><div class="faq-answer-text">We currently support bank transfer deposits and major cryptocurrencies, with more payment methods on the way.</div></div>
+            <button class="faq-question" onclick="toggleFAQ(this)"><span>Which cryptocurrencies do you support?</span><span class="faq-toggle"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><path d="M12 5v14M5 12h14"/></svg></span></button>
+            <div class="faq-answer"><div class="faq-answer-text">We currently support Bitcoin, Ethereum, Tether (USDT), Solana, BNB, XRP, and TRON, with more networks on the way. We're crypto-only — no bank transfers or cards.</div></div>
           </div>
         </div>
       </div>
@@ -763,15 +828,15 @@
       <div class="blog-grid">
         <a class="blog-card" href="#">
           <div class="blog-thumb illus illus-green" role="img" aria-label="Resolving a transaction disagreement"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><path d="M12 3l8 4.5v9L12 21l-8-4.5v-9z"/><path d="M12 12v4M12 8v.5"/></svg><div class="blog-date"><div class="d">08</div><div class="m">Jul</div></div></div>
-          <div class="blog-body"><h4>What If There Is a Disagreement?</h4><p>A look at how our dispute process protects both buyers and sellers when expectations don't match delivery.</p></div>
+          <div class="blog-body"><h4>What If There Is a Disagreement?</h4><p>A look at how our dispute process protects both buyers and sellers when a crypto deal doesn't go as planned.</p></div>
         </a>
         <a class="blog-card" href="#">
-          <div class="blog-thumb illus illus-navy" role="img" aria-label="Payment processing explained"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><rect x="3" y="6" width="18" height="13" rx="2"/><path d="M3 10h18M7 15h4"/></svg><div class="blog-date"><div class="d">06</div><div class="m">Jul</div></div></div>
-          <div class="blog-body"><h4>Payment Processing: Mass Transactions</h4><p>How we scale secure payment handling for high-volume buyers and sellers without compromising safety.</p></div>
+          <div class="blog-thumb illus illus-navy" role="img" aria-label="Avoiding crypto scams"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><path d="M12 2l8 4v6c0 5-3.5 8.7-8 10-4.5-1.3-8-5-8-10V6z"/><path d="M12 8v4m0 4h.01"/></svg><div class="blog-date"><div class="d">06</div><div class="m">Jul</div></div></div>
+          <div class="blog-body"><h4>5 Common Crypto Escrow Scams to Avoid</h4><p>How fake escrow sites and wallet-draining links work, and how to tell a legitimate crypto escrow service from a scam.</p></div>
         </a>
         <a class="blog-card" href="#">
-          <div class="blog-thumb illus illus-mint" role="img" aria-label="What is an escrow agreement"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><rect x="5" y="3" width="14" height="18" rx="2"/><path d="M9 8h6M9 12h6M9 16h3"/></svg><div class="blog-date"><div class="d">06</div><div class="m">Jul</div></div></div>
-          <div class="blog-body"><h4>What Is an Escrow Agreement?</h4><p>The basics of escrow agreements, and why they're the safest way to structure a high-value deal.</p></div>
+          <div class="blog-thumb illus illus-mint" role="img" aria-label="What is crypto escrow"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><rect x="5" y="3" width="14" height="18" rx="2"/><path d="M9 8h6M9 12h6M9 16h3"/></svg><div class="blog-date"><div class="d">06</div><div class="m">Jul</div></div></div>
+          <div class="blog-body"><h4>What Is Crypto Escrow?</h4><p>The basics of crypto escrow, and why it's the safest way to structure a high-value BTC, ETH, or USDT deal with a stranger.</p></div>
         </a>
       </div>
     </div>

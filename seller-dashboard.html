@@ -577,9 +577,9 @@
 
           <div class="card">
             <h3> Welcome Back!</h3>
-            <p style="color: var(--text-gray); margin-bottom: 1rem;">You're all set to start selling. When buyers initiate escrow with you, you'll see them here and can ship your items confidently.</p>
+            <p style="color: var(--text-gray); margin-bottom: 1rem;">You're all set to start selling. When buyers initiate escrow with you, you'll see them here and can deliver with confidence.</p>
             <div class="alert alert-info">
-              <strong>Tip:</strong> Complete your payment details in Settings to receive withdrawals faster.
+              <strong>Tip:</strong> Complete your wallet details in Settings to receive withdrawals faster.
             </div>
           </div>
         </div>
@@ -587,10 +587,10 @@
         <div class="card">
           <h3> How to Maximize Sales</h3>
           <ol style="padding-left: 2rem; color: var(--text-gray);">
-            <li style="margin-bottom: 1rem;"><strong style="color: var(--text-light);">Set Competitive Prices</strong> - Research similar items to price competitively</li>
-            <li style="margin-bottom: 1rem;"><strong style="color: var(--text-light);">Ship Promptly</strong> - Send items within 24 hours to build reputation</li>
-            <li style="margin-bottom: 1rem;"><strong style="color: var(--text-light);">Provide Details</strong> - Include condition, authenticity certificate, photos</li>
-            <li style="margin-bottom: 1rem;"><strong style="color: var(--text-light);">Track Everything</strong> - Use tracking numbers and provide updates</li>
+            <li style="margin-bottom: 1rem;"><strong style="color: var(--text-light);">Set Fair Rates</strong> - Check current market rates before agreeing on a price</li>
+            <li style="margin-bottom: 1rem;"><strong style="color: var(--text-light);">Deliver Promptly</strong> - Fulfil your side within 24 hours to build reputation</li>
+            <li style="margin-bottom: 1rem;"><strong style="color: var(--text-light);">Verify Wallet Addresses</strong> - Double-check addresses before confirming any release</li>
+            <li style="margin-bottom: 1rem;"><strong style="color: var(--text-light);">Keep Records</strong> - Save transaction hashes and provide updates</li>
             <li><strong style="color: var(--text-light);">Build Reputation</strong> - Higher ratings = more sales and buyer confidence</li>
           </ol>
         </div>
@@ -602,7 +602,7 @@
           <h2>Pending Sales</h2>
         </div>
 
-        <p style="color: var(--text-gray); margin-bottom: 2rem;">These are deals awaiting your action or buyer confirmation. Ship items promptly to maintain high ratings.</p>
+        <p style="color: var(--text-gray); margin-bottom: 2rem;">These are deals awaiting your action or buyer confirmation. Deliver promptly to maintain high ratings.</p>
 
         <div id="salesContainer">
           <div style="text-align: center; padding: 3rem 1rem; color: var(--text-gray);">
@@ -681,20 +681,20 @@
           <h3>Earnings Tips</h3>
           <div style="display: grid; grid-template-columns: repeat(auto-fit, minmax(250px, 1fr)); gap: 1rem;">
             <div>
-              <h4 style="color: var(--primary-color); margin-bottom: 0.5rem;">📸 Quality Photos</h4>
-              <p style="font-size: 0.95rem; color: var(--text-gray);">High-quality photos increase buyer confidence and reduce disputes.</p>
+              <h4 style="color: var(--primary-color); margin-bottom: 0.5rem;">📋 Clear Terms</h4>
+              <p style="font-size: 0.95rem; color: var(--text-gray);">Spell out the deal clearly upfront — it increases buyer confidence and reduces disputes.</p>
             </div>
             <div>
               <h4 style="color: var(--primary-color); margin-bottom: 0.5rem;">⭐ Build Reputation</h4>
-              <p style="font-size: 0.95rem; color: var(--text-gray);">Positive reviews help you attract more buyers and command better prices.</p>
+              <p style="font-size: 0.95rem; color: var(--text-gray);">Positive reviews help you attract more buyers and command better rates.</p>
             </div>
             <div>
-              <h4 style="color: var(--primary-color); margin-bottom: 0.5rem;">🚚 Fast Shipping</h4>
-              <p style="font-size: 0.95rem; color: var(--text-gray);">Ship within 24 hours when possible. Tracking info builds buyer trust.</p>
+              <h4 style="color: var(--primary-color); margin-bottom: 0.5rem;">⚡ Fast Delivery</h4>
+              <p style="font-size: 0.95rem; color: var(--text-gray);">Fulfil within 24 hours when possible. On-chain proof builds buyer trust.</p>
             </div>
             <div>
               <h4 style="color: var(--primary-color); margin-bottom: 0.5rem;">💬 Clear Communication</h4>
-              <p style="font-size: 0.95rem; color: var(--text-gray);">Keep buyers updated. Transparency reduces disputes and returns.</p>
+              <p style="font-size: 0.95rem; color: var(--text-gray);">Keep buyers updated. Transparency reduces disputes and chargebacks.</p>
             </div>
           </div>
         </div>
@@ -707,27 +707,42 @@
         </div>
 
         <div class="card">
-          <h3>Select Withdrawal Method</h3>
-          <div class="grid grid-2">
-            <div class="payment-method-card" onclick="selectWithdrawal('bank')">
-              <div class="payment-icon">🏦</div>
-              <h4 style="margin: 0 0 0.5rem 0; color: var(--text-light);">Bank Transfer</h4>
-              <p style="color: var(--text-gray); font-size: 0.9rem;">2-3 business days</p>
-            </div>
-            <div class="payment-method-card" onclick="selectWithdrawal('crypto')">
+          <h3>Select Cryptocurrency</h3>
+          <div class="grid grid-4">
+            <div class="payment-method-card" onclick="selectWithdrawal('btc')">
               <div class="payment-icon">₿</div>
-              <h4 style="margin: 0 0 0.5rem 0; color: var(--text-light);">Crypto Wallet</h4>
-              <p style="color: var(--text-gray); font-size: 0.9rem;">Instant transfer</p>
+              <h4 style="margin: 0 0 0.5rem 0; color: var(--text-light);">Bitcoin</h4>
+              <p style="color: var(--text-gray); font-size: 0.9rem;">BTC</p>
             </div>
-            <div class="payment-method-card" onclick="selectWithdrawal('mobile')">
-              <div class="payment-icon">📱</div>
-              <h4 style="margin: 0 0 0.5rem 0; color: var(--text-light);">Mobile Money</h4>
-              <p style="color: var(--text-gray); font-size: 0.9rem;">1 hour</p>
+            <div class="payment-method-card" onclick="selectWithdrawal('eth')">
+              <div class="payment-icon">Ξ</div>
+              <h4 style="margin: 0 0 0.5rem 0; color: var(--text-light);">Ethereum</h4>
+              <p style="color: var(--text-gray); font-size: 0.9rem;">ETH</p>
             </div>
-            <div class="payment-method-card" onclick="selectWithdrawal('check')">
-              <div class="payment-icon">✉️</div>
-              <h4 style="margin: 0 0 0.5rem 0; color: var(--text-light);">Check by Mail</h4>
-              <p style="color: var(--text-gray); font-size: 0.9rem;">5-7 business days</p>
+            <div class="payment-method-card" onclick="selectWithdrawal('usdt')">
+              <div class="payment-icon">₮</div>
+              <h4 style="margin: 0 0 0.5rem 0; color: var(--text-light);">Tether</h4>
+              <p style="color: var(--text-gray); font-size: 0.9rem;">USDT</p>
+            </div>
+            <div class="payment-method-card" onclick="selectWithdrawal('sol')">
+              <div class="payment-icon">◎</div>
+              <h4 style="margin: 0 0 0.5rem 0; color: var(--text-light);">Solana</h4>
+              <p style="color: var(--text-gray); font-size: 0.9rem;">SOL</p>
+            </div>
+            <div class="payment-method-card" onclick="selectWithdrawal('bnb')">
+              <div class="payment-icon">B</div>
+              <h4 style="margin: 0 0 0.5rem 0; color: var(--text-light);">BNB</h4>
+              <p style="color: var(--text-gray); font-size: 0.9rem;">BNB</p>
+            </div>
+            <div class="payment-method-card" onclick="selectWithdrawal('xrp')">
+              <div class="payment-icon">X</div>
+              <h4 style="margin: 0 0 0.5rem 0; color: var(--text-light);">XRP</h4>
+              <p style="color: var(--text-gray); font-size: 0.9rem;">XRP</p>
+            </div>
+            <div class="payment-method-card" onclick="selectWithdrawal('trx')">
+              <div class="payment-icon">T</div>
+              <h4 style="margin: 0 0 0.5rem 0; color: var(--text-light);">TRON</h4>
+              <p style="color: var(--text-gray); font-size: 0.9rem;">TRX</p>
             </div>
           </div>
         </div>
@@ -737,30 +752,33 @@
           <form id="withdrawForm">
             <div class="form-row">
               <div class="form-group">
-                <label for="withdrawAmount">Amount ($)</label>
+                <label for="withdrawAmount">Amount (USD value)</label>
                 <input type="number" id="withdrawAmount" placeholder="Enter amount" min="1000" step="1000" required>
                 <small id="maxAmount" style="color: var(--text-gray);">Available: $0.00</small>
               </div>
               <div class="form-group">
-                <label for="withdrawMethod">Method</label>
+                <label for="withdrawMethod">Cryptocurrency</label>
                 <select id="withdrawMethod" required>
-                  <option value="">Select withdrawal method</option>
-                  <option value="bank">Bank Transfer</option>
-                  <option value="crypto">Crypto Wallet</option>
-                  <option value="mobile">Mobile Money</option>
-                  <option value="check">Check</option>
+                  <option value="">Select cryptocurrency</option>
+                  <option value="btc">Bitcoin (BTC)</option>
+                  <option value="eth">Ethereum (ETH)</option>
+                  <option value="usdt">Tether (USDT)</option>
+                  <option value="sol">Solana (SOL)</option>
+                  <option value="bnb">BNB</option>
+                  <option value="xrp">XRP</option>
+                  <option value="trx">TRON (TRX)</option>
                 </select>
               </div>
             </div>
 
             <div class="form-group">
-              <label for="withdrawDetails">Account Details</label>
-              <textarea id="withdrawDetails" placeholder="Enter your bank account or wallet details..." required></textarea>
+              <label for="withdrawDetails">Wallet Address</label>
+              <textarea id="withdrawDetails" placeholder="Enter your crypto wallet address..." required></textarea>
             </div>
 
             <button type="submit" class="btn btn-primary btn-block">Request Withdrawal</button>
             <p style="margin-top: 1rem; color: var(--text-gray); font-size: 0.9rem; text-align: center;">
-              Minimum withdrawal: $1,000 | Processing time: 1-3 business days
+              Minimum withdrawal: $1,000 | Processing time: usually within a few network confirmations
             </p>
           </form>
         </div>
@@ -796,21 +814,30 @@
 
         <div class="grid grid-2">
           <div class="card">
-            <h3>Payment Details</h3>
+            <h3>Default Payout Wallet</h3>
             <form id="paymentForm">
               <div class="form-group">
-                <label for="bankName">Bank Name</label>
-                <input type="text" id="bankName" placeholder="e.g., First Bank Nigeria" required>
+                <label for="bankName">Cryptocurrency</label>
+                <select id="bankName" required>
+                  <option value="">Select cryptocurrency</option>
+                  <option value="btc">Bitcoin (BTC)</option>
+                  <option value="eth">Ethereum (ETH)</option>
+                  <option value="usdt">Tether (USDT)</option>
+                  <option value="sol">Solana (SOL)</option>
+                  <option value="bnb">BNB</option>
+                  <option value="xrp">XRP</option>
+                  <option value="trx">TRON (TRX)</option>
+                </select>
               </div>
               <div class="form-group">
-                <label for="accountName">Account Name</label>
-                <input type="text" id="accountName" placeholder="Your full name" required>
+                <label for="accountName">Wallet Label</label>
+                <input type="text" id="accountName" placeholder="e.g., My main wallet" required>
               </div>
               <div class="form-group">
-                <label for="accountNumber">Account Number</label>
-                <input type="text" id="accountNumber" placeholder="Your account number" required>
+                <label for="accountNumber">Wallet Address</label>
+                <input type="text" id="accountNumber" placeholder="Your crypto wallet address" required>
               </div>
-              <button type="submit" class="btn btn-primary btn-block">Save Payment Details</button>
+              <button type="submit" class="btn btn-primary btn-block">Save Payout Wallet</button>
             </form>
           </div>
 

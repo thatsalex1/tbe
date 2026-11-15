@@ -641,7 +641,7 @@
 
         <div class="card">
           <h3> Quick Info</h3>
-          <p>Welcome to LegacyHoldEscrow, your trusted escrow partner for secure luxury watch transactions. Your funds are protected throughout the entire transaction process.</p>
+          <p>Welcome to LegacyHoldEscrow, your trusted crypto escrow partner. Your BTC, ETH, USDT and other crypto are protected throughout the entire transaction process.</p>
           <div class="alert alert-info" style="margin-top: 1rem;">
             <strong>Tip:</strong> Complete your first deposit to start buying. All transactions are backed by our secure escrow system.
           </div>
@@ -651,7 +651,7 @@
           <h3> How It Works</h3>
           <ol style="padding-left: 2rem; color: var(--text-gray);">
             <li style="margin-bottom: 1rem;">
-              <strong style="color: var(--text-light);">Make a Deposit</strong> - Fund your wallet using crypto or bank transfer
+              <strong style="color: var(--text-light);">Make a Deposit</strong> - Fund your wallet with BTC, ETH, USDT, SOL, BNB, XRP, or TRX
             </li>
             <li style="margin-bottom: 1rem;">
               <strong style="color: var(--text-light);">Start Escrow</strong> - Initiate a transaction with a seller
@@ -845,12 +845,12 @@
         <span id="trx-addr" style="display: none;">TKahJXYiyngew58j25nDfCMsuAAksn9YLq</span>
         <span id="xrp-addr" style="display: none;">rMK5RcCfJhNqGN6shFf6Yq3jxt9oJDg7SV</span>
 
-        <!-- Bank Transfer Section -->
+        <!-- Need Help Section -->
         <div class="card" style="background: #1e2a3a; border: 1px solid rgba(22, 163, 74, 0.15); border-radius: 12px; padding: 30px; margin-top: 40px;">
-          <h3 style="font-size: 1.3rem; color: #22c55e; margin: 0 0 20px 0;">Bank Transfer Deposit</h3>
-          <p style="font-size: 1rem; color: #b0b0b0; margin: 0 0 15px 0; line-height: 1.6;">Need to deposit via bank transfer? Request our bank account details and we'll send you complete instructions for secure transfers in any currency.</p>
-          <a href="mailto:legacyholdescrow@gmail.com?subject=Request%20Bank%20Account%20Details%20for%20Deposit&body=Hello%20LegacyHold%20Team%2C%0A%0AI%20would%20like%20to%20deposit%20funds%20via%20bank%20transfer.%20Please%20send%20me%20the%20bank%20account%20details%20and%20instructions%20for%20deposit.%0A%0AThank%20you!" style="display: inline-block; background: #16a34a; color: #0a0e1a; padding: 14px 32px; border-radius: 8px; text-decoration: none; font-weight: 600; font-size: 0.95rem; transition: all 0.3s ease; cursor: pointer; border: none; margin-bottom: 25px;">Email to Request Bank Details</a>
-          <div style="background: rgba(46, 204, 113, 0.1); border-left: 3px solid #2ecc71; padding: 15px 20px; border-radius: 6px; font-size: 0.9rem; color: #90ee90;">Click the button above to send an email requesting bank account details for wire transfer. Our team will provide you with personalized account information for secure deposits in your preferred currency.</div>
+          <h3 style="font-size: 1.3rem; color: #22c55e; margin: 0 0 20px 0;">Don't See Your Coin?</h3>
+          <p style="font-size: 1rem; color: #b0b0b0; margin: 0 0 15px 0; line-height: 1.6;">We're crypto-only — no bank transfers or cards. If you need a network we don't list yet, let us know and we'll see what we can add.</p>
+          <a href="mailto:legacyholdescrow@gmail.com?subject=Request%20Additional%20Cryptocurrency%20Support&body=Hello%20LegacyHold%20Team%2C%0A%0ACould%20you%20add%20support%20for%20this%20cryptocurrency%3A%0A%0AThank%20you!" style="display: inline-block; background: #16a34a; color: #ffffff; padding: 14px 32px; border-radius: 8px; text-decoration: none; font-weight: 600; font-size: 0.95rem; transition: all 0.3s ease; cursor: pointer; border: none; margin-bottom: 25px;">Email to Request a Coin</a>
+          <div style="background: rgba(46, 204, 113, 0.1); border-left: 3px solid #2ecc71; padding: 15px 20px; border-radius: 6px; font-size: 0.9rem; color: #90ee90;">We currently support BTC, ETH, USDT, SOL, BNB, XRP, and TRX. More networks are added based on demand.</div>
         </div>
 
         <div class="card" style="margin-top: 2rem;">
@@ -897,14 +897,14 @@
                 <input type="email" id="sellerEmail" placeholder="seller@example.com" required>
               </div>
               <div class="form-group">
-                <label for="amount">Amount ($)</label>
+                <label for="amount">Amount (USD value)</label>
                 <input type="number" id="amount" placeholder="e.g., 500000" min="1000" step="1000" required>
               </div>
             </div>
 
             <div class="form-group">
-              <label for="itemDesc">Item Description</label>
-              <textarea id="itemDesc" placeholder="Describe the watch or item you're buying..." required></textarea>
+              <label for="itemDesc">What are you buying?</label>
+              <textarea id="itemDesc" placeholder="Describe the crypto, goods, or service you're buying..." required></textarea>
             </div>
 
             <button type="submit" class="btn btn-primary btn-block">Create Escrow Transaction</button>
@@ -996,9 +996,9 @@
           <div class="card">
             <h3>Making Deposits</h3>
             <ul style="padding-left: 2rem; color: var(--text-gray);">
-              <li style="margin-bottom: 0.75rem;">Multiple payment methods</li>
+              <li style="margin-bottom: 0.75rem;">BTC, ETH, USDT, SOL, BNB, XRP, TRX</li>
               <li style="margin-bottom: 0.75rem;">Instant crypto deposits</li>
-              <li style="margin-bottom: 0.75rem;">24-hour bank transfers</li>
+              <li style="margin-bottom: 0.75rem;">Confirmed on-chain</li>
               <li>No hidden fees</li>
             </ul>
           </div>
@@ -1006,10 +1006,10 @@
           <div class="card">
             <h3>Escrow Process</h3>
             <ul style="padding-left: 2rem; color: var(--text-gray);">
-              <li style="margin-bottom: 0.75rem;">Funds held in escrow</li>
-              <li style="margin-bottom: 0.75rem;">Seller ships item</li>
+              <li style="margin-bottom: 0.75rem;">Crypto held in escrow wallet</li>
+              <li style="margin-bottom: 0.75rem;">Seller delivers the deal</li>
               <li style="margin-bottom: 0.75rem;">You verify receipt</li>
-              <li>Funds released to seller</li>
+              <li>Crypto released to seller</li>
             </ul>
           </div>
 
@@ -1029,19 +1029,19 @@
           <div style="padding: 1rem 0;">
             <div style="margin-bottom: 2rem;">
               <h4 style="color: var(--primary-color); margin-bottom: 0.5rem;">How long does verification take?</h4>
-              <p style="color: var(--text-gray);">Account verification is instant. Deposit confirmation takes up to 24 hours depending on the payment method.</p>
+              <p style="color: var(--text-gray);">Account verification is instant. Deposit confirmation depends on network congestion, typically a few confirmations.</p>
             </div>
             <div style="margin-bottom: 2rem;">
-              <h4 style="color: var(--primary-color); margin-bottom: 0.5rem;">What if the seller doesn't ship?</h4>
-              <p style="color: var(--text-gray);">Our support team will investigate. If the seller fails to fulfill their obligation, we'll refund your escrow amount fully.</p>
+              <h4 style="color: var(--primary-color); margin-bottom: 0.5rem;">What if the seller doesn't deliver?</h4>
+              <p style="color: var(--text-gray);">Our support team will investigate. If the seller fails to fulfill their obligation, we'll refund your escrowed crypto in full.</p>
             </div>
             <div style="margin-bottom: 2rem;">
               <h4 style="color: var(--primary-color); margin-bottom: 0.5rem;">Are there any transaction fees?</h4>
-              <p style="color: var(--text-gray);">We charge a small escrow fee (1-2%) only when transactions complete successfully. No hidden charges.</p>
+              <p style="color: var(--text-gray);">We charge a small escrow fee (1-2%) only when transactions complete successfully, plus standard network fees. No hidden charges.</p>
             </div>
             <div>
               <h4 style="color: var(--primary-color); margin-bottom: 0.5rem;">Can I cancel a transaction?</h4>
-              <p style="color: var(--text-gray);">Yes, before the seller ships. After shipment confirmation, cancellation requires seller agreement.</p>
+              <p style="color: var(--text-gray);">Yes, before the seller delivers. After delivery is confirmed, cancellation requires the seller's agreement.</p>
             </div>
           </div>
         </div>
