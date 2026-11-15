@@ -10,28 +10,30 @@
   <link rel="stylesheet" href="css/style.css">
   <style>
     body {
-      background: linear-gradient(135deg, #0a0e1a 0%, #1a1f2e 100%);
+      background: #f1f5f3;
       min-height: 100vh;
       display: flex;
       align-items: center;
       justify-content: center;
       font-family: 'DM Sans', sans-serif;
-      color: #fff;
+      color: #16202e;
     }
     .signup-container {
       width: 100%;
-      max-width: 500px;
+      max-width: 460px;
       padding: 40px;
-      background: rgba(255, 255, 255, 0.05);
-      border: 1px solid rgba(201, 168, 76, 0.2);
-      border-radius: 12px;
-      backdrop-filter: blur(10px);
+      background: #ffffff;
+      border: 1px solid #e7ece9;
+      border-radius: 16px;
+      box-shadow: 0 20px 60px rgba(15, 30, 25, 0.1);
     }
     h1 {
-      color: #c9a84c;
+      color: #16202e;
       margin-bottom: 30px;
       text-align: center;
-      font-size: 28px;
+      font-size: 1.7rem;
+      font-family: 'Sora', sans-serif;
+      font-weight: 800;
     }
     .form-group {
       margin-bottom: 20px;
@@ -40,38 +42,39 @@
       display: block;
       margin-bottom: 8px;
       font-size: 14px;
-      color: #ccc;
+      color: #5b6b7b;
+      font-weight: 600;
     }
     input {
       width: 100%;
       padding: 12px;
-      background: rgba(255, 255, 255, 0.1);
-      border: 1px solid rgba(201, 168, 76, 0.3);
-      border-radius: 6px;
-      color: #fff;
+      background: #f7f9f8;
+      border: 1px solid #e7ece9;
+      border-radius: 10px;
+      color: #16202e;
       font-size: 14px;
       box-sizing: border-box;
     }
     input:focus {
       outline: none;
-      border-color: #c9a84c;
-      background: rgba(255, 255, 255, 0.15);
+      border-color: #16a34a;
+      background: #ffffff;
     }
     .btn {
       width: 100%;
-      padding: 12px;
-      background: #c9a84c;
-      color: #0a0e1a;
+      padding: 13px;
+      background: #16a34a;
+      color: #ffffff;
       border: none;
-      border-radius: 6px;
+      border-radius: 50px;
       font-size: 16px;
-      font-weight: 600;
+      font-weight: 700;
       cursor: pointer;
       margin-top: 20px;
       transition: all 0.3s ease;
     }
     .btn:hover:not(:disabled) {
-      background: #e0bc5f;
+      background: #0f7a37;
       transform: translateY(-2px);
     }
     .btn:disabled {
@@ -80,30 +83,32 @@
     }
     .message {
       padding: 12px;
-      border-radius: 6px;
+      border-radius: 8px;
       margin-bottom: 20px;
       font-size: 14px;
       display: none;
     }
     .message.success {
       display: block;
-      background: rgba(76, 175, 80, 0.2);
-      border: 1px solid #4caf50;
-      color: #90ee90;
+      background: #e9f8ef;
+      border: 1px solid #16a34a;
+      color: #0f7a37;
     }
     .message.error {
       display: block;
-      background: rgba(244, 67, 54, 0.2);
+      background: rgba(244, 67, 54, 0.08);
       border: 1px solid #f44336;
-      color: #ff9999;
+      color: #c0392b;
     }
     .signin-link {
       text-align: center;
       margin-top: 20px;
       font-size: 14px;
+      color: #5b6b7b;
     }
     .signin-link a {
-      color: #c9a84c;
+      color: #16a34a;
+      font-weight: 600;
       text-decoration: none;
     }
   </style>

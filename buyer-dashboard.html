@@ -52,7 +52,7 @@
       // Create modal dialog
       const modal = document.createElement('div');
       modal.style.background = 'linear-gradient(135deg, #1a2a3a 0%, #111827 100%)';
-      modal.style.border = '1px solid rgba(201, 168, 76, 0.3)';
+      modal.style.border = '1px solid rgba(22, 163, 74, 0.3)';
       modal.style.borderRadius = '16px';
       modal.style.padding = '40px';
       modal.style.maxWidth = '400px';
@@ -61,7 +61,7 @@
 
       // Create title
       const title = document.createElement('h2');
-      title.style.color = '#c9a84c';
+      title.style.color = '#16a34a';
       title.style.margin = '0 0 15px 0';
       title.style.fontSize = '1.4rem';
       title.style.fontWeight = '600';
@@ -86,8 +86,8 @@
       // Create cancel button
       const cancelBtn = document.createElement('button');
       cancelBtn.type = 'button';
-      cancelBtn.style.background = 'rgba(201, 168, 76, 0.1)';
-      cancelBtn.style.border = '1px solid rgba(201, 168, 76, 0.3)';
+      cancelBtn.style.background = 'rgba(22, 163, 74, 0.1)';
+      cancelBtn.style.border = '1px solid rgba(22, 163, 74, 0.3)';
       cancelBtn.style.color = '#b0b0b0';
       cancelBtn.style.padding = '12px 24px';
       cancelBtn.style.borderRadius = '8px';
@@ -100,7 +100,7 @@
       // Create confirm button
       const confirmBtn = document.createElement('button');
       confirmBtn.type = 'button';
-      confirmBtn.style.background = '#c9a84c';
+      confirmBtn.style.background = '#16a34a';
       confirmBtn.style.border = 'none';
       confirmBtn.style.color = '#0a0e1a';
       confirmBtn.style.padding = '12px 24px';
@@ -345,7 +345,7 @@
     .deposit-option:hover {
       border-color: var(--primary-color);
       transform: translateY(-5px);
-      box-shadow: 0 10px 30px rgba(212, 175, 55, 0.15);
+      box-shadow: 0 10px 30px rgba(22, 163, 74, 0.15);
     }
 
     .deposit-icon {
@@ -682,8 +682,8 @@
         </div>
 
         <!-- Instructions -->
-        <div style="background: #1e2a3a; border-left: 4px solid #c9a84c; border-radius: 8px; padding: 20px; margin-bottom: 30px;">
-          <h4 style="color: #c9a84c; margin: 0 0 10px 0; font-size: 0.95rem;">How to Deposit:</h4>
+        <div style="background: #1e2a3a; border-left: 4px solid #16a34a; border-radius: 8px; padding: 20px; margin-bottom: 30px;">
+          <h4 style="color: #16a34a; margin: 0 0 10px 0; font-size: 0.95rem;">How to Deposit:</h4>
           <ol style="color: #b0b0b0; margin: 0; padding-left: 20px; font-size: 0.9rem; line-height: 1.8;">
             <li>Select a cryptocurrency below</li>
             <li>Scan the QR code or copy the wallet address</li>
@@ -699,139 +699,139 @@
         <div style="display: grid; grid-template-columns: repeat(auto-fit, minmax(350px, 1fr)); gap: 30px; margin-bottom: 40px;">
 
           <!-- Bitcoin Card -->
-          <div style="background: linear-gradient(135deg, #1a2a3a 0%, #111827 100%); border: 1px solid rgba(201, 168, 76, 0.2); border-radius: 16px; padding: 30px; transition: all 0.3s ease; box-shadow: 0 10px 30px rgba(0, 0, 0, 0.3);">
+          <div style="background: linear-gradient(135deg, #1a2a3a 0%, #111827 100%); border: 1px solid rgba(22, 163, 74, 0.2); border-radius: 16px; padding: 30px; transition: all 0.3s ease; box-shadow: 0 10px 30px rgba(0, 0, 0, 0.3);">
             <div style="display: flex; justify-content: space-between; align-items: flex-start; margin-bottom: 25px;">
               <div>
-                <h3 style="font-size: 1.3rem; font-weight: 600; color: #c9a84c; margin: 0 0 5px 0;">Bitcoin</h3>
+                <h3 style="font-size: 1.3rem; font-weight: 600; color: #16a34a; margin: 0 0 5px 0;">Bitcoin</h3>
                 <p style="color: #707070; margin: 0; font-size: 0.85rem;">BTC - Bitcoin Mainnet - Arrival: 10-30 minutes</p>
               </div>
             </div>
 
             <!-- QR Code -->
-            <div style="text-align: center; background: rgba(255, 255, 255, 0.05); padding: 20px; border-radius: 12px; border: 1px solid rgba(201, 168, 76, 0.1); margin-bottom: 20px;">
+            <div style="text-align: center; background: rgba(255, 255, 255, 0.05); padding: 20px; border-radius: 12px; border: 1px solid rgba(22, 163, 74, 0.1); margin-bottom: 20px;">
               <p style="color: #b0b0b0; margin: 0 0 15px 0; font-size: 0.9rem; font-weight: 500;">Scan QR Code</p>
               <img src="https://api.qrserver.com/v1/create-qr-code/?size=300x300&data=bc1qx3ul9a6kw2h2hfckwttgh8c6am2zjkg66rkl08" alt="Bitcoin QR Code" style="width: 300px; height: 300px; border-radius: 6px;" />
             </div>
 
             <!-- Wallet Address -->
-            <div style="background: #0a0e1a; border: 1px solid rgba(201, 168, 76, 0.2); border-radius: 10px; padding: 15px;">
+            <div style="background: #0a0e1a; border: 1px solid rgba(22, 163, 74, 0.2); border-radius: 10px; padding: 15px;">
               <p style="color: #b0b0b0; font-size: 0.8rem; margin: 0 0 10px 0; text-transform: uppercase; letter-spacing: 0.05em; font-weight: 500;">Wallet Address</p>
-              <div style="background: rgba(201, 168, 76, 0.05); border: 1px solid rgba(201, 168, 76, 0.15); border-radius: 6px; padding: 12px; font-family: 'Courier New', monospace; font-size: 0.75rem; color: #c9a84c; word-break: break-all; line-height: 1.5; margin-bottom: 12px;" id="btc-addr-display">bc1qx3ul9a6kw2h2hfckwttgh8c6am2zjkg66rkl08</div>
-              <button onclick="copyAddr('btc-addr', this)" style="width: 100%; background: #c9a84c; color: #0a0e1a; border: none; padding: 10px; border-radius: 6px; cursor: pointer; font-weight: 600; font-size: 0.9rem; transition: all 0.3s ease;">Copy Address</button>
+              <div style="background: rgba(22, 163, 74, 0.05); border: 1px solid rgba(22, 163, 74, 0.15); border-radius: 6px; padding: 12px; font-family: 'Courier New', monospace; font-size: 0.75rem; color: #16a34a; word-break: break-all; line-height: 1.5; margin-bottom: 12px;" id="btc-addr-display">bc1qx3ul9a6kw2h2hfckwttgh8c6am2zjkg66rkl08</div>
+              <button onclick="copyAddr('btc-addr', this)" style="width: 100%; background: #16a34a; color: #0a0e1a; border: none; padding: 10px; border-radius: 6px; cursor: pointer; font-weight: 600; font-size: 0.9rem; transition: all 0.3s ease;">Copy Address</button>
             </div>
           </div>
 
           <!-- Ethereum Card -->
-          <div style="background: linear-gradient(135deg, #1a2a3a 0%, #111827 100%); border: 1px solid rgba(201, 168, 76, 0.2); border-radius: 16px; padding: 30px; transition: all 0.3s ease; box-shadow: 0 10px 30px rgba(0, 0, 0, 0.3);">
+          <div style="background: linear-gradient(135deg, #1a2a3a 0%, #111827 100%); border: 1px solid rgba(22, 163, 74, 0.2); border-radius: 16px; padding: 30px; transition: all 0.3s ease; box-shadow: 0 10px 30px rgba(0, 0, 0, 0.3);">
             <div style="display: flex; justify-content: space-between; align-items: flex-start; margin-bottom: 25px;">
               <div>
-                <h3 style="font-size: 1.3rem; font-weight: 600; color: #c9a84c; margin: 0 0 5px 0;">Ethereum</h3>
+                <h3 style="font-size: 1.3rem; font-weight: 600; color: #16a34a; margin: 0 0 5px 0;">Ethereum</h3>
                 <p style="color: #707070; margin: 0; font-size: 0.85rem;">ETH - Ethereum Mainnet - Arrival: 3-15 minutes</p>
               </div>
             </div>
-            <div style="text-align: center; background: rgba(255, 255, 255, 0.05); padding: 20px; border-radius: 12px; border: 1px solid rgba(201, 168, 76, 0.1); margin-bottom: 20px;">
+            <div style="text-align: center; background: rgba(255, 255, 255, 0.05); padding: 20px; border-radius: 12px; border: 1px solid rgba(22, 163, 74, 0.1); margin-bottom: 20px;">
               <p style="color: #b0b0b0; margin: 0 0 15px 0; font-size: 0.9rem; font-weight: 500;">Scan QR Code</p>
               <img src="https://api.qrserver.com/v1/create-qr-code/?size=300x300&data=0x014198cD564f8366261b97EF59ec27d3C3AB0035" alt="Ethereum QR Code" style="width: 300px; height: 300px; border-radius: 6px;" />
             </div>
-            <div style="background: #0a0e1a; border: 1px solid rgba(201, 168, 76, 0.2); border-radius: 10px; padding: 15px;">
+            <div style="background: #0a0e1a; border: 1px solid rgba(22, 163, 74, 0.2); border-radius: 10px; padding: 15px;">
               <p style="color: #b0b0b0; font-size: 0.8rem; margin: 0 0 10px 0; text-transform: uppercase; letter-spacing: 0.05em; font-weight: 500;">Wallet Address</p>
-              <div style="background: rgba(201, 168, 76, 0.05); border: 1px solid rgba(201, 168, 76, 0.15); border-radius: 6px; padding: 12px; font-family: 'Courier New', monospace; font-size: 0.75rem; color: #c9a84c; word-break: break-all; line-height: 1.5; margin-bottom: 12px;" id="eth-addr-display">0x014198cD564f8366261b97EF59ec27d3C3AB0035</div>
-              <button onclick="copyAddr('eth-addr', this)" style="width: 100%; background: #c9a84c; color: #0a0e1a; border: none; padding: 10px; border-radius: 6px; cursor: pointer; font-weight: 600; font-size: 0.9rem; transition: all 0.3s ease;">Copy Address</button>
+              <div style="background: rgba(22, 163, 74, 0.05); border: 1px solid rgba(22, 163, 74, 0.15); border-radius: 6px; padding: 12px; font-family: 'Courier New', monospace; font-size: 0.75rem; color: #16a34a; word-break: break-all; line-height: 1.5; margin-bottom: 12px;" id="eth-addr-display">0x014198cD564f8366261b97EF59ec27d3C3AB0035</div>
+              <button onclick="copyAddr('eth-addr', this)" style="width: 100%; background: #16a34a; color: #0a0e1a; border: none; padding: 10px; border-radius: 6px; cursor: pointer; font-weight: 600; font-size: 0.9rem; transition: all 0.3s ease;">Copy Address</button>
             </div>
           </div>
 
           <!-- Solana Card -->
-          <div style="background: linear-gradient(135deg, #1a2a3a 0%, #111827 100%); border: 1px solid rgba(201, 168, 76, 0.2); border-radius: 16px; padding: 30px; transition: all 0.3s ease; box-shadow: 0 10px 30px rgba(0, 0, 0, 0.3);">
+          <div style="background: linear-gradient(135deg, #1a2a3a 0%, #111827 100%); border: 1px solid rgba(22, 163, 74, 0.2); border-radius: 16px; padding: 30px; transition: all 0.3s ease; box-shadow: 0 10px 30px rgba(0, 0, 0, 0.3);">
             <div style="display: flex; justify-content: space-between; align-items: flex-start; margin-bottom: 25px;">
               <div>
-                <h3 style="font-size: 1.3rem; font-weight: 600; color: #c9a84c; margin: 0 0 5px 0;">Solana</h3>
+                <h3 style="font-size: 1.3rem; font-weight: 600; color: #16a34a; margin: 0 0 5px 0;">Solana</h3>
                 <p style="color: #707070; margin: 0; font-size: 0.85rem;">SOL - Solana Mainnet - Arrival: 3-15 minutes</p>
               </div>
             </div>
-            <div style="text-align: center; background: rgba(255, 255, 255, 0.05); padding: 20px; border-radius: 12px; border: 1px solid rgba(201, 168, 76, 0.1); margin-bottom: 20px;">
+            <div style="text-align: center; background: rgba(255, 255, 255, 0.05); padding: 20px; border-radius: 12px; border: 1px solid rgba(22, 163, 74, 0.1); margin-bottom: 20px;">
               <p style="color: #b0b0b0; margin: 0 0 15px 0; font-size: 0.9rem; font-weight: 500;">Scan QR Code</p>
               <img src="https://api.qrserver.com/v1/create-qr-code/?size=300x300&data=AwTuC8HngoxHZr46H6QgBSK1aPg8knKmsax6upbMj31b" alt="Solana QR Code" style="width: 300px; height: 300px; border-radius: 6px;" />
             </div>
-            <div style="background: #0a0e1a; border: 1px solid rgba(201, 168, 76, 0.2); border-radius: 10px; padding: 15px;">
+            <div style="background: #0a0e1a; border: 1px solid rgba(22, 163, 74, 0.2); border-radius: 10px; padding: 15px;">
               <p style="color: #b0b0b0; font-size: 0.8rem; margin: 0 0 10px 0; text-transform: uppercase; letter-spacing: 0.05em; font-weight: 500;">Wallet Address</p>
-              <div style="background: rgba(201, 168, 76, 0.05); border: 1px solid rgba(201, 168, 76, 0.15); border-radius: 6px; padding: 12px; font-family: 'Courier New', monospace; font-size: 0.75rem; color: #c9a84c; word-break: break-all; line-height: 1.5; margin-bottom: 12px;" id="sol-addr-display">AwTuC8HngoxHZr46H6QgBSK1aPg8knKmsax6upbMj31b</div>
-              <button onclick="copyAddr('sol-addr', this)" style="width: 100%; background: #c9a84c; color: #0a0e1a; border: none; padding: 10px; border-radius: 6px; cursor: pointer; font-weight: 600; font-size: 0.9rem; transition: all 0.3s ease;">Copy Address</button>
+              <div style="background: rgba(22, 163, 74, 0.05); border: 1px solid rgba(22, 163, 74, 0.15); border-radius: 6px; padding: 12px; font-family: 'Courier New', monospace; font-size: 0.75rem; color: #16a34a; word-break: break-all; line-height: 1.5; margin-bottom: 12px;" id="sol-addr-display">AwTuC8HngoxHZr46H6QgBSK1aPg8knKmsax6upbMj31b</div>
+              <button onclick="copyAddr('sol-addr', this)" style="width: 100%; background: #16a34a; color: #0a0e1a; border: none; padding: 10px; border-radius: 6px; cursor: pointer; font-weight: 600; font-size: 0.9rem; transition: all 0.3s ease;">Copy Address</button>
             </div>
           </div>
 
           <!-- BNB Card -->
-          <div style="background: linear-gradient(135deg, #1a2a3a 0%, #111827 100%); border: 1px solid rgba(201, 168, 76, 0.2); border-radius: 16px; padding: 30px; transition: all 0.3s ease; box-shadow: 0 10px 30px rgba(0, 0, 0, 0.3);">
+          <div style="background: linear-gradient(135deg, #1a2a3a 0%, #111827 100%); border: 1px solid rgba(22, 163, 74, 0.2); border-radius: 16px; padding: 30px; transition: all 0.3s ease; box-shadow: 0 10px 30px rgba(0, 0, 0, 0.3);">
             <div style="display: flex; justify-content: space-between; align-items: flex-start; margin-bottom: 25px;">
               <div>
-                <h3 style="font-size: 1.3rem; font-weight: 600; color: #c9a84c; margin: 0 0 5px 0;">Binance Coin</h3>
+                <h3 style="font-size: 1.3rem; font-weight: 600; color: #16a34a; margin: 0 0 5px 0;">Binance Coin</h3>
                 <p style="color: #707070; margin: 0; font-size: 0.85rem;">BNB - BNB Smart Chain - Arrival: 3-15 minutes</p>
               </div>
             </div>
-            <div style="text-align: center; background: rgba(255, 255, 255, 0.05); padding: 20px; border-radius: 12px; border: 1px solid rgba(201, 168, 76, 0.1); margin-bottom: 20px;">
+            <div style="text-align: center; background: rgba(255, 255, 255, 0.05); padding: 20px; border-radius: 12px; border: 1px solid rgba(22, 163, 74, 0.1); margin-bottom: 20px;">
               <p style="color: #b0b0b0; margin: 0 0 15px 0; font-size: 0.9rem; font-weight: 500;">Scan QR Code</p>
               <img src="https://api.qrserver.com/v1/create-qr-code/?size=300x300&data=0x014198cD564f8366261b97EF59ec27d3C3AB0035" alt="BNB QR Code" style="width: 300px; height: 300px; border-radius: 6px;" />
             </div>
-            <div style="background: #0a0e1a; border: 1px solid rgba(201, 168, 76, 0.2); border-radius: 10px; padding: 15px;">
+            <div style="background: #0a0e1a; border: 1px solid rgba(22, 163, 74, 0.2); border-radius: 10px; padding: 15px;">
               <p style="color: #b0b0b0; font-size: 0.8rem; margin: 0 0 10px 0; text-transform: uppercase; letter-spacing: 0.05em; font-weight: 500;">Wallet Address</p>
-              <div style="background: rgba(201, 168, 76, 0.05); border: 1px solid rgba(201, 168, 76, 0.15); border-radius: 6px; padding: 12px; font-family: 'Courier New', monospace; font-size: 0.75rem; color: #c9a84c; word-break: break-all; line-height: 1.5; margin-bottom: 12px;" id="bnb-addr-display">0x014198cD564f8366261b97EF59ec27d3C3AB0035</div>
-              <button onclick="copyAddr('bnb-addr', this)" style="width: 100%; background: #c9a84c; color: #0a0e1a; border: none; padding: 10px; border-radius: 6px; cursor: pointer; font-weight: 600; font-size: 0.9rem; transition: all 0.3s ease;">Copy Address</button>
+              <div style="background: rgba(22, 163, 74, 0.05); border: 1px solid rgba(22, 163, 74, 0.15); border-radius: 6px; padding: 12px; font-family: 'Courier New', monospace; font-size: 0.75rem; color: #16a34a; word-break: break-all; line-height: 1.5; margin-bottom: 12px;" id="bnb-addr-display">0x014198cD564f8366261b97EF59ec27d3C3AB0035</div>
+              <button onclick="copyAddr('bnb-addr', this)" style="width: 100%; background: #16a34a; color: #0a0e1a; border: none; padding: 10px; border-radius: 6px; cursor: pointer; font-weight: 600; font-size: 0.9rem; transition: all 0.3s ease;">Copy Address</button>
             </div>
           </div>
 
           <!-- USDT Card -->
-          <div style="background: linear-gradient(135deg, #1a2a3a 0%, #111827 100%); border: 1px solid rgba(201, 168, 76, 0.2); border-radius: 16px; padding: 30px; transition: all 0.3s ease; box-shadow: 0 10px 30px rgba(0, 0, 0, 0.3);">
+          <div style="background: linear-gradient(135deg, #1a2a3a 0%, #111827 100%); border: 1px solid rgba(22, 163, 74, 0.2); border-radius: 16px; padding: 30px; transition: all 0.3s ease; box-shadow: 0 10px 30px rgba(0, 0, 0, 0.3);">
             <div style="display: flex; justify-content: space-between; align-items: flex-start; margin-bottom: 25px;">
               <div>
-                <h3 style="font-size: 1.3rem; font-weight: 600; color: #c9a84c; margin: 0 0 5px 0;">Tether (USDT)</h3>
+                <h3 style="font-size: 1.3rem; font-weight: 600; color: #16a34a; margin: 0 0 5px 0;">Tether (USDT)</h3>
                 <p style="color: #707070; margin: 0; font-size: 0.85rem;">USDT - Ethereum/TRON - Arrival: 3-15 minutes</p>
               </div>
             </div>
-            <div style="text-align: center; background: rgba(255, 255, 255, 0.05); padding: 20px; border-radius: 12px; border: 1px solid rgba(201, 168, 76, 0.1); margin-bottom: 20px;">
+            <div style="text-align: center; background: rgba(255, 255, 255, 0.05); padding: 20px; border-radius: 12px; border: 1px solid rgba(22, 163, 74, 0.1); margin-bottom: 20px;">
               <p style="color: #b0b0b0; margin: 0 0 15px 0; font-size: 0.9rem; font-weight: 500;">Scan QR Code</p>
               <img src="https://api.qrserver.com/v1/create-qr-code/?size=300x300&data=0x014198cD564f8366261b97EF59ec27d3C3AB0035" alt="USDT QR Code" style="width: 300px; height: 300px; border-radius: 6px;" />
             </div>
-            <div style="background: #0a0e1a; border: 1px solid rgba(201, 168, 76, 0.2); border-radius: 10px; padding: 15px;">
+            <div style="background: #0a0e1a; border: 1px solid rgba(22, 163, 74, 0.2); border-radius: 10px; padding: 15px;">
               <p style="color: #b0b0b0; font-size: 0.8rem; margin: 0 0 10px 0; text-transform: uppercase; letter-spacing: 0.05em; font-weight: 500;">Wallet Address</p>
-              <div style="background: rgba(201, 168, 76, 0.05); border: 1px solid rgba(201, 168, 76, 0.15); border-radius: 6px; padding: 12px; font-family: 'Courier New', monospace; font-size: 0.75rem; color: #c9a84c; word-break: break-all; line-height: 1.5; margin-bottom: 12px;" id="usdt-addr-display">0x014198cD564f8366261b97EF59ec27d3C3AB0035</div>
-              <button onclick="copyAddr('usdt-addr', this)" style="width: 100%; background: #c9a84c; color: #0a0e1a; border: none; padding: 10px; border-radius: 6px; cursor: pointer; font-weight: 600; font-size: 0.9rem; transition: all 0.3s ease;">Copy Address</button>
+              <div style="background: rgba(22, 163, 74, 0.05); border: 1px solid rgba(22, 163, 74, 0.15); border-radius: 6px; padding: 12px; font-family: 'Courier New', monospace; font-size: 0.75rem; color: #16a34a; word-break: break-all; line-height: 1.5; margin-bottom: 12px;" id="usdt-addr-display">0x014198cD564f8366261b97EF59ec27d3C3AB0035</div>
+              <button onclick="copyAddr('usdt-addr', this)" style="width: 100%; background: #16a34a; color: #0a0e1a; border: none; padding: 10px; border-radius: 6px; cursor: pointer; font-weight: 600; font-size: 0.9rem; transition: all 0.3s ease;">Copy Address</button>
             </div>
           </div>
 
           <!-- Tron Card -->
-          <div style="background: linear-gradient(135deg, #1a2a3a 0%, #111827 100%); border: 1px solid rgba(201, 168, 76, 0.2); border-radius: 16px; padding: 30px; transition: all 0.3s ease; box-shadow: 0 10px 30px rgba(0, 0, 0, 0.3);">
+          <div style="background: linear-gradient(135deg, #1a2a3a 0%, #111827 100%); border: 1px solid rgba(22, 163, 74, 0.2); border-radius: 16px; padding: 30px; transition: all 0.3s ease; box-shadow: 0 10px 30px rgba(0, 0, 0, 0.3);">
             <div style="display: flex; justify-content: space-between; align-items: flex-start; margin-bottom: 25px;">
               <div>
-                <h3 style="font-size: 1.3rem; font-weight: 600; color: #c9a84c; margin: 0 0 5px 0;">Tron</h3>
+                <h3 style="font-size: 1.3rem; font-weight: 600; color: #16a34a; margin: 0 0 5px 0;">Tron</h3>
                 <p style="color: #707070; margin: 0; font-size: 0.85rem;">TRX - Tron Mainnet - Arrival: 5-20 minutes</p>
               </div>
             </div>
-            <div style="text-align: center; background: rgba(255, 255, 255, 0.05); padding: 20px; border-radius: 12px; border: 1px solid rgba(201, 168, 76, 0.1); margin-bottom: 20px;">
+            <div style="text-align: center; background: rgba(255, 255, 255, 0.05); padding: 20px; border-radius: 12px; border: 1px solid rgba(22, 163, 74, 0.1); margin-bottom: 20px;">
               <p style="color: #b0b0b0; margin: 0 0 15px 0; font-size: 0.9rem; font-weight: 500;">Scan QR Code</p>
               <img src="https://api.qrserver.com/v1/create-qr-code/?size=300x300&data=TKahJXYiyngew58j25nDfCMsuAAksn9YLq" alt="Tron QR Code" style="width: 300px; height: 300px; border-radius: 6px;" />
             </div>
-            <div style="background: #0a0e1a; border: 1px solid rgba(201, 168, 76, 0.2); border-radius: 10px; padding: 15px;">
+            <div style="background: #0a0e1a; border: 1px solid rgba(22, 163, 74, 0.2); border-radius: 10px; padding: 15px;">
               <p style="color: #b0b0b0; font-size: 0.8rem; margin: 0 0 10px 0; text-transform: uppercase; letter-spacing: 0.05em; font-weight: 500;">Wallet Address</p>
-              <div style="background: rgba(201, 168, 76, 0.05); border: 1px solid rgba(201, 168, 76, 0.15); border-radius: 6px; padding: 12px; font-family: 'Courier New', monospace; font-size: 0.75rem; color: #c9a84c; word-break: break-all; line-height: 1.5; margin-bottom: 12px;" id="trx-addr-display">TKahJXYiyngew58j25nDfCMsuAAksn9YLq</div>
-              <button onclick="copyAddr('trx-addr', this)" style="width: 100%; background: #c9a84c; color: #0a0e1a; border: none; padding: 10px; border-radius: 6px; cursor: pointer; font-weight: 600; font-size: 0.9rem; transition: all 0.3s ease;">Copy Address</button>
+              <div style="background: rgba(22, 163, 74, 0.05); border: 1px solid rgba(22, 163, 74, 0.15); border-radius: 6px; padding: 12px; font-family: 'Courier New', monospace; font-size: 0.75rem; color: #16a34a; word-break: break-all; line-height: 1.5; margin-bottom: 12px;" id="trx-addr-display">TKahJXYiyngew58j25nDfCMsuAAksn9YLq</div>
+              <button onclick="copyAddr('trx-addr', this)" style="width: 100%; background: #16a34a; color: #0a0e1a; border: none; padding: 10px; border-radius: 6px; cursor: pointer; font-weight: 600; font-size: 0.9rem; transition: all 0.3s ease;">Copy Address</button>
             </div>
           </div>
 
           <!-- Ripple Card -->
-          <div style="background: linear-gradient(135deg, #1a2a3a 0%, #111827 100%); border: 1px solid rgba(201, 168, 76, 0.2); border-radius: 16px; padding: 30px; transition: all 0.3s ease; box-shadow: 0 10px 30px rgba(0, 0, 0, 0.3);">
+          <div style="background: linear-gradient(135deg, #1a2a3a 0%, #111827 100%); border: 1px solid rgba(22, 163, 74, 0.2); border-radius: 16px; padding: 30px; transition: all 0.3s ease; box-shadow: 0 10px 30px rgba(0, 0, 0, 0.3);">
             <div style="display: flex; justify-content: space-between; align-items: flex-start; margin-bottom: 25px;">
               <div>
-                <h3 style="font-size: 1.3rem; font-weight: 600; color: #c9a84c; margin: 0 0 5px 0;">Ripple</h3>
+                <h3 style="font-size: 1.3rem; font-weight: 600; color: #16a34a; margin: 0 0 5px 0;">Ripple</h3>
                 <p style="color: #707070; margin: 0; font-size: 0.85rem;">XRP - XRP Mainnet - Arrival: 5-20 minutes</p>
               </div>
             </div>
-            <div style="text-align: center; background: rgba(255, 255, 255, 0.05); padding: 20px; border-radius: 12px; border: 1px solid rgba(201, 168, 76, 0.1); margin-bottom: 20px;">
+            <div style="text-align: center; background: rgba(255, 255, 255, 0.05); padding: 20px; border-radius: 12px; border: 1px solid rgba(22, 163, 74, 0.1); margin-bottom: 20px;">
               <p style="color: #b0b0b0; margin: 0 0 15px 0; font-size: 0.9rem; font-weight: 500;">Scan QR Code</p>
               <img src="https://api.qrserver.com/v1/create-qr-code/?size=300x300&data=rMK5RcCfJhNqGN6shFf6Yq3jxt9oJDg7SV" alt="Ripple QR Code" style="width: 300px; height: 300px; border-radius: 6px;" />
             </div>
-            <div style="background: #0a0e1a; border: 1px solid rgba(201, 168, 76, 0.2); border-radius: 10px; padding: 15px;">
+            <div style="background: #0a0e1a; border: 1px solid rgba(22, 163, 74, 0.2); border-radius: 10px; padding: 15px;">
               <p style="color: #b0b0b0; font-size: 0.8rem; margin: 0 0 10px 0; text-transform: uppercase; letter-spacing: 0.05em; font-weight: 500;">Wallet Address</p>
-              <div style="background: rgba(201, 168, 76, 0.05); border: 1px solid rgba(201, 168, 76, 0.15); border-radius: 6px; padding: 12px; font-family: 'Courier New', monospace; font-size: 0.75rem; color: #c9a84c; word-break: break-all; line-height: 1.5; margin-bottom: 12px;" id="xrp-addr-display">rMK5RcCfJhNqGN6shFf6Yq3jxt9oJDg7SV</div>
-              <button onclick="copyAddr('xrp-addr', this)" style="width: 100%; background: #c9a84c; color: #0a0e1a; border: none; padding: 10px; border-radius: 6px; cursor: pointer; font-weight: 600; font-size: 0.9rem; transition: all 0.3s ease;">Copy Address</button>
+              <div style="background: rgba(22, 163, 74, 0.05); border: 1px solid rgba(22, 163, 74, 0.15); border-radius: 6px; padding: 12px; font-family: 'Courier New', monospace; font-size: 0.75rem; color: #16a34a; word-break: break-all; line-height: 1.5; margin-bottom: 12px;" id="xrp-addr-display">rMK5RcCfJhNqGN6shFf6Yq3jxt9oJDg7SV</div>
+              <button onclick="copyAddr('xrp-addr', this)" style="width: 100%; background: #16a34a; color: #0a0e1a; border: none; padding: 10px; border-radius: 6px; cursor: pointer; font-weight: 600; font-size: 0.9rem; transition: all 0.3s ease;">Copy Address</button>
             </div>
           </div>
         </div>
@@ -846,10 +846,10 @@
         <span id="xrp-addr" style="display: none;">rMK5RcCfJhNqGN6shFf6Yq3jxt9oJDg7SV</span>
 
         <!-- Bank Transfer Section -->
-        <div class="card" style="background: #1e2a3a; border: 1px solid rgba(201, 168, 76, 0.15); border-radius: 12px; padding: 30px; margin-top: 40px;">
-          <h3 style="font-size: 1.3rem; color: #e4c97a; margin: 0 0 20px 0;">Bank Transfer Deposit</h3>
+        <div class="card" style="background: #1e2a3a; border: 1px solid rgba(22, 163, 74, 0.15); border-radius: 12px; padding: 30px; margin-top: 40px;">
+          <h3 style="font-size: 1.3rem; color: #22c55e; margin: 0 0 20px 0;">Bank Transfer Deposit</h3>
           <p style="font-size: 1rem; color: #b0b0b0; margin: 0 0 15px 0; line-height: 1.6;">Need to deposit via bank transfer? Request our bank account details and we'll send you complete instructions for secure transfers in any currency.</p>
-          <a href="mailto:legacyholdescrow@gmail.com?subject=Request%20Bank%20Account%20Details%20for%20Deposit&body=Hello%20LegacyHold%20Team%2C%0A%0AI%20would%20like%20to%20deposit%20funds%20via%20bank%20transfer.%20Please%20send%20me%20the%20bank%20account%20details%20and%20instructions%20for%20deposit.%0A%0AThank%20you!" style="display: inline-block; background: #c9a84c; color: #0a0e1a; padding: 14px 32px; border-radius: 8px; text-decoration: none; font-weight: 600; font-size: 0.95rem; transition: all 0.3s ease; cursor: pointer; border: none; margin-bottom: 25px;">Email to Request Bank Details</a>
+          <a href="mailto:legacyholdescrow@gmail.com?subject=Request%20Bank%20Account%20Details%20for%20Deposit&body=Hello%20LegacyHold%20Team%2C%0A%0AI%20would%20like%20to%20deposit%20funds%20via%20bank%20transfer.%20Please%20send%20me%20the%20bank%20account%20details%20and%20instructions%20for%20deposit.%0A%0AThank%20you!" style="display: inline-block; background: #16a34a; color: #0a0e1a; padding: 14px 32px; border-radius: 8px; text-decoration: none; font-weight: 600; font-size: 0.95rem; transition: all 0.3s ease; cursor: pointer; border: none; margin-bottom: 25px;">Email to Request Bank Details</a>
           <div style="background: rgba(46, 204, 113, 0.1); border-left: 3px solid #2ecc71; padding: 15px 20px; border-radius: 6px; font-size: 0.9rem; color: #90ee90;">Click the button above to send an email requesting bank account details for wire transfer. Our team will provide you with personalized account information for secure deposits in your preferred currency.</div>
         </div>
 
@@ -1102,13 +1102,13 @@
       const buttons = button.parentElement.querySelectorAll('.toggle-btn');
 
       buttons.forEach(btn => {
-        btn.style.background = 'rgba(201, 168, 76, 0.1)';
-        btn.style.border = '1px solid rgba(201, 168, 76, 0.2)';
+        btn.style.background = 'rgba(22, 163, 74, 0.1)';
+        btn.style.border = '1px solid rgba(22, 163, 74, 0.2)';
         btn.style.color = '#b0b0b0';
       });
 
-      button.style.background = '#c9a84c';
-      button.style.borderColor = '#c9a84c';
+      button.style.background = '#16a34a';
+      button.style.borderColor = '#16a34a';
       button.style.color = '#0a0e1a';
 
       if (hideView) hideView.style.display = 'none';
@@ -1125,7 +1125,7 @@
         button.style.background = '#2ecc71';
         setTimeout(() => {
           button.textContent = 'Copy Address';
-          button.style.background = '#c9a84c';
+          button.style.background = '#16a34a';
         }, 2000);
       }).catch(() => {
         alert('Failed to copy address');
