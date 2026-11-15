@@ -209,7 +209,9 @@
         showMessage('Signed in! Redirecting...', 'success');
 
         setTimeout(() => {
-          if (users.role) {
+          if (users.is_admin) {
+            window.location.href = './admin-dashboard.html';
+          } else if (users.role) {
             window.location.href = users.role === 'buyer' ? './buyer-dashboard.html' : './seller-dashboard.html';
           } else {
             window.location.href = './select-role.html';

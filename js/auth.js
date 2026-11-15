@@ -7,11 +7,12 @@ const SUPABASE_URL = 'https://wdhvrghpmypjthpkfffb.supabase.co';
 const SUPABASE_ANON_KEY = 'eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpc3MiOiJzdXBhYmFzZSIsInJlZiI6IndkaHZyZ2hwbXlwanRocGtmZmZiIiwicm9sZSI6ImFub24iLCJpYXQiOjE3NzgwNDUzNzksImV4cCI6MjA5MzYyMTM3OX0.dXNJyQZNOfvqLwYl10gtZv5sCHP9XLlxYdRnHzp5p3g';
 
 // Initialize Supabase
-let supabase = null;
+let sbClient = null;
 
 function initSupabase() {
-  if (window.supabase && !supabase) {
-    supabase = window.supabase.createClient(SUPABASE_URL, SUPABASE_ANON_KEY);
+  if (window.supabase && window.supabase.createClient && !sbClient) {
+    sbClient = window.supabase.createClient(SUPABASE_URL, SUPABASE_ANON_KEY);
+    window.supabase = sbClient; // expose initialized client globally for any legacy references
     console.log('✓ Supabase initialized');
   }
 }
@@ -69,7 +70,7 @@ async function createDeposit(depositData) {
 
     console.log('📝 Creating deposit:', depositData);
 
-    const { data, error } = await supabase
+    const { data, error } = await sbClient
       .from('deposits')
       .insert([
         {
@@ -105,7 +106,7 @@ async function getUserDeposits(limit = 20) {
   if (!userId) throw new Error('Not authenticated');
 
   try {
-    const { data, error } = await supabase
+    const { data, error } = await sbClient
       .from('deposits')
       .select('*')
       .eq('user_id', userId)
@@ -127,7 +128,7 @@ async function getUserBalance() {
   const userId = localStorage.getItem('userId');
   if (!userId) throw new Error('Not authenticated');
 
-  const { data, error } = await supabase
+  const { data, error } = await sbClient
     .from('users')
     .select('available_balance, pending_balance')
     .eq('id', userId)
@@ -149,7 +150,7 @@ async function getUserTransactions(limit = 10) {
   const userId = localStorage.getItem('userId');
   if (!userId) throw new Error('Not authenticated');
 
-  const { data, error } = await supabase
+  const { data, error } = await sbClient
     .from('transactions')
     .select('*')
     .or(`buyer_id.eq.${userId},seller_id.eq.${userId}`)
@@ -167,7 +168,7 @@ async function createTransaction(sellerEmail, amount) {
   const userId = localStorage.getItem('userId');
   if (!userId) throw new Error('Not authenticated');
 
-  const { data, error } = await supabase
+  const { data, error } = await sbClient
     .from('transactions')
     .insert([{
       buyer_id: userId,
@@ -189,7 +190,7 @@ async function createWithdrawal(amount, accountInfo) {
   const userId = localStorage.getItem('userId');
   if (!userId) throw new Error('Not authenticated');
 
-  const { data, error } = await supabase
+  const { data, error } = await sbClient
     .from('withdrawals')
     .insert([{
       user_id: userId,
@@ -211,7 +212,7 @@ async function getUserWithdrawals(limit = 10) {
   const userId = localStorage.getItem('userId');
   if (!userId) throw new Error('Not authenticated');
 
-  const { data, error } = await supabase
+  const { data, error } = await sbClient
     .from('withdrawals')
     .select('*')
     .eq('user_id', userId)
@@ -226,8 +227,8 @@ async function getUserWithdrawals(limit = 10) {
  * Logout - Clear all stored data
  */
 function logout() {
-  if (supabase) {
-    supabase.auth.signOut().catch(err => console.error('Sign out error:', err));
+  if (sbClient) {
+    sbClient.auth.signOut().catch(err => console.error('Sign out error:', err));
   }
   localStorage.clear();
   sessionStorage.clear();

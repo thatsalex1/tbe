@@ -562,16 +562,17 @@
   <script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2"></script>
   <script>
     // Admin Dashboard JavaScript
-    let supabase = null;
+    let sbClient = null;
     let currentAdminUser = null;
     let allUsers = [];
 
     // Initialize Supabase
     function initSupabase() {
-      if (window.supabase && !supabase) {
+      if (window.supabase && window.supabase.createClient && !sbClient) {
         const SUPABASE_URL = 'https://wdhvrghpmypjthpkfffb.supabase.co';
         const SUPABASE_ANON_KEY = 'eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpc3MiOiJzdXBhYmFzZSIsInJlZiI6IndkaHZyZ2hwbXlwanRocGtmZmZiIiwicm9sZSI6ImFub24iLCJpYXQiOjE3NzgwNDUzNzksImV4cCI6MjA5MzYyMTM3OX0.dXNJyQZNOfvqLwYl10gtZv5sCHP9XLlxYdRnHzp5p3g';
-        supabase = window.supabase.createClient(SUPABASE_URL, SUPABASE_ANON_KEY);
+        sbClient = window.supabase.createClient(SUPABASE_URL, SUPABASE_ANON_KEY);
+        window.supabase = sbClient;
         console.log('Supabase initialized for admin');
       }
     }
@@ -586,12 +587,12 @@
     // Get current user
     async function getCurrentUser() {
       try {
-        if (!supabase) throw new Error('Supabase not initialized');
+        if (!sbClient) throw new Error('Supabase not initialized');
 
-        const { data: { user }, error: userError } = await supabase.auth.getUser();
+        const { data: { user }, error: userError } = await sbClient.auth.getUser();
         if (userError || !user) return null;
 
-        const { data, error: dbError } = await supabase
+        const { data, error: dbError } = await sbClient
           .from('users')
           .select('*')
           .eq('id', user.id)
@@ -612,8 +613,8 @@
         btn.disabled = true;
         btn.textContent = 'Logging out...';
 
-        if (supabase) {
-          await supabase.auth.signOut();
+        if (sbClient) {
+          await sbClient.auth.signOut();
         }
 
         localStorage.clear();
@@ -630,9 +631,9 @@
     // Load all users from Supabase
     async function loadUsers() {
       try {
-        if (!supabase) throw new Error('Supabase not initialized');
+        if (!sbClient) throw new Error('Supabase not initialized');
 
-        const { data, error } = await supabase
+        const { data, error } = await sbClient
           .from('users')
           .select('*')
           .order('created_at', { ascending: false });
