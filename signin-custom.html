@@ -177,18 +177,23 @@
           throw new Error('Database not connected');
         }
 
-        const { data: users, error } = await sbClient
-          .from('users')
-          .select('*')
-          .eq('email', email)
-          .single();
+        const { data: authData, error: authError } = await sbClient.auth.signInWithPassword({
+          email: email,
+          password: password
+        });
 
-        if (error || !users) {
+        if (authError || !authData.user) {
           throw new Error('Email or password is incorrect');
         }
 
-        if (users.password !== password) {
-          throw new Error('Email or password is incorrect');
+        const { data: users, error } = await sbClient
+          .from('users')
+          .select('*')
+          .eq('id', authData.user.id)
+          .single();
+
+        if (error || !users) {
+          throw new Error('Signed in, but could not load your profile');
         }
 
         localStorage.setItem('userId', users.id);

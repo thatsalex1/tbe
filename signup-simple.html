@@ -202,34 +202,45 @@
           throw new Error('Database not connected');
         }
 
-        const userId = 'user_' + Date.now();
+        const fullName = firstName + ' ' + lastName;
 
-        const { data, error } = await sbClient
+        const { data: authData, error: authError } = await sbClient.auth.signUp({
+          email: email,
+          password: password,
+          options: {
+            data: { full_name: fullName }
+          }
+        });
+
+        if (authError) {
+          throw new Error(authError.message || 'Failed to create account');
+        }
+
+        if (!authData.session) {
+          // Email confirmation is required before a session exists.
+          showMessage('Account created! Check your email to confirm, then sign in.', 'success');
+          setTimeout(() => {
+            window.location.href = './signin-custom.html';
+          }, 2500);
+          return;
+        }
+
+        const userId = authData.user.id;
+
+        const { data: profile, error: profileError } = await sbClient
           .from('users')
-          .insert([{
-            id: userId,
-            email: email,
-            password: password,
-            full_name: firstName + ' ' + lastName,
-            phone: '',
-            role: null,
-            available_balance: 0,
-            pending_balance: 0
-          }])
-          .select();
+          .select('*')
+          .eq('id', userId)
+          .single();
 
-        if (error) {
-          throw new Error(error.message || 'Failed to create account');
+        if (profileError || !profile) {
+          throw new Error('Account created, but profile setup failed. Please sign in.');
         }
 
-        if (!data || data.length === 0) {
-          throw new Error('Account creation failed');
-        }
-
-        localStorage.setItem('userId', data[0].id);
-        localStorage.setItem('userEmail', data[0].email);
-        localStorage.setItem('userName', data[0].full_name);
-        localStorage.setItem('userRole', data[0].role || '');
+        localStorage.setItem('userId', profile.id);
+        localStorage.setItem('userEmail', profile.email);
+        localStorage.setItem('userName', profile.full_name);
+        localStorage.setItem('userRole', profile.role || '');
 
         showMessage('Account created! Redirecting...', 'success');
 
