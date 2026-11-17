@@ -53,7 +53,7 @@ function requireAuth() {
   const user = getCurrentUserSync();
   if (!user) {
     console.log('User not authenticated, redirecting to login');
-    window.location.href = './login.html';
+    window.location.href = '/signin-custom';
     return null;
   }
   console.log('✓ User authenticated:', user.email);
@@ -232,7 +232,7 @@ function logout() {
   }
   localStorage.clear();
   sessionStorage.clear();
-  window.location.href = 'login.html';
+  window.location.href = '/';
 }
 
 /**

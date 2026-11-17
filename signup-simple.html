@@ -143,7 +143,7 @@
     </form>
 
     <div class="signin-link">
-      Already have an account? <a href="signin-custom.html">Sign In</a>
+      Already have an account? <a href="/signin-custom">Sign In</a>
     </div>
   </div>
 
@@ -225,7 +225,7 @@
           // Email confirmation is required before a session exists.
           showMessage('Account created! Check your email to confirm, then sign in.', 'success');
           setTimeout(() => {
-            window.location.href = './signin-custom.html';
+            window.location.href = '/signin-custom';
           }, 2500);
           return;
         }
@@ -250,7 +250,7 @@
         showMessage('Account created! Redirecting...', 'success');
 
         setTimeout(() => {
-          window.location.href = './select-role.html';
+          window.location.href = '/select-role';
         }, 1500);
 
       } catch (error) {

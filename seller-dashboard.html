@@ -20,13 +20,13 @@
 
       if (!userId || !userEmail) {
         console.log('User not logged in, redirecting to login');
-        window.location.href = './signin-custom.html';
+        window.location.href = '/signin-custom';
         return false;
       }
 
       if (userRole !== 'seller') {
         console.log('User is not a seller, redirecting to login');
-        window.location.href = './signin-custom.html';
+        window.location.href = '/signin-custom';
         return false;
       }
 
@@ -82,7 +82,7 @@
       localStorage.removeItem('userEmail');
       localStorage.removeItem('userName');
       localStorage.removeItem('userRole');
-      window.location.href = './index.html';
+      window.location.href = '/';
     }
 
     // Logout click handler
@@ -485,7 +485,7 @@
             <span></span>
             <span></span>
           </button>
-          <a href="index.html" class="logo-link">
+          <a href="/" class="logo-link">
             <h1 class="logo">LegacyHold</h1>
           </a>
         </div>

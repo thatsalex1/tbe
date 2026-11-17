@@ -406,7 +406,7 @@
             <span></span>
             <span></span>
           </button>
-          <a href="index.html" class="logo-link">
+          <a href="/" class="logo-link">
             <h1 class="logo">LegacyHold Admin</h1>
           </a>
         </div>
@@ -621,10 +621,10 @@
         sessionStorage.clear();
 
         await new Promise(resolve => setTimeout(resolve, 500));
-        window.location.href = 'index.html';
+        window.location.href = '/';
       } catch (error) {
         console.error('Logout error:', error);
-        window.location.href = 'index.html';
+        window.location.href = '/';
       }
     }
 
@@ -851,7 +851,7 @@
       // Check authentication and load data
       getCurrentUser().then(user => {
         if (!user) {
-          window.location.href = 'index.html';
+          window.location.href = '/';
           return;
         }
 

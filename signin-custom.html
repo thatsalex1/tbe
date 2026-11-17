@@ -131,7 +131,7 @@
     </form>
 
     <div class="signup-link">
-      Don't have an account? <a href="signup-simple.html">Create one</a>
+      Don't have an account? <a href="/signup-simple">Create one</a>
     </div>
   </div>
 
@@ -210,11 +210,11 @@
 
         setTimeout(() => {
           if (users.is_admin) {
-            window.location.href = './admin-dashboard.html';
+            window.location.href = '/admin-dashboard';
           } else if (users.role) {
-            window.location.href = users.role === 'buyer' ? './buyer-dashboard.html' : './seller-dashboard.html';
+            window.location.href = users.role === 'buyer' ? '/buyer-dashboard' : '/seller-dashboard';
           } else {
-            window.location.href = './select-role.html';
+            window.location.href = '/select-role';
           }
         }, 1500);
 

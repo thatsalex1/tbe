@@ -16,7 +16,7 @@ async function initializeDashboard() {
   const user = requireAuth();
   if (!user || user.role !== 'buyer') {
     console.error('User is not a buyer');
-    window.location.href = './login.html';
+    window.location.href = '/signin-custom';
     return;
   }
 

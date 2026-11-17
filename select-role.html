@@ -232,8 +232,8 @@
         localStorage.setItem('userRole', selectedRole);
 
         const dashboardUrl = selectedRole === 'buyer'
-          ? './buyer-dashboard.html'
-          : './seller-dashboard.html';
+          ? '/buyer-dashboard'
+          : '/seller-dashboard';
 
         window.location.href = dashboardUrl;
 
